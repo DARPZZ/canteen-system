@@ -1,5 +1,8 @@
 package com.example.canteensystem2;
 
+import DaOImplements.DaOItem;
+import DaoObjects.DaOInterface;
+import DaoObjects.Item;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -17,6 +20,10 @@ public class HelloApplication extends Application
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
+
+        Item i = new Item(1,"mælk",3.4f );
+        DaOItem worker = new DaOItem();
+        worker.Create(i);
     }
 
     public static void main(String[] args)
