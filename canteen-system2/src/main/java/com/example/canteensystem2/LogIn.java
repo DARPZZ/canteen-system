@@ -55,8 +55,10 @@ Button customerLoginB = new Button("Custommer login");
             @Override
             public void handle(ActionEvent event)
             {
-                CustommerLogin custommerLogin = new CustommerLogin();
+                CustommerLogin custommerLogin = new CustommerLogin(stage);
                 Scene sceneCustommerLogin = custommerLogin.custommerLogin();
+                stage.setScene(sceneCustommerLogin);
+
             }
 
         });
@@ -67,6 +69,7 @@ Button customerLoginB = new Button("Custommer login");
             {
                 AdminLogin adminLogin = new AdminLogin();
                 Scene sceneAdminLogin = adminLogin.adminLogin();
+
             }
         });
 
