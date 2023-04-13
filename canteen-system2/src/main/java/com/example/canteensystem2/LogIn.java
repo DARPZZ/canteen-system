@@ -1,5 +1,8 @@
 package com.example.canteensystem2;
 
+import Database.Employee;
+import Database.EmployeeImpl;
+import Database.ProjectEmployee;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,16 +15,22 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class LogIn extends Application
 {
+
 Button adminLoginB = new Button("Admin login");
 Button customerLoginB = new Button("Custommer login");
 
+
+
+
     @Override
-    public void start(Stage stage) throws IOException
+    public void start(Stage stage) throws IOException, SQLException
     {
+
         BorderPane borderPane = new BorderPane();
         AnchorPane anchorPane = new AnchorPane();
         Scene scene = new Scene(borderPane, 1280, 768);
@@ -46,6 +55,14 @@ Button customerLoginB = new Button("Custommer login");
 
         choice.setLayoutX(adminLoginB.getLayoutX()-40);
         choice.setLayoutY(adminLoginB.getLayoutY()-20);
+
+
+
+        ProjectEmployee pd= new EmployeeImpl();
+        Employee employee = new Employee(250,"Michael",500);
+        pd.addProject(employee);
+
+
 
 
 
