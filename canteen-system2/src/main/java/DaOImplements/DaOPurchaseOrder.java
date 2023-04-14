@@ -13,7 +13,7 @@ public class DaOPurchaseOrder implements DaOInterface<PurchaseOrder>
 
     private static String userName = "sa";
     private static String password = "123456";
-    private static String databaseName = "dbCanteenSystem";
+    private static String databaseName = "sample";
     private static String Port = "1433";
     private static Connection con;
     private PreparedStatement preparedStatement;
@@ -99,22 +99,29 @@ public class DaOPurchaseOrder implements DaOInterface<PurchaseOrder>
     }
 
     @Override
-    public PurchaseOrder getById(int id)
+    public PurchaseOrder Get(int ID)
     {
-        return null;
+        PurchaseOrder order = null;
+        try
+        {
+            preparedStatement = con.prepareStatement("SELECT * FROM tblPurchaseOrder WHERE fldPurchaseOrderID = ?");
+            preparedStatement.setInt(1,ID);
+            ResultSet rs = preparedStatement.executeQuery();
+            order = new PurchaseOrder(rs.getInt("fldPurchaseOrderID"),rs.getInt("fldSupplierID"),rs.getInt("fldItemID"),rs.getInt("fldQuantity"),rs.getFloat("fldPurchesPrice"), rs.getDate("fldOrderDate"));
+
+
+        } catch (Exception e){}
+        return order;
     }
-
-
-    @Override
     public List<PurchaseOrder> GetAll()
     {
         ArrayList<PurchaseOrder> ARL = new ArrayList<>();
         try {
-            PreparedStatement ps = con.prepareStatement("select * from tblPurchaseOrder ");
-            ResultSet rs = ps.executeQuery();
+            preparedStatement = con.prepareStatement("select * from tblPurchaseOrder");
+            ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-            ARL.add(new PurchaseOrder(rs.getInt("fldPurchaseOrderID"),rs.getInt("fldSupplierID"),rs.getInt("fldItemID"),rs.getInt("fldQuantity"),rs.getFloat("fldPurchesPrice"), rs.getDate("fldOrderDate").toLocalDate()));
+            ARL.add(new PurchaseOrder(rs.getInt("fldPurchaseOrderID"),rs.getInt("fldSupplierID"),rs.getInt("fldItemID"),rs.getInt("fldQuantity"),rs.getFloat("fldPurchesPrice"), rs.getDate("fldOrderDate")));
             }
         } catch (SQLException e) {
             System.out.println(e);

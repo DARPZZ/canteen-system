@@ -10,9 +10,8 @@ public interface DaOInterface<T> {
  public abstract void Update(T t, String fieldname, String value);
 
  public abstract void Delete(T t, int ID);
-
- T getById(int id);
-
+ public abstract T  Get(int ID);
  List<T> GetAll();
+
 }
 
