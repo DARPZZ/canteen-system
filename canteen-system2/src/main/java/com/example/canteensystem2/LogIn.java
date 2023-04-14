@@ -40,6 +40,10 @@ Button customerLoginB = new Button("Custommer login");
         borderPane.setCenter(anchorPane);
         anchorPane.getChildren().addAll(adminLoginB, customerLoginB,welcome,choice);
 
+        List<PurchaseOrder> employees = pdPurchesOrder.GetAll();
+        for (PurchaseOrder employee : employees) {
+            System.out.println(employee.getQuantity());
+        }
 
 
 
