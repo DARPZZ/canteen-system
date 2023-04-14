@@ -3,6 +3,8 @@ package DaOImplements;
 
 import DaoObjects.DaOInterface;
 import DaoObjects.Employee;
+import DaoObjects.Item;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -90,8 +92,18 @@ public class DaOEmployee implements DaOInterface<Employee>
     }
 
     @Override
-    public void Get(int ID)
+    public Employee Get(int ID)
     {
+        Employee tempEmployee = null;
+        try
+        {
+            preparedStatement = con.prepareStatement("SELECT * FROM tblEmployee WHERE fldEmployeeID = ?");
+            preparedStatement.setInt(1,ID);
+            ResultSet rs = preparedStatement.executeQuery();
+            tempEmployee =new Employee(rs.getInt("fldEmployeeID"), rs.getString("fldName"), rs.getInt("fldSaldo"));
+
+        } catch (Exception e){}
+        return tempEmployee;
 
     }
 

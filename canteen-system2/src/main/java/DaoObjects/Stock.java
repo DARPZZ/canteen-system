@@ -12,8 +12,8 @@ public class Stock
     public Stock(int stockID,int itemID, int stockLevel, int minStockLevel) {
         this.StockID = stockID;
         this.ItemID = itemID;
-        this.StockID = stockLevel;
-        this.StockID = minStockLevel;
+        this.StockLevel = stockLevel;
+        this.MinStockLevel = minStockLevel;
 
     }
     public Stock(int stockID, int itemID)

@@ -1,15 +1,14 @@
 package DaOImplements;
 
 import DaoObjects.DaOInterface;
-import DaoObjects.Employee;
-import DaoObjects.Item;
-import DaoObjects.PurchaseOrder;
+import DaoObjects.Stock;
+import DaoObjects.Supplier;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DaOItem implements DaOInterface
+public class DaOSupplier implements DaOInterface
 {
 
     private static String userName = "sa";
@@ -19,8 +18,8 @@ public class DaOItem implements DaOInterface
     private static Connection con;
     private PreparedStatement preparedStatement;
 
-    Item item;
-    public DaOItem()
+    Supplier supplier;
+    public DaOSupplier()
     {
         try {
             con = DriverManager.getConnection("jdbc:sqlserver://localhost:"+Port+";databaseName="+databaseName,userName,password);
@@ -32,13 +31,14 @@ public class DaOItem implements DaOInterface
     @Override
     public void Create(Object o)
     {
-        item =(Item) o;
+        supplier =(Supplier) o;
 
         try {
-            preparedStatement = con.prepareStatement("INSERT INTO tblItem (fldName,fldPrice) VALUES (?,?)");
+            preparedStatement = con.prepareStatement("INSERT INTO tblSupplier (fldSupplierID,fldName) VALUES (?,?)");
 
-            preparedStatement.setString(1,item.getName());
-            preparedStatement.setFloat(2,item.getPrice());
+            preparedStatement.setInt(1,supplier.getSupplierID());
+            preparedStatement.setString(2,supplier.getName());
+
             preparedStatement.execute();
         }
         catch (Exception e)
@@ -49,10 +49,10 @@ public class DaOItem implements DaOInterface
     @Override
     public void Remove(Object o, int ID)
     {
-        item =(Item) o;
+        supplier =(Supplier) o;
         try
         {
-            preparedStatement = con.prepareStatement("DELETE FROM tblItem WHERE fldItemID = ?");
+            preparedStatement = con.prepareStatement("DELETE FROM tblSupplier WHERE fldSupplierID = ?");
             preparedStatement.setInt(1,ID);
             preparedStatement.execute();
         }
@@ -63,25 +63,13 @@ public class DaOItem implements DaOInterface
     @Override
     public void Update(Object o, String fieldname, String value)
     {
-        item =(Item) o;
+        supplier =(Supplier) o;
         try
         {
             preparedStatement = con.prepareStatement("UPDATE ? SET ? = ?");
-            preparedStatement.setString(1,"tblItem");
+            preparedStatement.setString(1,"tblSupplier");
             preparedStatement.setString(2,fieldname);
-            switch (fieldname)
-            {
-                case "fldItemID":
-                    preparedStatement.setInt(3,Integer.parseInt(value));
-                    break;
-
-                case "fldName":
-                    preparedStatement.setString(3,value);
-                    break;
-                case "fldPrice":
-                    preparedStatement.setFloat(3,Float.parseFloat(value));
-            }
-            preparedStatement.execute();
+            preparedStatement.setInt(3,Integer.parseInt(value));
         }
         catch (Exception e)
         {}
@@ -89,9 +77,9 @@ public class DaOItem implements DaOInterface
     @Override
     public void Delete(Object o, int ID)
     {
-        item =(Item) o;
+        supplier =(Supplier) o;
         try {
-            preparedStatement = con.prepareStatement("DELETE FROM tblItem WHERE fldItemID = ?");
+            preparedStatement = con.prepareStatement("DELETE FROM tblSupplier WHERE fldSupplierID = ?");
             preparedStatement.setInt(1,ID);
             preparedStatement.execute();
         }
@@ -99,30 +87,30 @@ public class DaOItem implements DaOInterface
     }
 
     @Override
-    public Item Get(int ID)
+    public Supplier Get(int ID)
     {
-        Item tempItem = null;
+        Supplier tempSupplier = null;
         try
         {
-            preparedStatement = con.prepareStatement("SELECT * FROM tblItem WHERE fldItemID = ?");
+            preparedStatement = con.prepareStatement("SELECT * FROM tblSupplier WHERE fldSupplierID = ?");
             preparedStatement.setInt(1,ID);
             ResultSet rs = preparedStatement.executeQuery();
-            tempItem = new Item(rs.getInt("fldItemID"), rs.getString("fldName"),rs.getFloat("fldPrice"));
+            tempSupplier = new Supplier(rs.getInt(rs.getInt("fldSupplierID")), rs.getString("fldName"));
 
         } catch (Exception e){}
-        return tempItem;
+        return tempSupplier;
 
     }
-@Override
-    public List<Item> GetAll()
+    @Override
+    public List<Supplier> GetAll()
     {
-        ArrayList<Item> ARL = new ArrayList<>();
+        ArrayList<Supplier> ARL = new ArrayList<>();
         try {
-            PreparedStatement ps = con.prepareStatement("select * from tblItem ");
-            ResultSet rs = ps.executeQuery();
+            preparedStatement = con.prepareStatement("select * from tblSupplier ");
+            ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                ARL.add(new Item(rs.getInt("fldItemID"), rs.getString("fldName"),rs.getFloat("fldPrice")));
+                ARL.add(new Supplier(rs.getInt(rs.getInt("fldSupplierID")), rs.getString("fldName")));
             }
         } catch (SQLException e) {
             System.out.println(e);

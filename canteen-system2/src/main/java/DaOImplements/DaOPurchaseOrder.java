@@ -99,16 +99,26 @@ public class DaOPurchaseOrder implements DaOInterface<PurchaseOrder>
     }
 
     @Override
-    public void Get(int ID)
+    public PurchaseOrder Get(int ID)
     {
+        PurchaseOrder order = null;
+        try
+        {
+            preparedStatement = con.prepareStatement("SELECT * FROM tblPurchaseOrder WHERE fldPurchaseOrderID = ?");
+            preparedStatement.setInt(1,ID);
+            ResultSet rs = preparedStatement.executeQuery();
+            order = new PurchaseOrder(rs.getInt("fldPurchaseOrderID"),rs.getInt("fldSupplierID"),rs.getInt("fldItemID"),rs.getInt("fldQuantity"),rs.getFloat("fldPurchesPrice"), rs.getDate("fldOrderDate"));
 
+
+        } catch (Exception e){}
+        return order;
     }
     public List<PurchaseOrder> GetAll()
     {
         ArrayList<PurchaseOrder> ARL = new ArrayList<>();
         try {
-            PreparedStatement ps = con.prepareStatement("select * from tblPurchaseOrder");
-            ResultSet rs = ps.executeQuery();
+            preparedStatement = con.prepareStatement("select * from tblPurchaseOrder");
+            ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
             ARL.add(new PurchaseOrder(rs.getInt("fldPurchaseOrderID"),rs.getInt("fldSupplierID"),rs.getInt("fldItemID"),rs.getInt("fldQuantity"),rs.getFloat("fldPurchesPrice"), rs.getDate("fldOrderDate")));
