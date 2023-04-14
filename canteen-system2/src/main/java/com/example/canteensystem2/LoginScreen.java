@@ -1,5 +1,7 @@
 package com.example.canteensystem2;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -11,46 +13,43 @@ public abstract class LoginScreen
     private AnchorPane loginAp;
     private Label headerLabel;
     private Label loginNotificationLabel;
-    private TextField usernameTf;
-    private TextField loginTf;
 
     public LoginScreen()
     {
         loginAp = new AnchorPane();
         scene = new Scene(loginAp, 1280, 768);
-
-        // Creates default header and textfields for inputs
-        loginNotificationLabel = new Label("Indtast venligst dine login oplysninger");
-        loginNotificationLabel.setPrefSize(scene.getWidth() / 4, scene.getHeight() / 4);
-        loginNotificationLabel.setLayoutX(scene.getWidth() / 2);
-        loginNotificationLabel.setStyle("-fx-font-size: 14; -fx-font-family: calibri");
-
-        // Creates username textfield
-        usernameTf = new TextField();
-        usernameTf.setPromptText("Brugernavn");
-        usernameTf.setPrefSize(150, 30);
-        usernameTf.setLayoutX(scene.getWidth() / 2);
-        usernameTf.setLayoutY(scene.getHeight() / 2);
-
-        // Creates password textfield
-        loginTf = new TextField();
-        loginTf.setPromptText("Kodeord");
-        loginTf.setPrefSize(usernameTf.getPrefWidth(), usernameTf.getPrefHeight());
-        loginTf.setLayoutX(usernameTf.getLayoutX());
-        loginTf.setLayoutY(usernameTf.getLayoutY() + usernameTf.getHeight());
+        loginAp.setPrefSize(scene.getWidth(), scene.getHeight());
 
         // Header label to set new text
         headerLabel = new Label();
-        headerLabel.setStyle("-fx-font-size: 40; -fx-font-family: calibri");
-        headerLabel.setPrefSize(scene.getWidth() / 2, scene.getHeight() / 3);
-        headerLabel.setLayoutX(loginTf.getLayoutX());
+        loginAp.getChildren().add(headerLabel);
+        headerLabel.setPrefSize(250, 200);
+        headerLabel.setLayoutX((scene.getWidth() / 2) - (headerLabel.getPrefWidth() / 2) + 25);
+        headerLabel.setLayoutY(100);
+        headerLabel.setStyle("-fx-font-size: 40; -fx-font-family: calibri; -fx-font-weight: Bold");
 
-        loginAp.getChildren().addAll(headerLabel, loginNotificationLabel, usernameTf, loginTf);
+        // Login notification label
+        loginNotificationLabel = new Label();
+        loginAp.getChildren().add(loginNotificationLabel);
+        loginNotificationLabel.setPrefSize(250, 100);
+        loginNotificationLabel.setLayoutX((scene.getWidth() / 2) - (loginNotificationLabel.getPrefWidth()/2) + 25);
+        loginNotificationLabel.setLayoutY(headerLabel.getLayoutY() + 150);
+        loginNotificationLabel.setStyle("-fx-font-size: 14; -fx-font-family: calibri; -fx-font-weight: Bold");
     }
 
     public void setHeaderText(String text)
     {
         this.headerLabel.setText(text);
+    }
+
+    public void setLoginNotificationText(String text)
+    {
+        this.loginNotificationLabel.setText(text);
+    }
+
+    public AnchorPane getLoginAp()
+    {
+        return loginAp;
     }
 
     public Scene getScene()
