@@ -5,6 +5,4 @@ module com.example.canteensystem2 {
 
     opens com.example.canteensystem2 to javafx.fxml;
     exports com.example.canteensystem2;
-    exports DaoObjects;
-    opens DaoObjects to javafx.fxml;
 }
