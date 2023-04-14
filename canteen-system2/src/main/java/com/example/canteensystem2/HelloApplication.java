@@ -14,8 +14,15 @@ public class HelloApplication extends Application
     {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1280, 768);
+        scene = new CustomerLogin().getScene();
+
+        String css = this.getClass().getResource("/com/example/canteensystem2/style.css").toExternalForm();
+        scene.getStylesheets().add(css);
+
+
+
         stage.setTitle("Hello!");
-        stage.setScene(new CustomerLogin().getScene());
+        stage.setScene(scene);
         stage.show();
     }
 

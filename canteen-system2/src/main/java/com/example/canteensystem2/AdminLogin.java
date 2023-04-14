@@ -1,6 +1,7 @@
 package com.example.canteensystem2;
 
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 
 public class AdminLogin extends LoginScreen
 {
@@ -17,7 +18,7 @@ public class AdminLogin extends LoginScreen
         usernameTf.setPromptText("Brugernavn");
         usernameTf.setPrefSize(250, 40);
         usernameTf.setLayoutX((super.getScene().getWidth() - usernameTf.getPrefWidth()) / 2);
-        usernameTf.setLayoutY(400);
+        usernameTf.setLayoutY(350);
         usernameTf.setFocusTraversable(false);
 
         // Creates password textfield

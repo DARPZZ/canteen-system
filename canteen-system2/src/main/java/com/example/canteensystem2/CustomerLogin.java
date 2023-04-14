@@ -16,7 +16,7 @@ public class CustomerLogin extends LoginScreen
         employeeIdTf.setPromptText("Brugernavn");
         employeeIdTf.setPrefSize(250, 40);
         employeeIdTf.setLayoutX((super.getScene().getWidth() - employeeIdTf.getPrefWidth()) / 2);
-        employeeIdTf.setLayoutY(400);
+        employeeIdTf.setLayoutY(350);
         employeeIdTf.setFocusTraversable(false);
     }
 }
