@@ -11,11 +11,6 @@ public class Employee
         Name = name;
         Saldo = saldo;
     }
-    public Employee(int employeeID, String name)
-    {
-        EmployeeID = employeeID;
-        Name = name;
-    }
 
     public int getEmployeeID() {
         return EmployeeID;
