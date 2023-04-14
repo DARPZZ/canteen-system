@@ -107,7 +107,9 @@ public class DaOItem implements DaOInterface
     {
         ArrayList<Item> ARL = new ArrayList<>();
         try {
+
             PreparedStatement ps = con.prepareStatement("select * from tblItem ");
+
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {

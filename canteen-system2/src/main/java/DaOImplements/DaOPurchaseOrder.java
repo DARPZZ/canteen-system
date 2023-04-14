@@ -13,7 +13,7 @@ public class DaOPurchaseOrder implements DaOInterface<PurchaseOrder>
 
     private static String userName = "sa";
     private static String password = "123456";
-    private static String databaseName = "sample";
+    private static String databaseName = "dbCanteenSystem";
     private static String Port = "1433";
     private static Connection con;
     private PreparedStatement preparedStatement;
@@ -103,15 +103,16 @@ public class DaOPurchaseOrder implements DaOInterface<PurchaseOrder>
     {
 
     }
+    @Override
     public List<PurchaseOrder> GetAll()
     {
         ArrayList<PurchaseOrder> ARL = new ArrayList<>();
         try {
-            PreparedStatement ps = con.prepareStatement("select * from tblPurchaseOrder");
+            PreparedStatement ps = con.prepareStatement("select * from tblPurchaseOrder ");
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-            ARL.add(new PurchaseOrder(rs.getInt("fldPurchaseOrderID"),rs.getInt("fldSupplierID"),rs.getInt("fldItemID"),rs.getInt("fldQuantity"),rs.getFloat("fldPurchesPrice"), rs.getDate("fldOrderDate")));
+            ARL.add(new PurchaseOrder(rs.getInt("fldPurchaseOrderID"),rs.getInt("fldSupplierID"),rs.getInt("fldItemID"),rs.getInt("fldQuantity"),rs.getFloat("fldPurchesPrice"), rs.getDate("fldOrderDate").toLocalDate()));
             }
         } catch (SQLException e) {
             System.out.println(e);

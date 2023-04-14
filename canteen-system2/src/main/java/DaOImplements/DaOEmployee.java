@@ -98,6 +98,7 @@ public class DaOEmployee implements DaOInterface<Employee>
     @Override
     public List<Employee> GetAll()
     {
+        System.out.println("hej");
         ArrayList<Employee> ARL = new ArrayList<>();
         try {
             PreparedStatement ps = con.prepareStatement("select * from tblEmployee ");
@@ -108,7 +109,6 @@ public class DaOEmployee implements DaOInterface<Employee>
             }
         } catch (SQLException e) {
             System.out.println(e);
-
         }
         return ARL;
     }
