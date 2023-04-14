@@ -3,6 +3,14 @@ package DaoObjects;
 public class Item
 {
     private int ItemID;
+
+    public Item(int itemID, String name, float price)
+    {
+        ItemID = itemID;
+        Name = name;
+        Price = price;
+    }
+
     private String Name;
     private float Price;
 
@@ -11,6 +19,7 @@ public class Item
         Name = name;
         Price = price;
     }
+
     public Item(int itemID, String name)
     {
         ItemID = itemID;

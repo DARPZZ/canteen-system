@@ -1,5 +1,12 @@
 package com.example.canteensystem2;
 
+import DaOImplements.DaOEmployee;
+import DaOImplements.DaOItem;
+import DaOImplements.DaOPurchaseOrder;
+import DaoObjects.DaOInterface;
+import DaoObjects.Employee;
+import DaoObjects.Item;
+import DaoObjects.PurchaseOrder;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,12 +20,15 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class LogIn extends Application
 {
 Button adminLoginB = new Button("Admin login");
 Button customerLoginB = new Button("Custommer login");
-
+    DaOInterface pdEmployee =new DaOEmployee();
+    DaOInterface pdItem = new DaOItem();
+    DaOInterface pdPurchesOrder= new DaOPurchaseOrder();
     @Override
     public void start(Stage stage) throws IOException
     {
@@ -29,6 +39,8 @@ Button customerLoginB = new Button("Custommer login");
         Label choice = new Label("Please select what you would like to log in as");
         borderPane.setCenter(anchorPane);
         anchorPane.getChildren().addAll(adminLoginB, customerLoginB,welcome,choice);
+
+
 
 
         adminLoginB.setLayoutY(300);

@@ -1,9 +1,12 @@
 package DaOImplements;
 
 import DaoObjects.DaOInterface;
+import DaoObjects.Employee;
 import DaoObjects.Item;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DaOItem implements DaOInterface
 {
@@ -92,6 +95,29 @@ public class DaOItem implements DaOInterface
             preparedStatement.execute();
         }
         catch (Exception e){}
+    }
+
+    @Override
+    public void Get(int ID)
+    {
+
+    }
+@Override
+    public List<Item> GetAll()
+    {
+        ArrayList<Item> ARL = new ArrayList<>();
+        try {
+            PreparedStatement ps = con.prepareStatement("select * from tblItem ");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                ARL.add(new Item(rs.getInt("fldItemID"), rs.getString("fldName"),rs.getFloat("fldPrice")));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+
+        }
+        return ARL;
     }
 
 
