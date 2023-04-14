@@ -1,7 +1,6 @@
-package com.example.canteensystem2;
+package View;
 
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 
 public class AdminLogin extends LoginScreen
 {

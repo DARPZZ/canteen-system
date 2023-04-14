@@ -1,4 +1,4 @@
-package com.example.canteensystem2;
+package View;
 
 import javafx.scene.control.TextField;
 

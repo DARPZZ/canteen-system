@@ -4,23 +4,18 @@ import DaOImplements.DaOEmployee;
 import DaOImplements.DaOItem;
 import DaOImplements.DaOPurchaseOrder;
 import DaoObjects.DaOInterface;
-import DaoObjects.Employee;
-import DaoObjects.Item;
-import DaoObjects.PurchaseOrder;
+import View.AdminLogin;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class LogIn extends Application
 {
@@ -80,7 +75,7 @@ Button customerLoginB = new Button("Custommer login");
             public void handle(ActionEvent event)
             {
                 AdminLogin adminLogin = new AdminLogin();
-                Scene sceneAdminLogin = adminLogin.adminLogin();
+                //Scene sceneAdminLogin = adminLogin.adminLogin();
 
             }
         });

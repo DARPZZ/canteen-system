@@ -27,7 +27,6 @@ public class Payment
     }
     public Payment(Stage stage)
     {
-
         this.stage = stage;
         Welcome.setLayoutY(100);
         Welcome.setLayoutX(550);
