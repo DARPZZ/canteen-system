@@ -1,5 +1,7 @@
 package com.example.canteensystem2;
 
+import DaOImplements.DaOItem;
+import DaoObjects.Item;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -29,6 +31,10 @@ Button customerLoginB = new Button("Custommer login");
         Label choice = new Label("Please select what you would like to log in as");
         borderPane.setCenter(anchorPane);
         anchorPane.getChildren().addAll(adminLoginB, customerLoginB,welcome,choice);
+
+        DaOItem i = new DaOItem();
+        Item item = new Item(1, "mælk", 10.0f);
+        i.Create(item);
 
 
         adminLoginB.setLayoutY(300);
