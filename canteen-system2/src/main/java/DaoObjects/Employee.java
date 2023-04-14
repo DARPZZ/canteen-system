@@ -12,6 +12,11 @@ public class Employee
         Saldo = saldo;
     }
 
+    public Employee()
+    {
+
+    }
+
     public int getEmployeeID() {
         return EmployeeID;
     }

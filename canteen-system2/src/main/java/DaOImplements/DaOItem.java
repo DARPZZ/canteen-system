@@ -98,11 +98,13 @@ public class DaOItem implements DaOInterface
     }
 
     @Override
-    public void Get(int ID)
+    public Object getById(int id)
     {
-
+        return null;
     }
-@Override
+
+
+    @Override
     public List<Item> GetAll()
     {
         ArrayList<Item> ARL = new ArrayList<>();
@@ -121,6 +123,8 @@ public class DaOItem implements DaOInterface
         }
         return ARL;
     }
+
+
 
 
 }

@@ -21,7 +21,7 @@ public class DaOEmployee implements DaOInterface<Employee>
     public DaOEmployee()
     {
         try {
-            con = DriverManager.getConnection("jdbc:sqlserver://localhost:"+Port+";databaseName="+databaseName,userName,password);
+            con = DriverManager.getConnection("jdbc:sqlserver://localhost:" + Port + ";databaseName=" + databaseName, userName, password);
         } catch (SQLException e) {
             System.err.println("Database connection fail" + e.getMessage());
         }
@@ -32,67 +32,73 @@ public class DaOEmployee implements DaOInterface<Employee>
     {
         try {
             preparedStatement = con.prepareStatement("INSERT INTO tblEmployee VALUES (?,?,?)");
-            preparedStatement.setInt(1,employee.getEmployeeID());
-            preparedStatement.setString(2,employee.getName());
-            preparedStatement.setFloat(3,employee.getSaldo());
+            preparedStatement.setInt(1, employee.getEmployeeID());
+            preparedStatement.setString(2, employee.getName());
+            preparedStatement.setFloat(3, employee.getSaldo());
             preparedStatement.execute();
+        } catch (Exception e) {
         }
-        catch (Exception e)
-        {}
     }
+
     @Override
     public void Remove(Employee employee, int ID)
     {
-        try
-        {
+        try {
             preparedStatement = con.prepareStatement("DELETE FROM tblEmployee WHERE fldEmployeeID = ?");
-            preparedStatement.setInt(1,ID);
+            preparedStatement.setInt(1, ID);
             preparedStatement.execute();
+        } catch (Exception e) {
         }
-        catch (Exception e)
-        {}
 
     }
+
+
+
     @Override
     public void Update(Employee employee, String fieldname, String value)
     {
-        try
-        {
-            preparedStatement = con.prepareStatement("UPDATE ? SET ? = ?");
-            preparedStatement.setString(1,"tblEmployee");
-            preparedStatement.setString(2,fieldname);
-                switch (fieldname)
-            {
-                    case "fldEmployeeID":
-                        preparedStatement.setInt(3,Integer.parseInt(value));
-                        break;
-
-                    case "fldName":
-                        preparedStatement.setString(3,value);
-                        break;
-                    case "fldSaldo":
-                        preparedStatement.setInt(3,Integer.parseInt(value));
+        String sql ="UPDATE tblEmployee SET ";
+               sql+= fieldname + " = '" + value+"'";
+        sql+= " where fldEmployeeID = " + employee.getEmployeeID();
+        System.out.println(sql);
+        try {
+            preparedStatement = con.prepareStatement(sql);
+            preparedStatement.executeQuery();
+        } catch (Exception e) {
         }
-        preparedStatement.execute();
-        }
-        catch (Exception e)
-        {}
     }
+
     @Override
     public void Delete(Employee employee, int ID)
     {
         try {
             preparedStatement = con.prepareStatement("DELETE FROM tblEmployee WHERE fldEmployeeID = ?");
-            preparedStatement.setInt(1,ID);
+            preparedStatement.setInt(1, ID);
             preparedStatement.execute();
+        } catch (Exception e) {
         }
-        catch (Exception e){}
     }
 
-    @Override
-    public void Get(int ID)
-    {
+    public Employee getById(int id) {
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM tblEmployee WHERE fldEmployeeID = ?");
+            ps.setInt(1, id);
 
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                Employee employee = new Employee();
+                employee.setEmployeeID(rs.getInt("fldEmployeeID"));
+                employee.setName(rs.getString("fldName"));
+                employee.setSaldo(rs.getFloat("fldSaldo"));
+                return employee;
+            }
+            return null; // no employee with the given id found in the database
+        } catch (SQLException ex) {
+            // handle any errors
+            ex.printStackTrace();
+            return null;
+        }
     }
 
     @Override
@@ -115,3 +121,4 @@ public class DaOEmployee implements DaOInterface<Employee>
 
 
 }
+

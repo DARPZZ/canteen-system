@@ -99,10 +99,12 @@ public class DaOPurchaseOrder implements DaOInterface<PurchaseOrder>
     }
 
     @Override
-    public void Get(int ID)
+    public PurchaseOrder getById(int id)
     {
-
+        return null;
     }
+
+
     @Override
     public List<PurchaseOrder> GetAll()
     {
