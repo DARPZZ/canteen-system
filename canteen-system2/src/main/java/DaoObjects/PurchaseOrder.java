@@ -1,6 +1,7 @@
 package DaoObjects;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class PurchaseOrder
 {
@@ -9,9 +10,12 @@ public class PurchaseOrder
     private int ItemID;
     private int Quantity;
     private float PurchasePrice;
-    private LocalDate OrderDate;
 
-    public PurchaseOrder(int purchaseOrderID, int supplierID, int itemID, int quantity, float purchasePrice, LocalDate orderDate) {
+
+
+    private Date OrderDate;
+
+    public PurchaseOrder(int purchaseOrderID, int supplierID, int itemID, int quantity, float purchasePrice, Date orderDate) {
         PurchaseOrderID = purchaseOrderID;
         SupplierID = supplierID;
         ItemID = itemID;
@@ -60,11 +64,14 @@ public class PurchaseOrder
         PurchasePrice = purchasePrice;
     }
 
-    public LocalDate getOrderDate() {
+    public Date getOrderDate()
+    {
         return OrderDate;
     }
 
-    public void setOrderDate(LocalDate orderDate) {
+    public void setOrderDate(Date orderDate)
+    {
         OrderDate = orderDate;
     }
+
 }

@@ -4,6 +4,8 @@ package DaOImplements;
 import DaoObjects.DaOInterface;
 import DaoObjects.Employee;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class DaOEmployee implements DaOInterface<Employee>
@@ -86,5 +88,30 @@ public class DaOEmployee implements DaOInterface<Employee>
         }
         catch (Exception e){}
     }
+
+    @Override
+    public void Get(int ID)
+    {
+
+    }
+
+    @Override
+    public List<Employee> GetAll()
+    {
+        ArrayList<Employee> ARL = new ArrayList<>();
+        try {
+            PreparedStatement ps = con.prepareStatement("select * from tblEmployee ");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                ARL.add(new Employee(rs.getInt("fldEmployeeID"), rs.getString("fldName"), rs.getInt("fldSaldo")));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+
+        }
+        return ARL;
+    }
+
 
 }

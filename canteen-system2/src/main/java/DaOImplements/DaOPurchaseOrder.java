@@ -1,14 +1,14 @@
 package DaOImplements;
 
 import DaoObjects.DaOInterface;
+import DaoObjects.Employee;
 import DaoObjects.PurchaseOrder;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class DaOPurchaseOrder implements DaOInterface
+public class DaOPurchaseOrder implements DaOInterface<PurchaseOrder>
 {
 
     private static String userName = "sa";
@@ -29,7 +29,7 @@ public class DaOPurchaseOrder implements DaOInterface
     }
 
     @Override
-    public void Create(Object o)
+    public void Create(PurchaseOrder o)
     {
         purchaseOrder =(PurchaseOrder) o;
 
@@ -47,7 +47,7 @@ public class DaOPurchaseOrder implements DaOInterface
         {}
     }
     @Override
-    public void Remove(Object o, int ID)
+    public void Remove(PurchaseOrder o, int ID)
     {
         purchaseOrder =(PurchaseOrder) o;
         try
@@ -61,7 +61,7 @@ public class DaOPurchaseOrder implements DaOInterface
 
     }
     @Override
-    public void Update(Object o, String fieldname, String value)
+    public void Update(PurchaseOrder o, String fieldname, String value)
     {
         purchaseOrder =(PurchaseOrder) o;
         try
@@ -87,7 +87,7 @@ public class DaOPurchaseOrder implements DaOInterface
         {}
     }
     @Override
-    public void Delete(Object o, int ID)
+    public void Delete(PurchaseOrder o, int ID)
     {
         purchaseOrder =(PurchaseOrder) o;
         try {
@@ -96,6 +96,28 @@ public class DaOPurchaseOrder implements DaOInterface
             preparedStatement.execute();
         }
         catch (Exception e){}
+    }
+
+    @Override
+    public void Get(int ID)
+    {
+
+    }
+    public List<PurchaseOrder> GetAll()
+    {
+        ArrayList<PurchaseOrder> ARL = new ArrayList<>();
+        try {
+            PreparedStatement ps = con.prepareStatement("select * from tblPurchaseOrder");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+            ARL.add(new PurchaseOrder(rs.getInt("fldPurchaseOrderID"),rs.getInt("fldSupplierID"),rs.getInt("fldItemID"),rs.getInt("fldQuantity"),rs.getFloat("fldPurchesPrice"), rs.getDate("fldOrderDate")));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+
+        }
+        return ARL;
     }
 
 
