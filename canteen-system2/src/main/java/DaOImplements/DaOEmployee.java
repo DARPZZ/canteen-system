@@ -49,10 +49,7 @@ public class DaOEmployee implements DaOInterface<Employee>
             preparedStatement.execute();
         } catch (Exception e) {
         }
-
     }
-
-
 
     @Override
     public void Update(Employee employee, String fieldname, String value)
@@ -67,7 +64,6 @@ public class DaOEmployee implements DaOInterface<Employee>
         } catch (Exception e) {
         }
     }
-
     @Override
     public void Delete(Employee employee, int ID)
     {
@@ -78,7 +74,6 @@ public class DaOEmployee implements DaOInterface<Employee>
         } catch (Exception e) {
         }
     }
-
     public Employee getById(int id) {
         try {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM tblEmployee WHERE fldEmployeeID = ?");

@@ -12,16 +12,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.List;
-
 public class Payment {
     DaOInterface pdEmployee = new DaOEmployee();
-
-
     private Scene scene;
     private Stage stage;
     BorderPane borderPane = new BorderPane();
@@ -67,7 +59,6 @@ public class Payment {
 
         scene = new Scene(borderPane, 1280, 768);
     }
-
     public void getUserID(TextField textField) {
         int employeeId = Integer.parseInt(textField.getText());
         Employee employee = (Employee) pdEmployee.getById(employeeId);
@@ -83,7 +74,26 @@ public class Payment {
             {
                 float newBalance = employee.getSaldo() + 50;
                 pdEmployee.Update(employee,"fldSaldo", String.valueOf(newBalance));
-
+                Saldo.setText("Welcome: " + employee.getName() + "Youre  balance Is " + newBalance);
+            }
+        });
+        kr100.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                float newBalance = employee.getSaldo() + 100;
+                pdEmployee.Update(employee,"fldSaldo", String.valueOf(newBalance));
+                Saldo.setText("Welcome: " + employee.getName() + "Youre  balance Is " + newBalance);
+            }
+        });
+        kr200.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                float newBalance = employee.getSaldo() + 200;
+                pdEmployee.Update(employee,"fldSaldo", String.valueOf(newBalance));
                 Saldo.setText("Welcome: " + employee.getName() + "Youre  balance Is " + newBalance);
             }
         });
