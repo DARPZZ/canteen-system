@@ -2,6 +2,7 @@ package View;
 
 
 import DaoObjects.Stock;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
@@ -9,6 +10,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Callback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +39,9 @@ public class InventoryManagement
 
         createColumns();
         anchorPane.getChildren().add(tableView);
+
+        addToTable(new Stock(10,10,10));
+
     }
 
     public void searchFunction()
@@ -48,23 +53,24 @@ public class InventoryManagement
     {
         int xSize = (int) (this.tableView.getPrefWidth() / 4.0);
 
-        TableColumn<Stock, String> stockID = new TableColumn<>("Varenr.");
-        stockID.setCellValueFactory(new PropertyValueFactory<>("StockID"));
+        TableColumn<Stock, Number> stockID = new TableColumn<>("Varenr.");
+        stockID.setCellValueFactory(new PropertyValueFactory<>("StockIdProperty"));
+        stockID.setCellValueFactory(data -> data.getValue().getStockIdProperty());
         stockID.setPrefWidth(xSize);
 
         TableColumn<Stock, String> description = new TableColumn<>("Beskrivelse");
-        description.setCellValueFactory(new PropertyValueFactory<>("Description"));
+        //description.setCellValueFactory(new PropertyValueFactory<>("description"));
         description.setPrefWidth(xSize);
 
-        TableColumn<Stock, String> currentLevel = new TableColumn<>("Stk. lager");
-        currentLevel.setCellValueFactory(new PropertyValueFactory<>("StockLevel"));
+        TableColumn<Stock, Number> currentLevel = new TableColumn<>("Stk. lager");
+        currentLevel.setCellValueFactory(data -> data.getValue().getStockLevelProperty());
         currentLevel.setPrefWidth(xSize);
 
-        TableColumn<Stock, String> minLevel = new TableColumn<>("Min. lager");
-        minLevel.setCellValueFactory(new PropertyValueFactory<>("MinStockLevel"));
+        TableColumn<Stock, Number> minLevel = new TableColumn<>("Min. lager");
+        minLevel.setCellValueFactory(data -> data.getValue().getMinStockLevelProperty());
         minLevel.setPrefWidth(xSize);
 
-        TableColumn<Stock, String> currentAndMin = new TableColumn<>("Lager mængde");
+        TableColumn<Stock, Number> currentAndMin = new TableColumn<>("Lager mængde");
         currentAndMin.getColumns().addAll(currentLevel, minLevel);
         currentAndMin.setPrefWidth(xSize);
 

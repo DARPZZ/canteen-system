@@ -75,12 +75,8 @@ public class Stock implements Comparable<Stock>
     }
 
     //region property get/set
-    public int getStockIdProperty()
-    {
-        return stockIdProperty.get();
-    }
 
-    public IntegerProperty stockIdPropertyProperty()
+    public IntegerProperty getStockIdProperty()
     {
         return stockIdProperty;
     }
@@ -90,12 +86,7 @@ public class Stock implements Comparable<Stock>
         this.stockIdProperty.set(stockIdProperty);
     }
 
-    public int getItemIdProperty()
-    {
-        return itemIdProperty.get();
-    }
-
-    public IntegerProperty itemIdPropertyProperty()
+    public IntegerProperty getItemIdProperty()
     {
         return itemIdProperty;
     }
@@ -105,12 +96,7 @@ public class Stock implements Comparable<Stock>
         this.itemIdProperty.set(itemIdProperty);
     }
 
-    public int getStockLevelProperty()
-    {
-        return stockLevelProperty.get();
-    }
-
-    public IntegerProperty stockLevelPropertyProperty()
+    public IntegerProperty getStockLevelProperty()
     {
         return stockLevelProperty;
     }
@@ -120,12 +106,7 @@ public class Stock implements Comparable<Stock>
         this.stockLevelProperty.set(stockLevelProperty);
     }
 
-    public int getMinStockLevelProperty()
-    {
-        return minStockLevelProperty.get();
-    }
-
-    public IntegerProperty minStockLevelPropertyProperty()
+    public IntegerProperty getMinStockLevelProperty()
     {
         return minStockLevelProperty;
     }
