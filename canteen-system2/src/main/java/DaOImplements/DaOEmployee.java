@@ -74,10 +74,13 @@ public class DaOEmployee implements DaOInterface<Employee>
         } catch (Exception e) {
         }
     }
-    public Employee getById(int id) {
+
+    @Override
+    public Employee Get(int ID)
+    {
         try {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM tblEmployee WHERE fldEmployeeID = ?");
-            ps.setInt(1, id);
+            ps.setInt(1, ID);
 
             ResultSet rs = ps.executeQuery();
 

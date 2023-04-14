@@ -13,7 +13,7 @@ public class DaOPurchaseOrder implements DaOInterface<PurchaseOrder>
 
     private static String userName = "sa";
     private static String password = "123456";
-    private static String databaseName = "sample";
+    private static String databaseName = "dbCanteenSystem";
     private static String Port = "1433";
     private static Connection con;
     private PreparedStatement preparedStatement;
@@ -107,7 +107,7 @@ public class DaOPurchaseOrder implements DaOInterface<PurchaseOrder>
             preparedStatement = con.prepareStatement("SELECT * FROM tblPurchaseOrder WHERE fldPurchaseOrderID = ?");
             preparedStatement.setInt(1,ID);
             ResultSet rs = preparedStatement.executeQuery();
-            order = new PurchaseOrder(rs.getInt("fldPurchaseOrderID"),rs.getInt("fldSupplierID"),rs.getInt("fldItemID"),rs.getInt("fldQuantity"),rs.getFloat("fldPurchesPrice"), rs.getDate("fldOrderDate"));
+            order = new PurchaseOrder(rs.getInt("fldPurchaseOrderID"),rs.getInt("fldSupplierID"),rs.getInt("fldItemID"),rs.getInt("fldQuantity"),rs.getFloat("fldPurchesPrice"), rs.getDate("fldOrderDate").toLocalDate());
 
 
         } catch (Exception e){}
@@ -121,7 +121,7 @@ public class DaOPurchaseOrder implements DaOInterface<PurchaseOrder>
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-            ARL.add(new PurchaseOrder(rs.getInt("fldPurchaseOrderID"),rs.getInt("fldSupplierID"),rs.getInt("fldItemID"),rs.getInt("fldQuantity"),rs.getFloat("fldPurchesPrice"), rs.getDate("fldOrderDate")));
+            ARL.add(new PurchaseOrder(rs.getInt("fldPurchaseOrderID"),rs.getInt("fldSupplierID"),rs.getInt("fldItemID"),rs.getInt("fldQuantity"),rs.getFloat("fldPurchesPrice"), rs.getDate("fldOrderDate").toLocalDate()));
             }
         } catch (SQLException e) {
             System.out.println(e);

@@ -61,7 +61,7 @@ public class Payment {
     }
     public void getUserID(TextField textField) {
         int employeeId = Integer.parseInt(textField.getText());
-        Employee employee = (Employee) pdEmployee.getById(employeeId);
+        Employee employee = (Employee) pdEmployee.Get(employeeId);
         if (employee != null) {
             Saldo.setText("Welcome: " + employee.getName() + "Youre  balance Is " + employee.getSaldo());
         } else {
