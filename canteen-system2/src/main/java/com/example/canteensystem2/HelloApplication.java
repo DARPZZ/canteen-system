@@ -15,16 +15,24 @@ public class HelloApplication extends Application
     @Override
     public void start(Stage stage) throws IOException
     {
+        DaOItem worker = new DaOItem();
+        Item i = new Item("mælk",3.4f );
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1280, 768);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
+/*
 
-        Item i = new Item(1,"mælk",3.4f );
-        DaOItem worker = new DaOItem();
+
         worker.Create(i);
+
+ */
+        worker.Delete(i, 1);
     }
+
+
+
 
     public static void main(String[] args)
     {

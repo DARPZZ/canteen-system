@@ -6,8 +6,8 @@ public class Item
     private String Name;
     private float Price;
 
-    public Item(int itemID, String name, float price) {
-        ItemID = itemID;
+    public Item(String name, float price) {
+
         Name = name;
         Price = price;
     }

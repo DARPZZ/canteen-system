@@ -9,7 +9,7 @@ public class DaOItem implements DaOInterface
 {
 
     private static String userName = "sa";
-    private static String password = "1234";
+    private static String password = "123456";
     private static String databaseName = "dbCanteenSystem";
     private static String Port = "1433";
     private static Connection con;
@@ -31,14 +31,16 @@ public class DaOItem implements DaOInterface
         item =(Item) o;
 
         try {
-            preparedStatement = con.prepareStatement("INSERT INTO tblEmployee VALUES (?,?,?)");
-            preparedStatement.setInt(1,item.getItemID());
-            preparedStatement.setString(2,item.getName());
-            preparedStatement.setFloat(3,item.getPrice());
+            preparedStatement = con.prepareStatement("INSERT INTO tblItem (fldName,fldPrice) VALUES (?,?)");
+
+            preparedStatement.setString(1,item.getName());
+            preparedStatement.setFloat(2,item.getPrice());
             preparedStatement.execute();
         }
         catch (Exception e)
-        {}
+        {
+            System.out.println(e);
+        }
     }
     @Override
     public void Remove(Object o, int ID)
