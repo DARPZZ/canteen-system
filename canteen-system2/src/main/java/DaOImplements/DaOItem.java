@@ -31,7 +31,7 @@ public class DaOItem implements DaOInterface
         item =(Item) o;
 
         try {
-            preparedStatement = con.prepareStatement("INSERT INTO tblEmployee VALUES (?,?,?)");
+            preparedStatement = con.prepareStatement("INSERT INTO tblItem VALUES (?,?,?)");
             preparedStatement.setInt(1,item.getItemID());
             preparedStatement.setString(2,item.getName());
             preparedStatement.setFloat(3,item.getPrice());
@@ -46,7 +46,7 @@ public class DaOItem implements DaOInterface
         item =(Item) o;
         try
         {
-            preparedStatement = con.prepareStatement("DELETE FROM tblEmployee WHERE fldItemID = ?");
+            preparedStatement = con.prepareStatement("DELETE FROM tlbItem WHERE fldItemID = ?");
             preparedStatement.setInt(1,ID);
             preparedStatement.execute();
         }
