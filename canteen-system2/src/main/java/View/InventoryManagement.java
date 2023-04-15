@@ -1,8 +1,8 @@
 package View;
 
 
+import DaOImplements.DaoStock;
 import DaoObjects.Stock;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
@@ -10,7 +10,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Callback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +28,7 @@ public class InventoryManagement
         scene = new Scene(anchorPane, 1280, 768);
 
         // Creates tableView
-        List<Stock> stockList = new ArrayList<>();
+        List<Stock> stockList = getData();
         stockObservableList = FXCollections.observableList(stockList);
 
         tableView = new TableView<>(stockObservableList);
@@ -39,14 +38,18 @@ public class InventoryManagement
 
         createColumns();
         anchorPane.getChildren().add(tableView);
-
-        addToTable(new Stock(10,10,10));
-
     }
 
     public void searchFunction()
     {
 
+    }
+
+    public List<Stock> getData()
+    {
+        DaoStock data = new DaoStock();
+
+        return data.GetAll();
     }
 
     public void createColumns()
