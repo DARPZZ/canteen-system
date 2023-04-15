@@ -5,12 +5,12 @@ import DaoObjects.Stock;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
 import java.util.List;
+import java.util.function.UnaryOperator;
 
 public class InventoryManagement
 {
@@ -19,10 +19,12 @@ public class InventoryManagement
     AnchorPane anchorPane;
     TableView<Stock> tableView;
     ObservableList<Stock> stockObservableList;
+    TextField searchField;
 
     public InventoryManagement()
     {
         anchorPane = new AnchorPane();
+        anchorPane.setOnMousePressed(event -> anchorPane.requestFocus());
         scene = new Scene(anchorPane, 1280, 768);
 
         // Creates tableView
@@ -33,9 +35,19 @@ public class InventoryManagement
         tableView.setPrefSize((scene.getWidth() - 100), (scene.getHeight() - 200));
         tableView.setLayoutX((scene.getWidth() - tableView.getPrefWidth()) / 2);
         tableView.setLayoutY(150);
-
+        tableView.setFocusTraversable(false);
         createColumns();
-        anchorPane.getChildren().add(tableView);
+
+        // Create a TextField for searching
+        searchField = new TextField();
+        searchField.setPrefSize(tableView.getPrefWidth(), 40);
+        searchField.setLayoutX(tableView.getLayoutX());
+        searchField.setLayoutY(tableView.getLayoutY() - searchField.getPrefHeight());
+        searchField.setPromptText("\uD83D\uDD0E Søg");
+        searchField.setStyle("-fx-font-size: 18");
+        searchField.setFocusTraversable(false);
+
+        anchorPane.getChildren().addAll(tableView, searchField);
     }
 
     public void searchFunction()
