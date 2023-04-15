@@ -1,6 +1,5 @@
 package View;
 
-
 import DaOImplements.DaoStock;
 import DaoObjects.Stock;
 import javafx.collections.FXCollections;
@@ -11,7 +10,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class InventoryManagement
@@ -42,49 +40,63 @@ public class InventoryManagement
 
     public void searchFunction()
     {
+        stockObservableList.clear();
 
+        // Refill stockObservableList
     }
 
     public List<Stock> getData()
     {
-        DaoStock data = new DaoStock();
-
-        return data.GetAll();
+        return new DaoStock().GetAll();
     }
 
     public void createColumns()
     {
-        int xSize = (int) (this.tableView.getPrefWidth() / 4.0);
+        int noColumn = 5;
+        int xSize = (int) (this.tableView.getPrefWidth() / noColumn);
 
         TableColumn<Stock, Number> stockID = new TableColumn<>("Varenr.");
-        stockID.setCellValueFactory(new PropertyValueFactory<>("StockIdProperty"));
         stockID.setCellValueFactory(data -> data.getValue().getStockIdProperty());
-        stockID.setPrefWidth(xSize);
 
         TableColumn<Stock, String> description = new TableColumn<>("Beskrivelse");
-        //description.setCellValueFactory(new PropertyValueFactory<>("description"));
-        description.setPrefWidth(xSize);
+        description.setCellValueFactory(new PropertyValueFactory<>("description"));
 
         TableColumn<Stock, Number> currentLevel = new TableColumn<>("Stk. lager");
         currentLevel.setCellValueFactory(data -> data.getValue().getStockLevelProperty());
-        currentLevel.setPrefWidth(xSize);
 
         TableColumn<Stock, Number> minLevel = new TableColumn<>("Min. lager");
         minLevel.setCellValueFactory(data -> data.getValue().getMinStockLevelProperty());
-        minLevel.setPrefWidth(xSize);
 
         TableColumn<Stock, Number> currentAndMin = new TableColumn<>("Lager mængde");
         currentAndMin.getColumns().addAll(currentLevel, minLevel);
-        currentAndMin.setPrefWidth(xSize);
 
-        this.tableView.getColumns().setAll(stockID, description, currentAndMin);
+        TableColumn<Stock, String> supplier = new TableColumn<>("Leverandør");
+        //supplier.setCellValueFactory(data -> data.getValue().getDescriptionProperty());
+
+        this.tableView.getColumns().setAll(stockID, description, currentAndMin, supplier);
+
+        for (TableColumn<Stock, ?> column : tableView.getColumns())
+        {
+            column.setReorderable(false);
+            column.setResizable(false);
+            column.setPrefWidth(xSize);
+
+            if (column.equals(currentAndMin))
+            {
+                for (int i = 0; i < column.getColumns().size(); i++)
+                {
+                    column.getColumns().get(i).setReorderable(false);
+                    column.getColumns().get(i).setResizable(false);
+                    column.getColumns().get(i).setPrefWidth(xSize);
+                }
+            }
+        }
     }
 
     public void addToTable(Stock stock)
     {
         stockObservableList.add(stock);
     }
-
 
     public Scene getScene()
     {
