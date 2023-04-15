@@ -6,11 +6,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
 import java.util.List;
-import java.util.function.UnaryOperator;
 
 public class InventoryManagement
 {
@@ -30,7 +28,6 @@ public class InventoryManagement
         // Creates tableView
         List<Stock> stockList = getData();
         stockObservableList = FXCollections.observableList(stockList);
-
         tableView = new TableView<>(stockObservableList);
         tableView.setPrefSize((scene.getWidth() - 100), (scene.getHeight() - 200));
         tableView.setLayoutX((scene.getWidth() - tableView.getPrefWidth()) / 2);
@@ -71,7 +68,7 @@ public class InventoryManagement
         stockID.setCellValueFactory(data -> data.getValue().getStockIdProperty());
 
         TableColumn<Stock, String> description = new TableColumn<>("Beskrivelse");
-        description.setCellValueFactory(new PropertyValueFactory<>("description"));
+        //description.setCellValueFactory(data -> data.getValue().getDescriptionProperty());
 
         TableColumn<Stock, Number> currentLevel = new TableColumn<>("Stk. lager");
         currentLevel.setCellValueFactory(data -> data.getValue().getStockLevelProperty());
@@ -80,12 +77,19 @@ public class InventoryManagement
         minLevel.setCellValueFactory(data -> data.getValue().getMinStockLevelProperty());
 
         TableColumn<Stock, Number> currentAndMin = new TableColumn<>("Lager mængde");
-        currentAndMin.getColumns().addAll(currentLevel, minLevel);
+        //currentAndMin.getColumns().addAll(currentLevel, minLevel);
+        currentAndMin.getColumns().add(currentLevel);
+        currentAndMin.getColumns().add(minLevel);
 
         TableColumn<Stock, String> supplier = new TableColumn<>("Leverandør");
-        //supplier.setCellValueFactory(data -> data.getValue().getDescriptionProperty());
+        //supplier.setCellValueFactory(data -> data.getValue().getSupplierNameProperty());
 
-        this.tableView.getColumns().setAll(stockID, description, currentAndMin, supplier);
+        //this.tableView.getColumns().setAll(stockID, description, currentAndMin, supplier);
+        // This doesn't cause error but looks ugly
+        this.tableView.getColumns().add(stockID);
+        this.tableView.getColumns().add(description);
+        this.tableView.getColumns().add(currentAndMin);
+        this.tableView.getColumns().add(supplier);
 
         for (TableColumn<Stock, ?> column : tableView.getColumns())
         {
