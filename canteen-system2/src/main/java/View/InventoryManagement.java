@@ -2,6 +2,8 @@ package View;
 
 import DaOImplements.DaoStock;
 import DaoObjects.Stock;
+import com.example.canteensystem2.HelloApplication;
+import com.example.canteensystem2.SceneName;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
@@ -44,7 +46,10 @@ public class InventoryManagement
         searchField.setStyle("-fx-font-size: 18");
         searchField.setFocusTraversable(false);
 
-        anchorPane.getChildren().addAll(tableView, searchField);
+        Button backBtn = new BackButton();
+        backBtn.setOnAction(event -> HelloApplication.changeScene(SceneName.AdminLogin));
+
+        anchorPane.getChildren().addAll(tableView, searchField, backBtn);
     }
 
     public void searchFunction()
@@ -62,10 +67,10 @@ public class InventoryManagement
     public void createColumns()
     {
         int noColumn = 5;
-        int xSize = (int) (this.tableView.getPrefWidth() / noColumn);
+        int xSize = (int) (tableView.getPrefWidth() / noColumn);
 
         TableColumn<Stock, Number> stockID = new TableColumn<>("Varenr.");
-        stockID.setCellValueFactory(data -> data.getValue().getStockIdProperty());
+        stockID.setCellValueFactory(data -> data.getValue().getItemIdProperty());
 
         TableColumn<Stock, String> description = new TableColumn<>("Beskrivelse");
         //description.setCellValueFactory(data -> data.getValue().getDescriptionProperty());
@@ -86,10 +91,10 @@ public class InventoryManagement
 
         //this.tableView.getColumns().setAll(stockID, description, currentAndMin, supplier);
         // This doesn't cause error but looks ugly
-        this.tableView.getColumns().add(stockID);
-        this.tableView.getColumns().add(description);
-        this.tableView.getColumns().add(currentAndMin);
-        this.tableView.getColumns().add(supplier);
+        tableView.getColumns().add(stockID);
+        tableView.getColumns().add(description);
+        tableView.getColumns().add(currentAndMin);
+        tableView.getColumns().add(supplier);
 
         for (TableColumn<Stock, ?> column : tableView.getColumns())
         {
