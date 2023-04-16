@@ -7,7 +7,6 @@ import DaoObjects.DaOInterface;
 import DaoObjects.Employee;
 import DaoObjects.Item;
 import DaoObjects.PurchaseOrder;
-import Model.Databinding;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -30,8 +29,6 @@ Button customerLoginB = new Button("Custommer login");
     DaOInterface pdEmployee =new DaOEmployee();
     DaOInterface pdItem = new DaOItem();
     DaOInterface pdPurchesOrder= new DaOPurchaseOrder();
-
-
     @Override
     public void start(Stage stage) throws IOException
     {
@@ -42,8 +39,11 @@ Button customerLoginB = new Button("Custommer login");
         Label choice = new Label("Please select what you would like to log in as");
         borderPane.setCenter(anchorPane);
         anchorPane.getChildren().addAll(adminLoginB, customerLoginB,welcome,choice);
-        Databinding test = new Databinding();
-        test.findEmployeeIDProperty(1);
+
+        List<PurchaseOrder> employees = pdPurchesOrder.GetAll();
+        for (PurchaseOrder employee : employees) {
+            System.out.println(employee.getQuantity());
+        }
 
 
 
