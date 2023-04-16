@@ -8,7 +8,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.StringConverter;
+import javafx.util.converter.NumberStringConverter;
 
 import java.util.List;
 
@@ -28,13 +31,13 @@ public class InventoryManagement
         scene = new Scene(anchorPane, 1280, 768);
 
         // Creates tableView
-        List<Stock> stockList = getData();
-        stockObservableList = FXCollections.observableList(stockList);
+        stockObservableList = FXCollections.observableList(getData());
         tableView = new TableView<>(stockObservableList);
-        tableView.setPrefSize((scene.getWidth() - 100), (scene.getHeight() - 200));
+        tableView.setPrefSize((scene.getWidth() - 200), (scene.getHeight() - 300));
         tableView.setLayoutX((scene.getWidth() - tableView.getPrefWidth()) / 2);
-        tableView.setLayoutY(150);
+        tableView.setLayoutY(250);
         tableView.setFocusTraversable(false);
+        tableView.setEditable(true);
         createColumns();
 
         // Create a TextField for searching
@@ -48,6 +51,8 @@ public class InventoryManagement
 
         Button backBtn = new BackButton();
         backBtn.setOnAction(event -> HelloApplication.changeScene(SceneName.AdminLogin));
+        backBtn.setLayoutX(50);
+        backBtn.setLayoutY(25);
 
         anchorPane.getChildren().addAll(tableView, searchField, backBtn);
     }
@@ -79,18 +84,26 @@ public class InventoryManagement
         currentLevel.setCellValueFactory(data -> data.getValue().getStockLevelProperty());
 
         TableColumn<Stock, Number> minLevel = new TableColumn<>("Min. lager");
+        StringConverter<Number> converter = new NumberStringConverter();
+        minLevel.setCellFactory(TextFieldTableCell.forTableColumn(converter));
+        minLevel.setEditable(true);
         minLevel.setCellValueFactory(data -> data.getValue().getMinStockLevelProperty());
 
+        minLevel.setOnEditCommit(table ->
+        {
+            table.getTableView().getItems().get(table.getTablePosition().getRow()).
+                    setMinStockLevel(table.getNewValue().intValue());
+
+            updateMinStock(table.getTableView().getItems().get(table.getTablePosition().getRow()), table.getNewValue());
+        });
+
         TableColumn<Stock, Number> currentAndMin = new TableColumn<>("Lager mængde");
-        //currentAndMin.getColumns().addAll(currentLevel, minLevel);
         currentAndMin.getColumns().add(currentLevel);
         currentAndMin.getColumns().add(minLevel);
 
         TableColumn<Stock, String> supplier = new TableColumn<>("Leverandør");
         //supplier.setCellValueFactory(data -> data.getValue().getSupplierNameProperty());
 
-        //this.tableView.getColumns().setAll(stockID, description, currentAndMin, supplier);
-        // This doesn't cause error but looks ugly
         tableView.getColumns().add(stockID);
         tableView.getColumns().add(description);
         tableView.getColumns().add(currentAndMin);
@@ -122,5 +135,10 @@ public class InventoryManagement
     public Scene getScene()
     {
         return scene;
+    }
+
+    public void updateMinStock(Stock stock, Number value)
+    {
+        new DaoStock().Update(stock, "fldMinStockLevel", value.toString());
     }
 }

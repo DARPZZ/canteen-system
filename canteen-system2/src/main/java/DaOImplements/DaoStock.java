@@ -67,10 +67,12 @@ public class DaoStock implements DaOInterface
         stock =(Stock) o;
         try
         {
-            preparedStatement = con.prepareStatement("UPDATE ? SET ? = ?");
+            preparedStatement = con.prepareStatement("UPDATE ? SET ? = ? WHERE fldStockID = ?");
             preparedStatement.setString(1,"tblStock");
             preparedStatement.setString(2,fieldname);
             preparedStatement.setInt(3,Integer.parseInt(value));
+            preparedStatement.setInt(4, stock.getStockID());
+            preparedStatement.executeUpdate();
         }
         catch (Exception e)
         {}
