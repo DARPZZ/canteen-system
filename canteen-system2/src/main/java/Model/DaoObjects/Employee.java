@@ -54,4 +54,16 @@ public class Employee {
     public void setSaldo(float saldo) {
         this.saldo.set(saldo);
     }
+
+    public String getPassword() {
+        return password.get();
+    }
+
+    public StringProperty getPasswordProperty() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password.set(password);
+    }
 }
