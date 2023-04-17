@@ -4,12 +4,14 @@ public class Employee
 {
     private int EmployeeID;
     private String Name;
+    private String password;
     private float Saldo;
 
-    public Employee(int employeeID, String name, float saldo) {
+    public Employee(int employeeID, String name, String password, float saldo) {
         EmployeeID = employeeID;
         Name = name;
         Saldo = saldo;
+        this.password = password;
     }
 
     public Employee()
@@ -39,5 +41,15 @@ public class Employee
 
     public void setSaldo(float saldo) {
         Saldo = saldo;
+    }
+
+    public String getPassword()
+    {
+        return password;
+    }
+
+    public void setPassword(String password)
+    {
+        this.password = password;
     }
 }

@@ -31,8 +31,6 @@ public class DaoStock implements DaOInterface<Stock>
     @Override
     public void Create(Stock o)
     {
-        stock =(Stock) o;
-
         try {
             preparedStatement = con.prepareStatement("INSERT INTO tblStock (fldStockID,fldItemID,fldStockLevel,fldMibStockLevel) VALUES (?,?,?,?)");
 
@@ -109,8 +107,8 @@ public class DaoStock implements DaOInterface<Stock>
             preparedStatement = con.prepareStatement("select * from tblStock ");
             ResultSet rs = preparedStatement.executeQuery();
 
-            while (rs.next()) {
-                //ARL.add(new Stock(rs.getInt("fldStockID"),rs.getInt("fldItemID"),rs.getInt("fldStockLevel"),rs.getInt("fldMinStockLevel")));
+            while (rs.next())
+            {
                 ARL.add(new Stock(rs.getInt("fldStockID"), rs.getInt("fldItemID"), rs.getInt("fldStockLevel"), rs.getInt("fldMinStockLevel")));
             }
         } catch (SQLException e) {

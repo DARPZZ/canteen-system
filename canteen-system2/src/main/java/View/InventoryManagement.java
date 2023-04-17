@@ -15,20 +15,15 @@ import javafx.util.converter.NumberStringConverter;
 
 import java.util.List;
 
-public class InventoryManagement
+public class InventoryManagement extends AdminPage
 {
-
-    Scene scene;
-    AnchorPane anchorPane;
     TableView<Stock> tableView;
     ObservableList<Stock> stockObservableList;
     TextField searchField;
 
     public InventoryManagement()
     {
-        anchorPane = new AnchorPane();
-        anchorPane.setOnMousePressed(event -> anchorPane.requestFocus());
-        scene = new Scene(anchorPane, 1280, 768);
+        super.anchorPane.setOnMousePressed(event -> anchorPane.requestFocus());
 
         // Creates tableView
         stockObservableList = FXCollections.observableList(getData());
@@ -54,7 +49,7 @@ public class InventoryManagement
         backBtn.setLayoutX(50);
         backBtn.setLayoutY(25);
 
-        anchorPane.getChildren().addAll(tableView, searchField, backBtn);
+        super.anchorPane.getChildren().addAll(tableView, searchField, backBtn);
     }
 
     public void searchFunction()
@@ -125,11 +120,6 @@ public class InventoryManagement
     public void addToTable(Stock stock)
     {
         stockObservableList.add(stock);
-    }
-
-    public Scene getScene()
-    {
-        return scene;
     }
 
     public void updateMinStock(Stock stock)

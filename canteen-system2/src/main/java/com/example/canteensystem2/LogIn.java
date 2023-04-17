@@ -1,11 +1,5 @@
 package com.example.canteensystem2;
 
-import DaOImplements.DaOEmployee;
-import DaOImplements.DaOItem;
-import DaOImplements.DaOPurchaseOrder;
-import DaoObjects.DaOInterface;
-import View.AdminLogin;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -13,14 +7,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class LogIn
 {
 Button adminLoginB = new Button("Admin login");
-Button customerLoginB = new Button("Custommer login");
+Button customerLoginB = new Button("Kunde login");
 Scene scene;
 
     public LogIn()
@@ -35,8 +26,9 @@ Scene scene;
         choice.setId("startLogin");
 
         borderPane.setCenter(anchorPane);
-        String css = this.getClass().getResource("Style.css").toExternalForm();
+        String css = this.getClass().getResource("style.css").toExternalForm();
         scene.getStylesheets().add(css);
+
         anchorPane.getChildren().addAll(adminLoginB, customerLoginB,welcome,choice);
         adminLoginB.setLayoutY(300);
         adminLoginB.setPrefWidth(150);

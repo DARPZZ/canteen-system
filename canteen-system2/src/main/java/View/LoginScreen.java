@@ -1,11 +1,15 @@
 package View;
 
+import DaOImplements.DaOEmployee;
+import DaoObjects.Employee;
 import com.example.canteensystem2.HelloApplication;
 import com.example.canteensystem2.SceneName;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+
+import java.util.List;
 
 public abstract class LoginScreen
 {
@@ -14,7 +18,6 @@ public abstract class LoginScreen
     private Label headerLabel;
     private Label loginNotificationLabel;
     private Button backBtn;
-    private Button signInBtn;
 
     public LoginScreen()
     {
@@ -41,20 +44,7 @@ public abstract class LoginScreen
         // Creates the back button
         backBtn = new BackButton();
         loginAp.getChildren().add(backBtn);
-        backBtn.setLayoutX(50);
-        backBtn.setLayoutY(25);
-        backBtn.setOnAction(event ->
-        {
-            HelloApplication.changeScene(SceneName.LogIn);
-        });
-        //backBtn.getStyleClass().add("back-button");
-
-        // Creates sign in button
-        signInBtn = new Button("Log ind");
-        loginAp.getChildren().add(signInBtn);
-        signInBtn.setPrefSize(250, 40);
-        signInBtn.setLayoutX((scene.getWidth() - signInBtn.getPrefWidth()) / 2);
-        signInBtn.setLayoutY(450);
+        backBtn.setOnAction(event -> HelloApplication.changeScene(SceneName.LogIn));
     }
 
     public void setHeaderText(String text)
