@@ -22,6 +22,7 @@ public class StockItemSupplierData // decrep
         this.supplierNameProperty = new SimpleStringProperty(supplierName);
     }
 
+    //region getter/setter
     public int getItemIdProperty()
     {
         return itemIdProperty.get();
@@ -96,4 +97,5 @@ public class StockItemSupplierData // decrep
     {
         this.supplierNameProperty.set(supplierNameProperty);
     }
+    //endregion
 }

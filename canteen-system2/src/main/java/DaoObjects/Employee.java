@@ -1,6 +1,4 @@
-package Model.DaoObjects;
-
-import javafx.beans.property.*;
+package DaoObjects;
 
 public class Employee
 {

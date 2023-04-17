@@ -11,7 +11,7 @@ import javafx.scene.layout.BorderPane;
 public class LogIn
 {
 Button adminLoginB = new Button("Admin login");
-Button customerLoginB = new Button("Custommer login");
+Button customerLoginB = new Button("Kunde login");
 Scene scene;
 
     public LogIn()
@@ -26,8 +26,9 @@ Scene scene;
         choice.setId("startLogin");
 
         borderPane.setCenter(anchorPane);
-        //String css = this.getClass().getResource("Style.css").toExternalForm();
-        //scene.getStylesheets().add(css);
+        String css = this.getClass().getResource("Style.css").toExternalForm();
+        scene.getStylesheets().add(css);
+
         anchorPane.getChildren().addAll(adminLoginB, customerLoginB,welcome,choice);
         adminLoginB.setLayoutY(300);
         adminLoginB.setPrefWidth(150);
