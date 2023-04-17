@@ -260,7 +260,7 @@ public class PointOfSale extends Application {
         primaryStage.show();
 
     }
-
+/*
     public void createColumns() {
         int xSize = (int) (this.display.getPrefWidth() / 4);
 
@@ -283,7 +283,7 @@ public class PointOfSale extends Application {
         //noinspection unchecked
         this.display.getColumns().setAll(ItemID, Description, Quantity, Price);
     }
-
+*/
     public void createColumns() {
         int noColumn = 4;
         int xSize = (int) (display.getPrefWidth() / noColumn);
@@ -298,7 +298,7 @@ public class PointOfSale extends Application {
         quantity.setText("1");
 
         TableColumn<Item, String> price = new TableColumn<>("pris");
-        //price.setCellValueFactory(data -> data.getValue().getPriceNameProperty());
+        price.setCellValueFactory(data -> data.getValue().getPriceProperty().asString());
 
         display.getColumns().add(itemID);
         display.getColumns().add(description);
@@ -310,13 +310,6 @@ public class PointOfSale extends Application {
             column.setResizable(false);
             column.setPrefWidth(xSize);
 
-            if (column.equals(currentAndMin)) {
-                for (int i = 0; i < column.getColumns().size(); i++) {
-                    column.getColumns().get(i).setReorderable(false);
-                    column.getColumns().get(i).setResizable(false);
-                    column.getColumns().get(i).setPrefWidth(xSize);
-                }
-            }
         }
     }
 }
