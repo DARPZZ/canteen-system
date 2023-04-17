@@ -24,15 +24,17 @@ public class HelloApplication extends Application
         primaryStageHolder = stage;
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1280, 768);
-        scene = new InventoryManagement().getScene();
+        scene = new LogIn().getScene();
 
-        String css = this.getClass().getResource("/com/example/canteensystem2/style.css").toExternalForm();
-        scene.getStylesheets().add(css);
+       // String css = this.getClass().getResource("/com/example/canteensystem2/style.css").toExternalForm();
+       // scene.getStylesheets().add(css);
 
 
         sceneMap.put(SceneName.InventoryManagement, new InventoryManagement().getScene());
         sceneMap.put(SceneName.CustomerLogin, new CustomerLogin().getScene());
         sceneMap.put(SceneName.AdminLogin, new AdminLogin().getScene());
+        sceneMap.put(SceneName.LogIn, new LogIn().getScene());
+        sceneMap.put(SceneName.Payment, new Payment().getScene());
 
         stage.setTitle("Hello!");
         stage.setScene(scene);

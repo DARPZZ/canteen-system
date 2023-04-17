@@ -5,5 +5,7 @@ public enum SceneName
     InventoryManagement,
     AdminLogin,
     CustomerLogin,
-    PaymentProcess
+    PaymentProcess,
+    LogIn,
+    Payment,
 }

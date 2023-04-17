@@ -1,5 +1,7 @@
 package View;
 
+import com.example.canteensystem2.HelloApplication;
+import com.example.canteensystem2.SceneName;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -41,6 +43,10 @@ public abstract class LoginScreen
         loginAp.getChildren().add(backBtn);
         backBtn.setLayoutX(50);
         backBtn.setLayoutY(25);
+        backBtn.setOnAction(event ->
+        {
+            HelloApplication.changeScene(SceneName.LogIn);
+        });
         //backBtn.getStyleClass().add("back-button");
 
         // Creates sign in button

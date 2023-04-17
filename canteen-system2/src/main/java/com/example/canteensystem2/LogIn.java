@@ -17,18 +17,18 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class LogIn extends Application
+public class LogIn
 {
 Button adminLoginB = new Button("Admin login");
 Button customerLoginB = new Button("Custommer login");
+Scene scene;
 
-    @Override
-    public void start(Stage stage) throws IOException
+    public LogIn()
     {
 
         BorderPane borderPane = new BorderPane();
         AnchorPane anchorPane = new AnchorPane();
-        Scene scene = new Scene(borderPane, 1280, 768);
+        scene = new Scene(borderPane, 1280, 768);
         Label welcome = new Label("Welcome to Canteen ");
         Label choice = new Label("Please select what you would like to log in as");
         welcome.setId("startLogin");
@@ -64,10 +64,7 @@ Button customerLoginB = new Button("Custommer login");
             @Override
             public void handle(ActionEvent event)
             {
-                CustommerLogin custommerLogin = new CustommerLogin(stage);
-                Scene sceneCustommerLogin = custommerLogin.custommerLogin();
-                stage.setScene(sceneCustommerLogin);
-
+                HelloApplication.changeScene(SceneName.CustomerLogin);
             }
 
         });
@@ -76,19 +73,16 @@ Button customerLoginB = new Button("Custommer login");
             @Override
             public void handle(ActionEvent event)
             {
-                AdminLogin adminLogin = new AdminLogin();
-                //Scene sceneAdminLogin = adminLogin.adminLogin();
-
+                HelloApplication.changeScene(SceneName.AdminLogin);
             }
         });
 
         //endregion
-        stage.setTitle("Canteen-system!");
-        stage.setScene(scene);
-        stage.show();
     }
-    public static void main(String[] args)
+
+    public Scene getScene()
     {
-        launch();
+        return scene;
     }
+
 }
