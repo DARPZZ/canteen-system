@@ -40,7 +40,7 @@ public abstract class LoginScreen
         backBtn = new BackButton();
         loginAp.getChildren().add(backBtn);
         backBtn.setLayoutX(50);
-        backBtn.setLayoutY(50);
+        backBtn.setLayoutY(25);
         //backBtn.getStyleClass().add("back-button");
 
         // Creates sign in button

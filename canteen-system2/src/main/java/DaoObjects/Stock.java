@@ -7,14 +7,14 @@ import javafx.beans.property.SimpleIntegerProperty;
 public class Stock implements Comparable<Stock>
 {
     private int StockID;
-    private IntegerProperty stockIdProperty;
     private int ItemID;
-    private IntegerProperty itemIdProperty;
     private int StockLevel;
-    private IntegerProperty stockLevelProperty;
     private int MinStockLevel;
-    private IntegerProperty minStockLevelProperty;
 
+    private IntegerProperty stockIdProperty;
+    private IntegerProperty itemIdProperty;
+    private IntegerProperty stockLevelProperty;
+    private IntegerProperty minStockLevelProperty;
 
     public Stock(int stockID,int itemID, int stockLevel, int minStockLevel)
     {
@@ -22,6 +22,11 @@ public class Stock implements Comparable<Stock>
         this.ItemID = itemID;
         this.StockLevel = stockLevel;
         this.MinStockLevel = minStockLevel;
+
+        this.stockIdProperty = new SimpleIntegerProperty(stockID);
+        this.itemIdProperty = new SimpleIntegerProperty(itemID);
+        this.stockLevelProperty = new SimpleIntegerProperty(stockLevel);
+        this.minStockLevelProperty = new SimpleIntegerProperty(minStockLevel);
 
     }
     public Stock(int stockID, int itemID)
@@ -33,13 +38,8 @@ public class Stock implements Comparable<Stock>
     public Stock(int stockID, int stockLevel, int minStockLevel)
     {
         StockID = stockID;
-        stockIdProperty = new SimpleIntegerProperty(stockID);
-
         StockLevel = stockLevel;
-        stockLevelProperty = new SimpleIntegerProperty(stockLevel);
-
         MinStockLevel = minStockLevel;
-        minStockLevelProperty = new SimpleIntegerProperty(minStockLevel);
     }
 
     public int getStockID() {
@@ -74,50 +74,29 @@ public class Stock implements Comparable<Stock>
         MinStockLevel = minStockLevel;
     }
 
-    //region property get/set
+    //region property getter
 
     public IntegerProperty getStockIdProperty()
     {
-        return stockIdProperty;
-    }
-
-    public void setStockIdProperty(int stockIdProperty)
-    {
-        this.stockIdProperty.set(stockIdProperty);
+        return new SimpleIntegerProperty(StockID);
     }
 
     public IntegerProperty getItemIdProperty()
     {
-        return itemIdProperty;
-    }
-
-    public void setItemIdProperty(int itemIdProperty)
-    {
-        this.itemIdProperty.set(itemIdProperty);
+        return new SimpleIntegerProperty(ItemID);
     }
 
     public IntegerProperty getStockLevelProperty()
     {
-        return stockLevelProperty;
-    }
-
-    public void setStockLevelProperty(int stockLevelProperty)
-    {
-        this.stockLevelProperty.set(stockLevelProperty);
+        return new SimpleIntegerProperty(StockLevel);
     }
 
     public IntegerProperty getMinStockLevelProperty()
     {
-        return minStockLevelProperty;
-    }
-
-    public void setMinStockLevelProperty(int minStockLevelProperty)
-    {
-        this.minStockLevelProperty.set(minStockLevelProperty);
+        return new SimpleIntegerProperty(MinStockLevel);
     }
 
     //endregion
-
 
     @Override
     public int compareTo(Stock o)
