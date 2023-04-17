@@ -1,8 +1,8 @@
 package com.example.canteensystem2;
 
-import DaOImplements.DaOEmployee;
-import DaoObjects.DaOInterface;
 import DaoObjects.Employee;
+import Model.DaOImplements.DaOEmployee;
+import Model.DaoObjects.DaOInterface;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -38,7 +38,7 @@ public class Payment {
     }
     public void getUserID(TextField textField) {
         int employeeId = Integer.parseInt(textField.getText());
-        Employee employee = (Employee) pdEmployee.Get(employeeId);
+        Model.DaoObjects.Employee employee = (Model.DaoObjects.Employee) pdEmployee.Get(employeeId);
         if (employee != null) {
             newBalance = employee.getSaldo();
             Saldo.setText("Welcome: " + employee.getName() + "\n" +  "Your balance is: " + newBalance);
