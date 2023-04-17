@@ -19,7 +19,8 @@ public class Employee {
         SaldoProperty = new SimpleFloatProperty(s);
     }
 
-    public Employee() {
+    public Employee()
+    {
     }
 
     public int getEmployeeID() {
@@ -38,36 +39,39 @@ public class Employee {
         this.name = name;
     }
 
-    public FloatProperty getSaldoProperty() {
-        return SaldoProperty;
+    public SimpleFloatProperty getSaldoProperty()
+    {
+        SimpleFloatProperty out = new SimpleFloatProperty(SaldoProperty.floatValue());
+        return out;
     }
 
     public void setSaldoProperty(float saldoProperty) {
-        this.saldo = saldoProperty;
+        this.SaldoProperty = new SimpleFloatProperty(saldoProperty);
     }
 
-    public int getEmployeeIDProperty() {
-        return EmployeeIDProperty.get();
+    public SimpleIntegerProperty getEmployeeIDProperty()
+    {
+        SimpleIntegerProperty out = new SimpleIntegerProperty(this.EmployeeIDProperty.get());
+        return out;
     }
 
-    public IntegerProperty employeeIDPropertyProperty() {
-        return EmployeeIDProperty;
+
+    public void setEmployeeIDProperty(int employeeIDProperty)
+    {
+        this.EmployeeIDProperty = new SimpleIntegerProperty(employeeIDProperty);
     }
 
-    public void setEmployeeIDProperty(int employeeIDProperty) {
-        this.EmployeeIDProperty.set(employeeIDProperty);
+
+    public SimpleStringProperty getNameProperty()
+    {
+        SimpleStringProperty out = new SimpleStringProperty(name);
+        return out;
     }
 
-    public String getNameProperty() {
-        return NameProperty.get();
-    }
+    public void setNameProperty(String nameProperty)
+    {
 
-    public StringProperty namePropertyProperty() {
-        return NameProperty;
-    }
-
-    public void setNameProperty(String nameProperty) {
-        this.NameProperty.set(nameProperty);
+        this.NameProperty = new SimpleStringProperty(nameProperty);
     }
 
     public float getSaldo() {

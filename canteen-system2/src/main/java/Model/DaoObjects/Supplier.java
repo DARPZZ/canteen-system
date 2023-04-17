@@ -36,26 +36,23 @@ public class Supplier
         Name = name;
     }
 
-    public int getSupplierIDProperty() {
-        return supplierIDProperty.get();
+    public SimpleIntegerProperty getSupplierIDProperty()
+    {
+        SimpleIntegerProperty out = new SimpleIntegerProperty(SupplierID);
+        return out;
     }
 
-    public IntegerProperty supplierIDPropertyProperty() {
-        return supplierIDProperty;
-    }
 
-    public void setSupplierIDProperty(int supplierIDProperty) {
+    public void setSupplierIDProperty(int supplierIDProperty)
+    {
         this.supplierIDProperty.set(supplierIDProperty);
     }
 
-    public String getNameProperty() {
-        return nameProperty.get();
+    public SimpleStringProperty getNameProperty()
+    {
+        SimpleStringProperty out = new SimpleStringProperty(Name);
+        return out;
     }
-
-    public StringProperty namePropertyProperty() {
-        return nameProperty;
-    }
-
     public void setNameProperty(String nameProperty) {
         this.nameProperty.set(nameProperty);
     }

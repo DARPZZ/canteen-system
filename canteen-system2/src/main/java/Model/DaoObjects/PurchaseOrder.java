@@ -86,72 +86,62 @@ public class PurchaseOrder
         OrderDate = orderDate;
     }
 
-    public int getPurchaseOrderIDProperty() {
-        return purchaseOrderIDProperty.get();
+
+    public SimpleIntegerProperty getPurchaseOrderIDProperty() {
+        SimpleIntegerProperty out = new SimpleIntegerProperty(PurchaseOrderID);
+        return out;
     }
 
-    public IntegerProperty purchaseOrderIDPropertyProperty() {
-        return purchaseOrderIDProperty;
-    }
-
-    public void setPurchaseOrderIDProperty(int purchaseOrderIDProperty) {
+    public void setPurchaseOrderIDProperty(int purchaseOrderIDProperty)
+    {
         this.purchaseOrderIDProperty.set(purchaseOrderIDProperty);
     }
 
-    public int getSupplierIDProperty() {
-        return supplierIDProperty.get();
-    }
 
-    public IntegerProperty supplierIDPropertyProperty() {
-        return supplierIDProperty;
+
+    public SimpleIntegerProperty getSupplierIDProperty() {
+        SimpleIntegerProperty out = new SimpleIntegerProperty(SupplierID);
+        return out;
     }
 
     public void setSupplierIDProperty(int supplierIDProperty) {
         this.supplierIDProperty.set(supplierIDProperty);
     }
 
-    public int getItemIDProperty() {
-        return itemIDProperty.get();
-    }
-
-    public IntegerProperty itemIDPropertyProperty() {
-        return itemIDProperty;
+    public SimpleIntegerProperty getItemIDProperty()
+    {
+        SimpleIntegerProperty out = new SimpleIntegerProperty(ItemID);
+        return out;
     }
 
     public void setItemIDProperty(int itemIDProperty) {
         this.itemIDProperty.set(itemIDProperty);
     }
 
-    public int getQuantityProperty() {
-        return quantityProperty.get();
-    }
-
-    public IntegerProperty quantityPropertyProperty() {
-        return quantityProperty;
+    public SimpleIntegerProperty getQuantityProperty()
+    {
+        SimpleIntegerProperty out = new SimpleIntegerProperty(Quantity);
+        return out;
     }
 
     public void setQuantityProperty(int quantityProperty) {
         this.quantityProperty.set(quantityProperty);
     }
 
-    public float getPurchasePriceProperty() {
-        return purchasePriceProperty.get();
-    }
-
-    public FloatProperty purchasePricePropertyProperty() {
-        return purchasePriceProperty;
+    public SimpleFloatProperty getPurchasePriceProperty()
+    {
+        SimpleFloatProperty out = new SimpleFloatProperty(PurchaseOrderID);
+        return out;
     }
 
     public void setPurchasePriceProperty(float purchasePriceProperty) {
         this.purchasePriceProperty.set(purchasePriceProperty);
     }
 
-    public String getOrderDateProperty() {
-        return orderDateProperty.get();
-    }
-
-    public StringProperty orderDatePropertyProperty() {
-        return orderDateProperty;
+    public SimpleStringProperty getOrderDateProperty()
+    {
+        SimpleStringProperty out = new SimpleStringProperty(OrderDate.toString());
+        return out;
     }
 
     public void setOrderDateProperty(String orderDateProperty) {

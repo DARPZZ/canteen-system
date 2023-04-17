@@ -48,36 +48,34 @@ public class Item
         Price = price;
     }
 
-    public int getItemIDProperty() {
-        return itemIDProperty.get();
+
+    public SimpleIntegerProperty getItemIDProperty()
+    {
+        SimpleIntegerProperty out = new SimpleIntegerProperty(ItemID);
+        return out;
     }
 
-    public IntegerProperty itemIDPropertyProperty() {
-        return itemIDProperty;
-    }
+    public void setItemIDProperty(int itemIDProperty)
+    {
 
-    public void setItemIDProperty(int itemIDProperty) {
         this.itemIDProperty.set(itemIDProperty);
     }
 
-    public String getNameProperty() {
-        return nameProperty.get();
+
+    public SimpleStringProperty getNameProperty()
+    {
+        SimpleStringProperty out = new SimpleStringProperty(Name);
+        return out;
     }
 
-    public StringProperty namePropertyProperty() {
-        return nameProperty;
-    }
-
-    public void setNameProperty(String nameProperty) {
+    public void setNameProperty(String nameProperty)
+    {
         this.nameProperty.set(nameProperty);
     }
-
-    public float getPriceProperty() {
-        return priceProperty.get();
-    }
-
-    public FloatProperty pricePropertyProperty() {
-        return priceProperty;
+    public SimpleFloatProperty getPriceProperty()
+    {
+        SimpleFloatProperty out = new SimpleFloatProperty(Price);
+        return out;
     }
 
     public void setPriceProperty(float priceProperty) {
