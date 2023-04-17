@@ -1,8 +1,8 @@
-package DaOImplements;
+package Model.DaOImplements;
 
 
-import DaoObjects.DaOInterface;
-import DaoObjects.Employee;
+import Model.DaoObjects.DaOInterface;
+import Model.DaoObjects.Employee;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,9 +32,9 @@ public class DaOEmployee implements DaOInterface<Employee>
     {
         try {
             preparedStatement = con.prepareStatement("INSERT INTO tblEmployee VALUES (?,?,?)");
-            preparedStatement.setInt(1, employee.getEmployeeID().intValue());
-            preparedStatement.setString(2, employee.getName().toString());
-            preparedStatement.setFloat(3, employee.getSaldo().floatValue());
+            preparedStatement.setInt(1, employee.getEmployeeID());
+            preparedStatement.setString(2, employee.getName());
+            preparedStatement.setFloat(3, employee.getSaldo());
             preparedStatement.execute();
         } catch (Exception e) {
         }
@@ -85,10 +85,7 @@ public class DaOEmployee implements DaOInterface<Employee>
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                Employee employee = new Employee();
-                employee.setEmployeeID(rs.getInt("fldEmployeeID"));
-                employee.setName(rs.getString("fldName"));
-                employee.setSaldo(rs.getFloat("fldSaldo"));
+                Employee employee = new Employee(rs.getInt("fldEmployeeID"),rs.getString("fldName"),rs.getFloat("fldSaldo"));
                 return employee;
             }
             return null; // no employee with the given id found in the database
@@ -102,7 +99,6 @@ public class DaOEmployee implements DaOInterface<Employee>
     @Override
     public List<Employee> GetAll()
     {
-        System.out.println("hej");
         ArrayList<Employee> ARL = new ArrayList<>();
         try {
             PreparedStatement ps = con.prepareStatement("select * from tblEmployee ");

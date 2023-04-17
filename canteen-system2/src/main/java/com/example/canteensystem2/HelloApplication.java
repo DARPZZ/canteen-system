@@ -3,7 +3,6 @@ package com.example.canteensystem2;
 import View.AdminLogin;
 import View.CustomerLogin;
 import View.InventoryManagement;
-import javafx.animation.KeyValue;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

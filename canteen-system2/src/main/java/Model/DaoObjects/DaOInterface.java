@@ -1,4 +1,4 @@
-package DaoObjects;
+package Model.DaoObjects;
 
 import java.util.List;
 

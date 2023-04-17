@@ -1,11 +1,9 @@
-package DaOImplements;
+package Model.DaOImplements;
 
-import DaoObjects.DaOInterface;
-import DaoObjects.Stock;
-import DaoObjects.Transaction;
+import Model.DaoObjects.DaOInterface;
+import Model.DaoObjects.Transaction;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 

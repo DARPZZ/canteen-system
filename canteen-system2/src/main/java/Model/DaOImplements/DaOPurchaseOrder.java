@@ -1,15 +1,13 @@
-package DaOImplements;
+package Model.DaOImplements;
 
-import DaoObjects.DaOInterface;
-import DaoObjects.Employee;
-import DaoObjects.Item;
-import DaoObjects.PurchaseOrder;
+import Model.DaoObjects.DaOInterface;
+import Model.DaoObjects.PurchaseOrder;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DaOItem implements DaOInterface
+public class DaOPurchaseOrder implements DaOInterface<PurchaseOrder>
 {
 
     private static String userName = "sa";
@@ -18,9 +16,7 @@ public class DaOItem implements DaOInterface
     private static String Port = "1433";
     private static Connection con;
     private PreparedStatement preparedStatement;
-
-    Item item;
-    public DaOItem()
+    public DaOPurchaseOrder()
     {
         try {
             con = DriverManager.getConnection("jdbc:sqlserver://localhost:"+Port+";databaseName="+databaseName,userName,password);
@@ -30,29 +26,27 @@ public class DaOItem implements DaOInterface
     }
 
     @Override
-    public void Create(Object o)
+    public void Create(PurchaseOrder o)
     {
-        item =(Item) o;
-
         try {
-            preparedStatement = con.prepareStatement("INSERT INTO tblItem (fldName,fldPrice) VALUES (?,?)");
-
-            preparedStatement.setString(1,item.getName());
-            preparedStatement.setFloat(2,item.getPrice());
+            preparedStatement = con.prepareStatement("INSERT INTO tblPurchaseOrder VALUES (?,?,?,?,?,?)");
+            preparedStatement.setInt(1,o.getPurchaseOrderID());
+            preparedStatement.setInt(2,o.getSupplierID());
+            preparedStatement.setInt(3,o.getItemID());
+            preparedStatement.setInt(4,o.getQuantity());
+            preparedStatement.setFloat(5,o.getPurchasePrice());
+            preparedStatement.setString(6, String.valueOf(o.getOrderDate()));
             preparedStatement.execute();
         }
         catch (Exception e)
-        {
-            System.out.println(e);
-        }
+        {}
     }
     @Override
-    public void Remove(Object o, int ID)
+    public void Remove(PurchaseOrder o, int ID)
     {
-        item =(Item) o;
         try
         {
-            preparedStatement = con.prepareStatement("DELETE FROM tblItem WHERE fldItemID = ?");
+            preparedStatement = con.prepareStatement("DELETE FROM tblPurchaseOrder WHERE fldPurchaseOrderID = ?");
             preparedStatement.setInt(1,ID);
             preparedStatement.execute();
         }
@@ -61,12 +55,11 @@ public class DaOItem implements DaOInterface
 
     }
     @Override
-    public void Update(Object o, String fieldname, String value)
+    public void Update(PurchaseOrder o, String fieldname, String value)
     {
-        item =(Item) o;
         try
         {
-            preparedStatement = con.prepareStatement("UPDATE ? SET ? = ? WHERE tblItemID = ?");
+            preparedStatement = con.prepareStatement("UPDATE ? SET ? = ? WHERE tblPurchaseOrderID = ?");
             preparedStatement.setString(1,"tblItem");
             preparedStatement.setString(2,fieldname);
             switch (fieldname)
@@ -81,16 +74,15 @@ public class DaOItem implements DaOInterface
                 case "fldPrice":
                     preparedStatement.setFloat(3,Float.parseFloat(value));
             }
-            preparedStatement.setInt(4,item.getItemID());
+            preparedStatement.setInt(4,o.getPurchaseOrderID());
             preparedStatement.execute();
         }
         catch (Exception e)
         {}
     }
     @Override
-    public void Delete(Object o, int ID)
+    public void Delete(PurchaseOrder o, int ID)
     {
-        item =(Item) o;
         try {
             preparedStatement = con.prepareStatement("DELETE FROM tblItem WHERE fldItemID = ?");
             preparedStatement.setInt(1,ID);
@@ -100,30 +92,29 @@ public class DaOItem implements DaOInterface
     }
 
     @Override
-    public Item Get(int ID)
+    public PurchaseOrder Get(int ID)
     {
-        Item tempItem = null;
+        PurchaseOrder order = null;
         try
         {
-            preparedStatement = con.prepareStatement("SELECT * FROM tblItem WHERE fldItemID = ?");
+            preparedStatement = con.prepareStatement("SELECT * FROM tblPurchaseOrder WHERE fldPurchaseOrderID = ?");
             preparedStatement.setInt(1,ID);
             ResultSet rs = preparedStatement.executeQuery();
-            tempItem = new Item(rs.getInt("fldItemID"), rs.getString("fldName"),rs.getFloat("fldPrice"));
+            order = new PurchaseOrder(rs.getInt("fldPurchaseOrderID"),rs.getInt("fldSupplierID"),rs.getInt("fldItemID"),rs.getInt("fldQuantity"),rs.getFloat("fldPurchesPrice"), rs.getDate("fldOrderDate").toLocalDate());
+
 
         } catch (Exception e){}
-        return tempItem;
-
+        return order;
     }
-@Override
-    public List<Item> GetAll()
+    public List<PurchaseOrder> GetAll()
     {
-        ArrayList<Item> ARL = new ArrayList<>();
+        ArrayList<PurchaseOrder> ARL = new ArrayList<>();
         try {
-            PreparedStatement ps = con.prepareStatement("select * from tblItem ");
-            ResultSet rs = ps.executeQuery();
+            preparedStatement = con.prepareStatement("select * from tblPurchaseOrder");
+            ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                ARL.add(new Item(rs.getInt("fldItemID"), rs.getString("fldName"),rs.getFloat("fldPrice")));
+            ARL.add(new PurchaseOrder(rs.getInt("fldPurchaseOrderID"),rs.getInt("fldSupplierID"),rs.getInt("fldItemID"),rs.getInt("fldQuantity"),rs.getFloat("fldPurchesPrice"), rs.getDate("fldOrderDate").toLocalDate()));
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -131,6 +122,7 @@ public class DaOItem implements DaOInterface
         }
         return ARL;
     }
+
 
 
 }

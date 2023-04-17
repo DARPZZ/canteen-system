@@ -1,8 +1,7 @@
-package DaOImplements;
+package Model.DaOImplements;
 
-import DaoObjects.DaOInterface;
-import DaoObjects.Stock;
-import DaoObjects.Supplier;
+import Model.DaoObjects.DaOInterface;
+import Model.DaoObjects.Supplier;
 
 import java.sql.*;
 import java.util.ArrayList;
