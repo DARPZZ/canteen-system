@@ -1,6 +1,8 @@
 package com.example.canteensystem2;
 
-import DaoObjects.Item;
+
+import Model.DaOImplements.DaOItem;
+import Model.DaoObjects.Item;
 import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -198,6 +200,9 @@ public class PointOfSale extends Application {
             inputItem.setText(inputItem.getText() + no_9.getText());
         });
 
+
+        //endregion
+
         TextField inputEmployee = new TextField();
         inputEmployee.setPrefSize(300, 25);
         inputEmployee.setPromptText("Indtast medarbejdernr. manuelt ");
@@ -207,7 +212,6 @@ public class PointOfSale extends Application {
             }
         });
 
-        //endregion
 
         Label sum = new Label();
         sum.setPrefSize(678, 25);
@@ -227,8 +231,12 @@ public class PointOfSale extends Application {
 
         btn_enter.setOnAction(e->{
             String vareNr = inputItem.getText();
-            //kontrol
-            System.out.println("Varenr:    "+vareNr);
+            System.out.println("" + vareNr);
+
+            DaOItem dbItem = new DaOItem();
+            Item vare = dbItem.Get(Integer.parseInt(vareNr));
+
+
         } );
 
 
