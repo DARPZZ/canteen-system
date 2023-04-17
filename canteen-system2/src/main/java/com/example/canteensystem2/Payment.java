@@ -22,12 +22,12 @@ public class Payment
 
     private final int PREF_HEIGHT =50;
     private final int PREF_WIDTH = 100;
-    public Scene PaymentScene() {
+    public Scene getScene() {
         return scene;
     }
-    public Payment(Stage stage)
-    {
 
+    public Payment()
+    {
         this.stage = stage;
         Welcome.setLayoutY(100);
         Welcome.setLayoutX(550);
@@ -54,9 +54,6 @@ public class Payment
 
         scene = new Scene(borderPane, 1280, 768);
 
-
-
     }
-
 
 }

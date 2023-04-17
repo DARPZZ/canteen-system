@@ -11,10 +11,10 @@ public class Employee
         Name = name;
         Saldo = saldo;
     }
-    public Employee(int employeeID, String name)
+
+    public Employee()
     {
-        EmployeeID = employeeID;
-        Name = name;
+
     }
 
     public int getEmployeeID() {
