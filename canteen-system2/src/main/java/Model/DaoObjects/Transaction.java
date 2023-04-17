@@ -6,64 +6,57 @@ import java.time.LocalDate;
 
 public class Transaction
 {
-    private IntegerProperty transactionID;
-    private StringProperty date;
-    private FloatProperty totalAmount;
-    private IntegerProperty employeeID;
+    private int TransActionID;
+    private LocalDate Date;
+    private float TotalAmount;
+    private int EmployeeID;
+
+    private IntegerProperty transactionIDProperty;
+    private StringProperty dateProperty;
+    private FloatProperty totalAmountProperty;
+    private IntegerProperty employeeIDProperty;
 
     public Transaction(int transActionID, LocalDate date, float totalAmount, int employeeID) {
+        TransActionID = transActionID;
+        Date = date;
+        TotalAmount = totalAmount;
+        EmployeeID = employeeID;
 
-        transactionID = new SimpleIntegerProperty(transActionID);
-        this.date = new SimpleStringProperty(date.toString());
-        this.totalAmount = new SimpleFloatProperty(totalAmount);
-        this.employeeID = new SimpleIntegerProperty(employeeID);
+        transactionIDProperty = new SimpleIntegerProperty(transActionID);
+        dateProperty = new SimpleStringProperty(date.toString());
+        totalAmountProperty = new SimpleFloatProperty(totalAmount);
+        employeeIDProperty = new SimpleIntegerProperty(employeeID);
     }
 
-    public int getTransactionID() {
-        return transactionID.get();
+    public int getTransActionID() {
+        return TransActionID;
     }
 
-    public IntegerProperty transactionIDProperty() {
-        return transactionID;
+    public void setTransActionID(int transActionID) {
+        TransActionID = transActionID;
     }
 
-    public void setTransactionID(int transactionID) {
-        this.transactionID.set(transactionID);
+    public LocalDate getDate() {
+        return Date;
     }
 
-    public String getDate() {
-        return date.get();
-    }
-
-    public StringProperty dateProperty() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date.set(date);
+    public void setDate(LocalDate date) {
+        Date = date;
     }
 
     public float getTotalAmount() {
-        return totalAmount.get();
-    }
-
-    public FloatProperty totalAmountProperty() {
-        return totalAmount;
+        return TotalAmount;
     }
 
     public void setTotalAmount(float totalAmount) {
-        this.totalAmount.set(totalAmount);
+        TotalAmount = totalAmount;
     }
 
     public int getEmployeeID() {
-        return employeeID.get();
-    }
-
-    public IntegerProperty employeeIDProperty() {
-        return employeeID;
+        return EmployeeID;
     }
 
     public void setEmployeeID(int employeeID) {
-        this.employeeID.set(employeeID);
+        EmployeeID = employeeID;
     }
 }

@@ -6,94 +6,155 @@ import java.time.LocalDate;
 
 public class PurchaseOrder
 {
+    private int PurchaseOrderID;
+    private int SupplierID;
+    private int ItemID;
+    private int Quantity;
+    private float PurchasePrice;
+    private LocalDate OrderDate;
 
-    private IntegerProperty purchaseOrderID;
-    private IntegerProperty supplierID;
-    private IntegerProperty itemID;
-    private IntegerProperty quantity;
-    private FloatProperty purchasePrice;
-    private StringProperty orderDate;
+    private IntegerProperty purchaseOrderIDProperty;
+    private IntegerProperty supplierIDProperty;
+    private IntegerProperty itemIDProperty;
+    private IntegerProperty quantityProperty;
+    private FloatProperty purchasePriceProperty;
+    private StringProperty orderDateProperty;
 
     public PurchaseOrder(int purchaseOrderID, int supplierID, int itemID, int quantity, float purchasePrice, LocalDate orderDate) {
-        this.purchaseOrderID = new SimpleIntegerProperty(purchaseOrderID);
-        this.supplierID = new SimpleIntegerProperty(supplierID);
-        this.itemID = new SimpleIntegerProperty(itemID);
-        this.quantity = new SimpleIntegerProperty(quantity);
-        this.purchasePrice = new SimpleFloatProperty(purchasePrice);
-        this.orderDate = new SimpleStringProperty(orderDate.toString());
+        PurchaseOrderID = purchaseOrderID;
+        SupplierID = supplierID;
+        ItemID = itemID;
+        Quantity = quantity;
+        PurchasePrice = purchasePrice;
+        OrderDate = orderDate;
+
+        purchaseOrderIDProperty = new SimpleIntegerProperty(purchaseOrderID);
+        supplierIDProperty = new SimpleIntegerProperty(supplierID);
+        itemIDProperty = new SimpleIntegerProperty(itemID);
+        quantityProperty = new SimpleIntegerProperty(quantity);
+        purchasePriceProperty = new SimpleFloatProperty(purchasePrice);
+        orderDateProperty = new SimpleStringProperty(orderDate.toString());
+
 
     }
-
 
     public int getPurchaseOrderID() {
-        return purchaseOrderID.get();
-    }
-
-    public IntegerProperty purchaseOrderIDProperty() {
-        return purchaseOrderID;
+        return PurchaseOrderID;
     }
 
     public void setPurchaseOrderID(int purchaseOrderID) {
-        this.purchaseOrderID.set(purchaseOrderID);
+        PurchaseOrderID = purchaseOrderID;
     }
 
     public int getSupplierID() {
-        return supplierID.get();
-    }
-
-    public IntegerProperty supplierIDProperty() {
-        return supplierID;
+        return SupplierID;
     }
 
     public void setSupplierID(int supplierID) {
-        this.supplierID.set(supplierID);
+        SupplierID = supplierID;
     }
 
     public int getItemID() {
-        return itemID.get();
-    }
-
-    public IntegerProperty itemIDProperty() {
-        return itemID;
+        return ItemID;
     }
 
     public void setItemID(int itemID) {
-        this.itemID.set(itemID);
+        ItemID = itemID;
     }
 
     public int getQuantity() {
-        return quantity.get();
-    }
-
-    public IntegerProperty quantityProperty() {
-        return quantity;
+        return Quantity;
     }
 
     public void setQuantity(int quantity) {
-        this.quantity.set(quantity);
+        Quantity = quantity;
     }
 
     public float getPurchasePrice() {
-        return purchasePrice.get();
-    }
-
-    public FloatProperty purchasePriceProperty() {
-        return purchasePrice;
+        return PurchasePrice;
     }
 
     public void setPurchasePrice(float purchasePrice) {
-        this.purchasePrice.set(purchasePrice);
+        PurchasePrice = purchasePrice;
     }
 
-    public String getOrderDate() {
-        return orderDate.get();
-    }
-
-    public StringProperty orderDateProperty() {
-        return orderDate;
+    public LocalDate getOrderDate() {
+        return OrderDate;
     }
 
     public void setOrderDate(LocalDate orderDate) {
-        this.orderDate.set(orderDate.toString());
+        OrderDate = orderDate;
+    }
+
+    public int getPurchaseOrderIDProperty() {
+        return purchaseOrderIDProperty.get();
+    }
+
+    public IntegerProperty purchaseOrderIDPropertyProperty() {
+        return purchaseOrderIDProperty;
+    }
+
+    public void setPurchaseOrderIDProperty(int purchaseOrderIDProperty) {
+        this.purchaseOrderIDProperty.set(purchaseOrderIDProperty);
+    }
+
+    public int getSupplierIDProperty() {
+        return supplierIDProperty.get();
+    }
+
+    public IntegerProperty supplierIDPropertyProperty() {
+        return supplierIDProperty;
+    }
+
+    public void setSupplierIDProperty(int supplierIDProperty) {
+        this.supplierIDProperty.set(supplierIDProperty);
+    }
+
+    public int getItemIDProperty() {
+        return itemIDProperty.get();
+    }
+
+    public IntegerProperty itemIDPropertyProperty() {
+        return itemIDProperty;
+    }
+
+    public void setItemIDProperty(int itemIDProperty) {
+        this.itemIDProperty.set(itemIDProperty);
+    }
+
+    public int getQuantityProperty() {
+        return quantityProperty.get();
+    }
+
+    public IntegerProperty quantityPropertyProperty() {
+        return quantityProperty;
+    }
+
+    public void setQuantityProperty(int quantityProperty) {
+        this.quantityProperty.set(quantityProperty);
+    }
+
+    public float getPurchasePriceProperty() {
+        return purchasePriceProperty.get();
+    }
+
+    public FloatProperty purchasePricePropertyProperty() {
+        return purchasePriceProperty;
+    }
+
+    public void setPurchasePriceProperty(float purchasePriceProperty) {
+        this.purchasePriceProperty.set(purchasePriceProperty);
+    }
+
+    public String getOrderDateProperty() {
+        return orderDateProperty.get();
+    }
+
+    public StringProperty orderDatePropertyProperty() {
+        return orderDateProperty;
+    }
+
+    public void setOrderDateProperty(String orderDateProperty) {
+        this.orderDateProperty.set(orderDateProperty);
     }
 }
