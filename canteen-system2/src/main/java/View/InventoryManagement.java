@@ -65,7 +65,7 @@ public class InventoryManagement extends AdminPage
         int xSize = (int) (tableView.getPrefWidth() / noColumn);
 
         TableColumn<Stock, Number> stockID = new TableColumn<>("Varenr.");
-        stockID.setCellValueFactory(data -> data.getValue().getItemIdProperty());
+        stockID.setCellValueFactory(data -> data.getValue().getItemIDProperty());
 
         TableColumn<Stock, String> description = new TableColumn<>("Beskrivelse");
         //description.setCellValueFactory(data -> data.getValue().getDescriptionProperty());

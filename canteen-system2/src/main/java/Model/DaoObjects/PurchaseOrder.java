@@ -29,7 +29,7 @@ public class PurchaseOrder
         return purchaseOrderID.get();
     }
 
-    public IntegerProperty purchaseOrderIDProperty() {
+    public IntegerProperty getPurchaseOrderIDProperty() {
         return purchaseOrderID;
     }
 
@@ -41,7 +41,7 @@ public class PurchaseOrder
         return supplierID.get();
     }
 
-    public IntegerProperty supplierIDProperty() {
+    public IntegerProperty getSupplierIDProperty() {
         return supplierID;
     }
 
@@ -53,7 +53,7 @@ public class PurchaseOrder
         return itemID.get();
     }
 
-    public IntegerProperty itemIDProperty() {
+    public IntegerProperty getItemIDProperty() {
         return itemID;
     }
 
@@ -65,7 +65,7 @@ public class PurchaseOrder
         return quantity.get();
     }
 
-    public IntegerProperty quantityProperty() {
+    public IntegerProperty getQuantityProperty() {
         return quantity;
     }
 
@@ -77,7 +77,7 @@ public class PurchaseOrder
         return purchasePrice.get();
     }
 
-    public FloatProperty purchasePriceProperty() {
+    public FloatProperty getPurchasePriceProperty() {
         return purchasePrice;
     }
 
@@ -89,7 +89,7 @@ public class PurchaseOrder
         return orderDate.get();
     }
 
-    public StringProperty orderDateProperty() {
+    public StringProperty getOrderDateProperty() {
         return orderDate;
     }
 

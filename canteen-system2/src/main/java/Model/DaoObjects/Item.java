@@ -19,7 +19,7 @@ public class Item {
         return itemID.get();
     }
 
-    public IntegerProperty itemIDProperty() {
+    public IntegerProperty getItemIDProperty() {
         return itemID;
     }
 
@@ -31,7 +31,7 @@ public class Item {
         return name.get();
     }
 
-    public StringProperty nameProperty() {
+    public StringProperty getNameProperty() {
         return name;
     }
 
@@ -43,7 +43,7 @@ public class Item {
         return price.get();
     }
 
-    public FloatProperty priceProperty() {
+    public FloatProperty getPriceProperty() {
         return price;
     }
 

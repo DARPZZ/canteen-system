@@ -19,7 +19,7 @@ public class Supplier
         return supplierID.get();
     }
 
-    public IntegerProperty supplierIDProperty() {
+    public IntegerProperty getSupplierIDProperty() {
         return supplierID;
     }
 
@@ -31,7 +31,7 @@ public class Supplier
         return name.get();
     }
 
-    public StringProperty nameProperty() {
+    public StringProperty getNameProperty() {
         return name;
     }
 

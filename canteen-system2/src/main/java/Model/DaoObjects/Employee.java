@@ -23,7 +23,7 @@ public class Employee {
         return employeeID.get();
     }
 
-    public IntegerProperty employeeIDProperty() {
+    public IntegerProperty getEmployeeIDProperty() {
         return employeeID;
     }
 
@@ -35,7 +35,7 @@ public class Employee {
         return name.get();
     }
 
-    public StringProperty nameProperty() {
+    public StringProperty getNameProperty() {
         return name;
     }
 
@@ -47,7 +47,7 @@ public class Employee {
         return saldo.get();
     }
 
-    public FloatProperty saldoProperty() {
+    public FloatProperty getSaldoProperty() {
         return saldo;
     }
 

@@ -37,7 +37,7 @@ public class Stock implements Comparable<Stock>
         return stockID.get();
     }
 
-    public IntegerProperty stockIDProperty() {
+    public IntegerProperty getStockIDProperty() {
         return stockID;
     }
 
@@ -49,7 +49,7 @@ public class Stock implements Comparable<Stock>
         return itemID.get();
     }
 
-    public IntegerProperty itemIDProperty() {
+    public IntegerProperty getItemIDProperty() {
         return itemID;
     }
 
@@ -61,7 +61,7 @@ public class Stock implements Comparable<Stock>
         return stockLevel.get();
     }
 
-    public IntegerProperty stockLevelProperty() {
+    public IntegerProperty getStockLevelProperty() {
         return stockLevel;
     }
 
@@ -73,7 +73,7 @@ public class Stock implements Comparable<Stock>
         return minStockLevel.get();
     }
 
-    public IntegerProperty minStockLevelProperty() {
+    public IntegerProperty getMinStockLevelProperty() {
         return minStockLevel;
     }
 

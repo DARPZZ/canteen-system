@@ -23,7 +23,7 @@ public class Transaction
         return transactionID.get();
     }
 
-    public IntegerProperty transactionIDProperty() {
+    public IntegerProperty getTransactionIDProperty() {
         return transactionID;
     }
 
@@ -35,7 +35,7 @@ public class Transaction
         return date.get();
     }
 
-    public StringProperty dateProperty() {
+    public StringProperty getDateProperty() {
         return date;
     }
 
@@ -47,7 +47,7 @@ public class Transaction
         return totalAmount.get();
     }
 
-    public FloatProperty totalAmountProperty() {
+    public FloatProperty getTotalAmountProperty() {
         return totalAmount;
     }
 
@@ -59,7 +59,7 @@ public class Transaction
         return employeeID.get();
     }
 
-    public IntegerProperty employeeIDProperty() {
+    public IntegerProperty getEmployeeIDProperty() {
         return employeeID;
     }
 
