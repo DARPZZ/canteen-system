@@ -28,6 +28,7 @@ public class Stock implements Comparable<Stock>
         this.stockLevelProperty = new SimpleIntegerProperty(stockLevel);
         this.minStockLevelProperty = new SimpleIntegerProperty(minStockLevel);
     }
+
     public Stock(int stockID, int itemID)
     {
         this.StockID = stockID;

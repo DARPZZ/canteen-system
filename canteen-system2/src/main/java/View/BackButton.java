@@ -11,5 +11,7 @@ public class BackButton extends Button
     {
         this.setId("back-button");
         this.setFocusTraversable(false);
+        this.setLayoutX(50);
+        this.setLayoutY(25);
     }
 }
