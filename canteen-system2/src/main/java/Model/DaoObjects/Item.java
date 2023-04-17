@@ -2,83 +2,52 @@ package Model.DaoObjects;
 
 import javafx.beans.property.*;
 
-public class Item
-{
-    private int ItemID;
-    private String Name;
-    private float Price;
-    private IntegerProperty itemIDProperty;
-    private StringProperty nameProperty;
-    private FloatProperty priceProperty;
+public class Item {
+    private IntegerProperty itemID;
+    private StringProperty name;
+    private FloatProperty price;
 
 
+    public Item(int itemID, String name, float price) {
 
-    public Item(int itemID, String name, float price)
-    {
-        ItemID = itemID;
-        Name = name;
-        Price = price;
-
-        itemIDProperty = new SimpleIntegerProperty(itemID);
-        nameProperty = new SimpleStringProperty(name);
-        priceProperty = new SimpleFloatProperty(price);
+        this.itemID = new SimpleIntegerProperty(itemID);
+        this.name = new SimpleStringProperty(name);
+        this.price = new SimpleFloatProperty(price);
     }
 
     public int getItemID() {
-        return ItemID;
+        return itemID.get();
+    }
+
+    public IntegerProperty itemIDProperty() {
+        return itemID;
     }
 
     public void setItemID(int itemID) {
-        ItemID = itemID;
+        this.itemID.set(itemID);
     }
 
     public String getName() {
-        return Name;
+        return name.get();
+    }
+
+    public StringProperty nameProperty() {
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name.set(name);
     }
 
     public float getPrice() {
-        return Price;
+        return price.get();
+    }
+
+    public FloatProperty priceProperty() {
+        return price;
     }
 
     public void setPrice(float price) {
-        Price = price;
-    }
-
-
-    public SimpleIntegerProperty getItemIDProperty()
-    {
-        SimpleIntegerProperty out = new SimpleIntegerProperty(ItemID);
-        return out;
-    }
-
-    public void setItemIDProperty(int itemIDProperty)
-    {
-
-        this.itemIDProperty.set(itemIDProperty);
-    }
-
-
-    public SimpleStringProperty getNameProperty()
-    {
-        SimpleStringProperty out = new SimpleStringProperty(Name);
-        return out;
-    }
-
-    public void setNameProperty(String nameProperty)
-    {
-        this.nameProperty.set(nameProperty);
-    }
-    public SimpleFloatProperty getPriceProperty()
-    {
-        SimpleFloatProperty out = new SimpleFloatProperty(Price);
-        return out;
-    }
-
-    public void setPriceProperty(float priceProperty) {
-        this.priceProperty.set(priceProperty);
+        this.price.set(price);
     }
 }
