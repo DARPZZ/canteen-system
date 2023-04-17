@@ -3,6 +3,7 @@ package com.example.canteensystem2;
 
 import Model.DaOImplements.DaOItem;
 import Model.DaoObjects.Item;
+import Model.DaoObjects.Stock;
 import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -12,10 +13,13 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
+import javafx.util.converter.NumberStringConverter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -114,9 +118,9 @@ public class PointOfSale extends Application {
         rightBox.setPrefSize(300, 600);
 
         VBox leftBox = new VBox();
-
+        //region Gridpane
         GridPane numPad = new GridPane();
-        //Indexing the gridPane
+
         numPad.addRow(3);
         numPad.addColumn(4);
         numPad.setHgap(0);
@@ -134,7 +138,7 @@ public class PointOfSale extends Application {
         numPad.add(btn_delete, 1, 3);
         numPad.add(btn_enter, 2, 3);
         numPad.setPrefSize(300, 400);
-
+        //endregion
 
         Label headLine = new Label();
         headLine.setText("Administrator Portal");
@@ -280,4 +284,39 @@ public class PointOfSale extends Application {
         this.display.getColumns().setAll(ItemID, Description, Quantity, Price);
     }
 
+    public void createColumns() {
+        int noColumn = 4;
+        int xSize = (int) (display.getPrefWidth() / noColumn);
+
+        TableColumn<Item, Number> itemID = new TableColumn<>("Varenr.");
+        itemID.setCellValueFactory(data -> data.getValue().getItemIDProperty());
+
+        TableColumn<Item, String> description = new TableColumn<>("Beskrivelse");
+        //description.setCellValueFactory(data -> data.getValue().getDescriptionProperty());
+
+        TableColumn<Item, Number> quantity = new TableColumn<>("Antal");
+        quantity.setText("1");
+
+        TableColumn<Item, String> price = new TableColumn<>("pris");
+        //price.setCellValueFactory(data -> data.getValue().getPriceNameProperty());
+
+        display.getColumns().add(itemID);
+        display.getColumns().add(description);
+        display.getColumns().add(quantity);
+        display.getColumns().add(price);
+
+        for (TableColumn<Item, ?> column : display.getColumns()) {
+            column.setReorderable(false);
+            column.setResizable(false);
+            column.setPrefWidth(xSize);
+
+            if (column.equals(currentAndMin)) {
+                for (int i = 0; i < column.getColumns().size(); i++) {
+                    column.getColumns().get(i).setReorderable(false);
+                    column.getColumns().get(i).setResizable(false);
+                    column.getColumns().get(i).setPrefWidth(xSize);
+                }
+            }
+        }
+    }
 }
