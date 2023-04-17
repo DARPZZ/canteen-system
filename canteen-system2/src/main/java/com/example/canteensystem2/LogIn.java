@@ -26,7 +26,7 @@ Scene scene;
         choice.setId("startLogin");
 
         borderPane.setCenter(anchorPane);
-        String css = this.getClass().getResource("style.css").toExternalForm();
+        String css = this.getClass().getResource("Style.css").toExternalForm();
         scene.getStylesheets().add(css);
 
         anchorPane.getChildren().addAll(adminLoginB, customerLoginB,welcome,choice);
