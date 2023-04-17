@@ -3,7 +3,13 @@ package Model;
 import DaOImplements.*;
 import DaoObjects.DaOInterface;
 import DaoObjects.Employee;
+import com.example.canteensystem2.Payment;
+import javafx.beans.binding.DoubleBinding;
+import javafx.beans.binding.FloatBinding;
 import javafx.beans.property.*;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
 
 public class Databinding
 {
@@ -13,7 +19,36 @@ public class Databinding
     DaOInterface stock = new DaoStock();
     DaOInterface supplier = new DaOSupplier();
     DaOInterface transaction = new DaOTransaction();
+    private Stage s = new Stage();
+    private TextField t = new TextField();
 
+
+    public void bindEmployeeSaldo(int ID)
+    {
+        Employee emp = (Employee) employee.Get(ID);
+        Payment p = new Payment(s,t);
+       p.Saldo.textProperty().bind(emp.getSaldo().asString());
+       /*
+        p.Saldo.textProperty().bind(new FloatBinding()
+        {
+            {
+                super.bind(emp.getSaldo());
+            }
+            @Override
+            protected float computeValue() {
+                float returnVal = 0.0f;
+                try {
+                    returnVal = (emp.getSaldo().getValue());
+                }
+                catch (Exception e){}
+
+                return returnVal;
+            }
+        })
+
+        */
+    }
+/*
     public EmployeeProperties findEmployeeIDProperty(int ID)
     {
          Employee emp = (Employee) employee.Get(ID);
@@ -25,6 +60,8 @@ public class Databinding
          return props;
 
     }
+
+ */
 
 
 }

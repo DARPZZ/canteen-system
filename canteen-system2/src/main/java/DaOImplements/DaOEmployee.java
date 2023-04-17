@@ -32,9 +32,9 @@ public class DaOEmployee implements DaOInterface<Employee>
     {
         try {
             preparedStatement = con.prepareStatement("INSERT INTO tblEmployee VALUES (?,?,?)");
-            preparedStatement.setInt(1, employee.getEmployeeID());
-            preparedStatement.setString(2, employee.getName());
-            preparedStatement.setFloat(3, employee.getSaldo());
+            preparedStatement.setInt(1, employee.getEmployeeID().intValue());
+            preparedStatement.setString(2, employee.getName().toString());
+            preparedStatement.setFloat(3, employee.getSaldo().floatValue());
             preparedStatement.execute();
         } catch (Exception e) {
         }

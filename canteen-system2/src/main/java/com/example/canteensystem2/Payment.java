@@ -19,7 +19,7 @@ public class Payment {
     BorderPane borderPane = new BorderPane();
     AnchorPane anchorPane = new AnchorPane();
     Label Welcome = new Label("Velkommen til Canteen Systems Kundeport");
-    Label Saldo = new Label();
+    public Label Saldo = new Label();
     Button kr50 = new Button("50.kr");
     Button kr100 = new Button("100.kr");
     Button kr200 = new Button("200.kr");
@@ -62,17 +62,21 @@ public class Payment {
     public void getUserID(TextField textField) {
         int employeeId = Integer.parseInt(textField.getText());
         Employee employee = (Employee) pdEmployee.Get(employeeId);
+        Saldo.textProperty().bind(employee.getSaldo().asString());
+       /*
         if (employee != null) {
             Saldo.setText("Welcome: " + employee.getName() + "Youre  balance Is " + employee.getSaldo());
         } else {
             Saldo.setText("No employee with ID " + employeeId + " found.");
         }
+
+        */
         kr50.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
             public void handle(ActionEvent event)
             {
-                float newBalance = employee.getSaldo() + 50;
+                float newBalance = employee.getSaldo().floatValue() + 50;
                 pdEmployee.Update(employee,"fldSaldo", String.valueOf(newBalance));
                 Saldo.setText("Welcome: " + employee.getName() + "Youre  balance Is " + newBalance);
             }
@@ -82,7 +86,7 @@ public class Payment {
             @Override
             public void handle(ActionEvent event)
             {
-                float newBalance = employee.getSaldo() + 100;
+                float newBalance = employee.getSaldo().floatValue() + 100;
                 pdEmployee.Update(employee,"fldSaldo", String.valueOf(newBalance));
                 Saldo.setText("Welcome: " + employee.getName() + "Youre  balance Is " + newBalance);
             }
@@ -92,7 +96,7 @@ public class Payment {
             @Override
             public void handle(ActionEvent event)
             {
-                float newBalance = employee.getSaldo() + 200;
+                float newBalance = employee.getSaldo().floatValue() + 200;
                 pdEmployee.Update(employee,"fldSaldo", String.valueOf(newBalance));
                 Saldo.setText("Welcome: " + employee.getName() + "Youre  balance Is " + newBalance);
             }
