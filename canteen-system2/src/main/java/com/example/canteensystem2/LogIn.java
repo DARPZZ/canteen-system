@@ -16,7 +16,6 @@ Scene scene;
 
     public LogIn()
     {
-
         BorderPane borderPane = new BorderPane();
         AnchorPane anchorPane = new AnchorPane();
         scene = new Scene(borderPane, 1280, 768);
@@ -26,8 +25,6 @@ Scene scene;
         choice.setId("startLogin");
 
         borderPane.setCenter(anchorPane);
-        String css = this.getClass().getResource("Style.css").toExternalForm();
-        scene.getStylesheets().add(css);
 
         anchorPane.getChildren().addAll(adminLoginB, customerLoginB,welcome,choice);
         adminLoginB.setLayoutY(300);
@@ -48,7 +45,8 @@ Scene scene;
         choice.setLayoutY(adminLoginB.getLayoutY()-70);
         customerLoginB.setId("loginButtons");
         adminLoginB.setId("loginButtons");
-
+        String css = this.getClass().getResource("/com/example/canteensystem2/style.css").toExternalForm();
+        scene.getStylesheets().add(css);
 
         //region sceneShift
         customerLoginB.setOnAction(new EventHandler<ActionEvent>()
