@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DaoStock implements DaOInterface
+public class DaoStock implements DaOInterface<Stock>
 {
 
     private static String userName = "sa";
@@ -29,7 +29,7 @@ public class DaoStock implements DaOInterface
     }
 
     @Override
-    public void Create(Object o)
+    public void Create(Stock o)
     {
         stock =(Stock) o;
 
@@ -48,7 +48,7 @@ public class DaoStock implements DaOInterface
         }
     }
     @Override
-    public void Remove(Object o, int ID)
+    public void Remove(Stock o, int ID)
     {
         stock =(Stock) o;
         try
@@ -61,24 +61,24 @@ public class DaoStock implements DaOInterface
         {}
 
     }
+
     @Override
-    public void Update(Object o, String fieldname, String value)
+    public void Update(Stock o, String fieldname, String value)
     {
-        stock =(Stock) o;
-        try
-        {
-            preparedStatement = con.prepareStatement("UPDATE ? SET ? = ? WHERE fldStockID = ?");
-            preparedStatement.setString(1,"tblStock");
-            preparedStatement.setString(2,fieldname);
-            preparedStatement.setInt(3,Integer.parseInt(value));
-            preparedStatement.setInt(4,stock.getStockID());
-            preparedStatement.execute();
+        String sql ="UPDATE tblStock SET ";
+        sql+= fieldname + " = '" + value+"'";
+        sql+= " where fldStockID = " + o.getStockID();
+        System.out.println(sql);
+        try {
+            preparedStatement = con.prepareStatement(sql);
+            preparedStatement.executeQuery();
+        } catch (Exception e) {
         }
         catch (Exception e)
         {}
     }
     @Override
-    public void Delete(Object o, int ID)
+    public void Delete(Stock o, int ID)
     {
         stock =(Stock) o;
         try {
@@ -113,7 +113,8 @@ public class DaoStock implements DaOInterface
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                ARL.add(new Stock(rs.getInt("fldStockID"),rs.getInt("fldItemID"),rs.getInt("fldStockLevel"),rs.getInt("fldMinStockLevel")));
+                //ARL.add(new Stock(rs.getInt("fldStockID"),rs.getInt("fldItemID"),rs.getInt("fldStockLevel"),rs.getInt("fldMinStockLevel")));
+                ARL.add(new Stock(rs.getInt("fldStockID"), rs.getInt("fldItemID"), rs.getInt("fldStockLevel"), rs.getInt("fldMinStockLevel")));
             }
         } catch (SQLException e) {
             System.out.println(e);
