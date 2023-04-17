@@ -69,10 +69,12 @@ public class DaOTransaction implements DaOInterface
         transaction =(Transaction) o;
         try
         {
-            preparedStatement = con.prepareStatement("UPDATE ? SET ? = ?");
+            preparedStatement = con.prepareStatement("UPDATE ? SET ? = ? WHERE fldTransactionID = ?");
             preparedStatement.setString(1,"tblTransaction");
             preparedStatement.setString(2,fieldname);
             preparedStatement.setInt(3,Integer.parseInt(value));
+            preparedStatement.setInt(4,transaction.getTransActionID());
+            preparedStatement.execute();
         }
         catch (Exception e)
         {}

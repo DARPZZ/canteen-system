@@ -9,9 +9,9 @@ public class Employee
     private FloatProperty Saldo;
 
     public Employee(int employeeID, String name, float saldo) {
-        EmployeeID.setValue(employeeID);
-        Name.setValue(name);
-        Saldo.setValue(saldo);
+        EmployeeID = new SimpleIntegerProperty(employeeID);
+        Name = new SimpleStringProperty(name);
+        Saldo = new SimpleFloatProperty(saldo);
     }
 
     public Employee()

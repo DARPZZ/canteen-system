@@ -66,7 +66,7 @@ public class DaOItem implements DaOInterface
         item =(Item) o;
         try
         {
-            preparedStatement = con.prepareStatement("UPDATE ? SET ? = ?");
+            preparedStatement = con.prepareStatement("UPDATE ? SET ? = ? WHERE tblItemID = ?");
             preparedStatement.setString(1,"tblItem");
             preparedStatement.setString(2,fieldname);
             switch (fieldname)
@@ -81,6 +81,7 @@ public class DaOItem implements DaOInterface
                 case "fldPrice":
                     preparedStatement.setFloat(3,Float.parseFloat(value));
             }
+            preparedStatement.setInt(4,item.getItemID());
             preparedStatement.execute();
         }
         catch (Exception e)

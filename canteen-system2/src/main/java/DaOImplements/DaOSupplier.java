@@ -66,10 +66,12 @@ public class DaOSupplier implements DaOInterface
         supplier =(Supplier) o;
         try
         {
-            preparedStatement = con.prepareStatement("UPDATE ? SET ? = ?");
+            preparedStatement = con.prepareStatement("UPDATE ? SET ? = ? WHERE fldSupplierID = ?");
             preparedStatement.setString(1,"tblSupplier");
             preparedStatement.setString(2,fieldname);
             preparedStatement.setInt(3,Integer.parseInt(value));
+            preparedStatement.setInt(4,supplier.getSupplierID());
+            preparedStatement.execute();
         }
         catch (Exception e)
         {}

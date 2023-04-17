@@ -66,7 +66,7 @@ public class DaOPurchaseOrder implements DaOInterface<PurchaseOrder>
         purchaseOrder =(PurchaseOrder) o;
         try
         {
-            preparedStatement = con.prepareStatement("UPDATE ? SET ? = ?");
+            preparedStatement = con.prepareStatement("UPDATE ? SET ? = ? WHERE tblPurchaseOrderID = ?");
             preparedStatement.setString(1,"tblItem");
             preparedStatement.setString(2,fieldname);
             switch (fieldname)
@@ -81,6 +81,7 @@ public class DaOPurchaseOrder implements DaOInterface<PurchaseOrder>
                 case "fldPrice":
                     preparedStatement.setFloat(3,Float.parseFloat(value));
             }
+            preparedStatement.setInt(4,purchaseOrder.getPurchaseOrderID());
             preparedStatement.execute();
         }
         catch (Exception e)
