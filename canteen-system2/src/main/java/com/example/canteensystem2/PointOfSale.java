@@ -239,6 +239,8 @@ public class PointOfSale extends Application {
 
             DaOItem dbItem = new DaOItem();
             Item vare = dbItem.Get(Integer.parseInt(vareNr));
+            System.out.println(vare.getName());
+            purchaseList.add(vare);
 
 
         } );
