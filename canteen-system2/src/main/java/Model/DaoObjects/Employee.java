@@ -2,99 +2,56 @@ package Model.DaoObjects;
 
 import javafx.beans.property.*;
 
-public class Employee {
-    private int employeeID;
-    private String name;
+public class Employee
+{
+    private int EmployeeID;
+    private String Name;
     private String password;
-    private float saldo;
-    private IntegerProperty EmployeeIDProperty;
-    private StringProperty NameProperty;
-    private StringProperty passwordProperty;
-    private FloatProperty SaldoProperty;
+    private float Saldo;
 
-    public Employee(int empID, String n,String password, float s) {
-        this.employeeID = empID;
-        this.name = n;
-        this.saldo = s;
+    public Employee(int employeeID, String name, String password, float saldo) {
+        EmployeeID = employeeID;
+        Name = name;
+        Saldo = saldo;
         this.password = password;
-        EmployeeIDProperty = new SimpleIntegerProperty(empID);
-        NameProperty = new SimpleStringProperty(n);
-        SaldoProperty = new SimpleFloatProperty(s);
-        passwordProperty = new SimpleStringProperty(password);
-
     }
 
-    public Employee() {
+    public Employee()
+    {
+
     }
 
     public int getEmployeeID() {
-        return employeeID;
+        return EmployeeID;
     }
 
     public void setEmployeeID(int employeeID) {
-        this.employeeID = employeeID;
+        EmployeeID = employeeID;
     }
 
     public String getName() {
-        return name;
+        return Name;
     }
 
     public void setName(String name) {
-        this.name = name;
-    }
-
-    public FloatProperty getSaldoProperty() {
-        return SaldoProperty;
-    }
-
-    public void setSaldoProperty(float saldoProperty) {
-        this.saldo = saldoProperty;
-    }
-
-    public int getEmployeeIDProperty() {
-        return EmployeeIDProperty.get();
-    }
-
-    public IntegerProperty employeeIDPropertyProperty() {
-        return EmployeeIDProperty;
-    }
-
-    public void setEmployeeIDProperty(int employeeIDProperty) {
-        this.EmployeeIDProperty.set(employeeIDProperty);
-    }
-
-    public String getNameProperty() {
-        return NameProperty.get();
-    }
-
-    public StringProperty namePropertyProperty() {
-        return NameProperty;
-    }
-
-    public void setNameProperty(String nameProperty) {
-        this.NameProperty.set(nameProperty);
+        Name = name;
     }
 
     public float getSaldo() {
-        return saldo;
+        return Saldo;
     }
 
     public void setSaldo(float saldo) {
-        this.saldo = saldo;
+        Saldo = saldo;
     }
 
     public String getPassword()
     {
-        return passwordProperty.get();
+        return password;
     }
 
-    public StringProperty passwordPropertyProperty()
+    public void setPassword(String password)
     {
-        return passwordProperty;
-    }
-
-    public void setPasswordProperty(String passwordProperty)
-    {
-        this.passwordProperty.set(passwordProperty);
+        this.password = password;
     }
 }

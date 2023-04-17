@@ -66,6 +66,8 @@ public class AdminLogin extends LoginScreen
             {
                 usernameTf.clear();
                 loginTf.clear();
+                usernameTf.setStyle("-fx-background-color: white");
+                loginTf.setStyle("-fx-background-color: white");
                 HelloApplication.changeScene(SceneName.InventoryManagement);
             }
             else
