@@ -64,11 +64,6 @@ public class InventoryManagement
         // Refill stockObservableList
     }
 
-    public List<Stock> getData()
-    {
-        return new DaoStock().GetAll();
-    }
-
     public void createColumns()
     {
         int noColumn = 5;
@@ -140,5 +135,10 @@ public class InventoryManagement
     public void updateMinStock(Stock stock)
     {
         new DaoStock().Update(stock, "fldMinStockLevel", String.valueOf(stock.getMinStockLevel()));
+    }
+
+    public List<Stock> getData()
+    {
+        return new DaoStock().GetAll();
     }
 }

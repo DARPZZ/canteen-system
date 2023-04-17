@@ -27,7 +27,6 @@ public class Stock implements Comparable<Stock>
         this.itemIdProperty = new SimpleIntegerProperty(itemID);
         this.stockLevelProperty = new SimpleIntegerProperty(stockLevel);
         this.minStockLevelProperty = new SimpleIntegerProperty(minStockLevel);
-
     }
     public Stock(int stockID, int itemID)
     {
@@ -48,6 +47,7 @@ public class Stock implements Comparable<Stock>
 
     public void setStockID(int stockID) {
         StockID = stockID;
+        stockIdProperty.set(stockID);
     }
 
     public int getItemID() {
@@ -56,6 +56,7 @@ public class Stock implements Comparable<Stock>
 
     public void setItemID(int itemID) {
         ItemID = itemID;
+        itemIdProperty.set(itemID);
     }
 
     public int getStockLevel() {
@@ -64,6 +65,7 @@ public class Stock implements Comparable<Stock>
 
     public void setStockLevel(int stockLevel) {
         StockLevel = stockLevel;
+        stockLevelProperty.set(stockLevel);
     }
 
     public int getMinStockLevel() {
@@ -72,28 +74,29 @@ public class Stock implements Comparable<Stock>
 
     public void setMinStockLevel(int minStockLevel) {
         MinStockLevel = minStockLevel;
+        minStockLevelProperty.set(minStockLevel);
     }
 
     //region property getter
 
     public IntegerProperty getStockIdProperty()
     {
-        return new SimpleIntegerProperty(StockID);
+        return stockIdProperty;
     }
 
     public IntegerProperty getItemIdProperty()
     {
-        return new SimpleIntegerProperty(ItemID);
+        return itemIdProperty;
     }
 
     public IntegerProperty getStockLevelProperty()
     {
-        return new SimpleIntegerProperty(StockLevel);
+        return stockLevelProperty;
     }
 
     public IntegerProperty getMinStockLevelProperty()
     {
-        return new SimpleIntegerProperty(MinStockLevel);
+        return minStockLevelProperty;
     }
 
     //endregion
