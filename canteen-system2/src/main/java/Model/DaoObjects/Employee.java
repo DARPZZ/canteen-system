@@ -2,56 +2,54 @@ package Model.DaoObjects;
 
 import javafx.beans.property.*;
 
-public class Employee
-{
-    private int EmployeeID;
-    private String Name;
-    private String password;
-    private float Saldo;
+public class Employee {
+    private IntegerProperty employeeID;
+    private StringProperty name;
+    private FloatProperty saldo;
 
-    public Employee(int employeeID, String name, String password, float saldo) {
-        EmployeeID = employeeID;
-        Name = name;
-        Saldo = saldo;
-        this.password = password;
+    public Employee(int empID, String n, float s) {
+        employeeID = new SimpleIntegerProperty(empID);
+        name = new SimpleStringProperty(n);
+        saldo = new SimpleFloatProperty(s);
     }
 
     public Employee()
     {
-
     }
 
     public int getEmployeeID() {
-        return EmployeeID;
+        return employeeID.get();
+    }
+
+    public IntegerProperty employeeIDProperty() {
+        return employeeID;
     }
 
     public void setEmployeeID(int employeeID) {
-        EmployeeID = employeeID;
+        this.employeeID.set(employeeID);
     }
 
     public String getName() {
-        return Name;
+        return name.get();
+    }
+
+    public StringProperty nameProperty() {
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name.set(name);
     }
 
     public float getSaldo() {
-        return Saldo;
+        return saldo.get();
+    }
+
+    public FloatProperty saldoProperty() {
+        return saldo;
     }
 
     public void setSaldo(float saldo) {
-        Saldo = saldo;
-    }
-
-    public String getPassword()
-    {
-        return password;
-    }
-
-    public void setPassword(String password)
-    {
-        this.password = password;
+        this.saldo.set(saldo);
     }
 }
