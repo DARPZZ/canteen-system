@@ -74,7 +74,7 @@ public class DaOEmployee implements DaOInterface<Employee>
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                Employee employee = new Employee(rs.getInt("fldEmployeeID"),rs.getString("fldName"),rs.getFloat("fldSaldo"));
+                Employee employee = new Employee(rs.getInt("fldEmployeeID"),rs.getString("fldName"),rs.getString("fldPassword"), rs.getFloat("fldSaldo"));
                 return employee;
             }
             return null; // no employee with the given id found in the database
@@ -94,7 +94,7 @@ public class DaOEmployee implements DaOInterface<Employee>
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                ARL.add(new Employee(rs.getInt("fldEmployeeID"), rs.getString("fldName"), rs.getInt("fldSaldo")));
+                ARL.add(new Employee(rs.getInt("fldEmployeeID"), rs.getString("fldName"), rs.getString("fldPassword"), rs.getInt("fldSaldo")));
             }
         } catch (SQLException e) {
             System.out.println(e);

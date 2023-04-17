@@ -35,7 +35,7 @@ public class DaOTransaction implements DaOInterface
         try {
             preparedStatement = con.prepareStatement("INSERT INTO tblTransaction (fldTransActionID,fldDate,fldTotalAmount,fldEmployeeID) VALUES (?,?,?,?)");
 
-            preparedStatement.setInt(1,transaction.getTransActionID());
+            preparedStatement.setInt(1,transaction.getTransactionID());
             Date temp = Date.valueOf(transaction.getDate());
             preparedStatement.setDate(2,temp);
             preparedStatement.setFloat(3,transaction.getTotalAmount());
@@ -57,7 +57,7 @@ public class DaOTransaction implements DaOInterface
             preparedStatement.setString(1,"tblTransaction");
             preparedStatement.setString(2,fieldname);
             preparedStatement.setInt(3,Integer.parseInt(value));
-            preparedStatement.setInt(4,transaction.getTransActionID());
+            preparedStatement.setInt(4,transaction.getTransactionID());
             preparedStatement.execute();
         }
         catch (Exception e)

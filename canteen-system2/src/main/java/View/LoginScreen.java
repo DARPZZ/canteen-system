@@ -1,11 +1,14 @@
 package View;
 
+
 import com.example.canteensystem2.HelloApplication;
 import com.example.canteensystem2.SceneName;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+
+import java.util.List;
 
 public abstract class LoginScreen
 {
@@ -41,6 +44,9 @@ public abstract class LoginScreen
         // Creates the back button
         backBtn = new BackButton();
         loginAp.getChildren().add(backBtn);
+
+        backBtn.setOnAction(event -> HelloApplication.changeScene(SceneName.LogIn));
+
         backBtn.setLayoutX(50);
         backBtn.setLayoutY(25);
         backBtn.setOnAction(event ->
@@ -55,6 +61,8 @@ public abstract class LoginScreen
         signInBtn.setPrefSize(250, 40);
         signInBtn.setLayoutX((scene.getWidth() - signInBtn.getPrefWidth()) / 2);
         signInBtn.setLayoutY(450);
+        String css = this.getClass().getResource("/com/example/canteensystem2/style.css").toExternalForm();
+        scene.getStylesheets().add(css);
     }
 
     public void setHeaderText(String text)
