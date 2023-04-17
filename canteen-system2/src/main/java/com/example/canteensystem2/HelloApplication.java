@@ -22,9 +22,8 @@ public class HelloApplication extends Application
     public void start(Stage stage) throws IOException
     {
         primaryStageHolder = stage;
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1280, 768);
-        scene = new LogIn().getScene();
+
+       Scene scene = new LogIn().getScene();
 
        // String css = this.getClass().getResource("/com/example/canteensystem2/style.css").toExternalForm();
        // scene.getStylesheets().add(css);
