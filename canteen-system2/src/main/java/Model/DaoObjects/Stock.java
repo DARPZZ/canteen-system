@@ -1,4 +1,4 @@
-package DaoObjects;
+package Model.DaoObjects;
 
 
 import javafx.beans.property.IntegerProperty;

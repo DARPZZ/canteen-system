@@ -1,4 +1,6 @@
-package DaoObjects;
+package Model.DaoObjects;
+
+import javafx.beans.property.*;
 
 import java.time.LocalDate;
 
@@ -9,12 +11,21 @@ public class Transaction
     private float TotalAmount;
     private int EmployeeID;
 
+    private IntegerProperty transactionIDProperty;
+    private StringProperty dateProperty;
+    private FloatProperty totalAmountProperty;
+    private IntegerProperty employeeIDProperty;
 
     public Transaction(int transActionID, LocalDate date, float totalAmount, int employeeID) {
         TransActionID = transActionID;
         Date = date;
         TotalAmount = totalAmount;
         EmployeeID = employeeID;
+
+        transactionIDProperty = new SimpleIntegerProperty(transActionID);
+        dateProperty = new SimpleStringProperty(date.toString());
+        totalAmountProperty = new SimpleFloatProperty(totalAmount);
+        employeeIDProperty = new SimpleIntegerProperty(employeeID);
     }
 
     public int getTransActionID() {

@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class StockItemSupplierData
+public class StockItemSupplierData // decrep
 {
     private IntegerProperty itemIdProperty;
     private StringProperty itemNameProperty;

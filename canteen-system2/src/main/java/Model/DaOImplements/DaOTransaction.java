@@ -1,11 +1,9 @@
-package DaOImplements;
+package Model.DaOImplements;
 
-import DaoObjects.DaOInterface;
-import DaoObjects.Stock;
-import DaoObjects.Transaction;
+import Model.DaoObjects.DaOInterface;
+import Model.DaoObjects.Transaction;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,29 +48,17 @@ public class DaOTransaction implements DaOInterface
         }
     }
     @Override
-    public void Remove(Object o, int ID)
-    {
-        transaction =(Transaction) o;
-        try
-        {
-            preparedStatement = con.prepareStatement("DELETE FROM tblTransaction WHERE fldTransActionID = ?");
-            preparedStatement.setInt(1,ID);
-            preparedStatement.execute();
-        }
-        catch (Exception e)
-        {}
-
-    }
-    @Override
     public void Update(Object o, String fieldname, String value)
     {
         transaction =(Transaction) o;
         try
         {
-            preparedStatement = con.prepareStatement("UPDATE ? SET ? = ?");
+            preparedStatement = con.prepareStatement("UPDATE ? SET ? = ? WHERE fldTransactionID = ?");
             preparedStatement.setString(1,"tblTransaction");
             preparedStatement.setString(2,fieldname);
             preparedStatement.setInt(3,Integer.parseInt(value));
+            preparedStatement.setInt(4,transaction.getTransActionID());
+            preparedStatement.execute();
         }
         catch (Exception e)
         {}
