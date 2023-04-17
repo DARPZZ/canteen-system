@@ -41,17 +41,6 @@ public class DaOEmployee implements DaOInterface<Employee>
     }
 
     @Override
-    public void Remove(Employee employee, int ID)
-    {
-        try {
-            preparedStatement = con.prepareStatement("DELETE FROM tblEmployee WHERE fldEmployeeID = ?");
-            preparedStatement.setInt(1, ID);
-            preparedStatement.execute();
-        } catch (Exception e) {
-        }
-    }
-
-    @Override
     public void Update(Employee employee, String fieldname, String value)
     {
         String sql ="UPDATE tblEmployee SET ";

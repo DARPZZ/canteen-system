@@ -46,20 +46,6 @@ public class DaOSupplier implements DaOInterface
         }
     }
     @Override
-    public void Remove(Object o, int ID)
-    {
-        supplier =(Supplier) o;
-        try
-        {
-            preparedStatement = con.prepareStatement("DELETE FROM tblSupplier WHERE fldSupplierID = ?");
-            preparedStatement.setInt(1,ID);
-            preparedStatement.execute();
-        }
-        catch (Exception e)
-        {}
-
-    }
-    @Override
     public void Update(Object o, String fieldname, String value)
     {
         supplier =(Supplier) o;

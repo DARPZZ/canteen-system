@@ -43,19 +43,6 @@ public class DaoStock implements DaOInterface<Stock>
             System.out.println(e);
         }
     }
-    @Override
-    public void Remove(Stock o, int ID)
-    {
-        try
-        {
-            preparedStatement = con.prepareStatement("DELETE FROM tblStock WHERE fldStockID = ?");
-            preparedStatement.setInt(1,ID);
-            preparedStatement.execute();
-        }
-        catch (Exception e)
-        {}
-
-    }
 
     @Override
     public void Update(Stock o, String fieldname, String value)

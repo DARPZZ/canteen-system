@@ -41,19 +41,7 @@ public class DaOPurchaseOrder implements DaOInterface<PurchaseOrder>
         catch (Exception e)
         {}
     }
-    @Override
-    public void Remove(PurchaseOrder o, int ID)
-    {
-        try
-        {
-            preparedStatement = con.prepareStatement("DELETE FROM tblPurchaseOrder WHERE fldPurchaseOrderID = ?");
-            preparedStatement.setInt(1,ID);
-            preparedStatement.execute();
-        }
-        catch (Exception e)
-        {}
 
-    }
     @Override
     public void Update(PurchaseOrder o, String fieldname, String value)
     {

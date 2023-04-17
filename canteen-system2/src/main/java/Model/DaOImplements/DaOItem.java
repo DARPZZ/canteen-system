@@ -41,19 +41,7 @@ public class DaOItem implements DaOInterface<Item>
             System.out.println(e);
         }
     }
-    @Override
-    public void Remove(Item o, int ID)
-    {
-        try
-        {
-            preparedStatement = con.prepareStatement("DELETE FROM tblItem WHERE fldItemID = ?");
-            preparedStatement.setInt(1,ID);
-            preparedStatement.execute();
-        }
-        catch (Exception e)
-        {}
 
-    }
     @Override
     public void Update(Item o, String fieldname, String value)
     {

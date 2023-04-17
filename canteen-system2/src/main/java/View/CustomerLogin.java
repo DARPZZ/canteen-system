@@ -18,5 +18,6 @@ public class CustomerLogin extends LoginScreen
         employeeIdTf.setLayoutX((super.getScene().getWidth() - employeeIdTf.getPrefWidth()) / 2);
         employeeIdTf.setLayoutY(350);
         employeeIdTf.setFocusTraversable(false);
+
     }
 }
