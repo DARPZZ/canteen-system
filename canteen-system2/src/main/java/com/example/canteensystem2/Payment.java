@@ -1,8 +1,8 @@
 package com.example.canteensystem2;
+
 import DaOImplements.DaOEmployee;
 import DaoObjects.DaOInterface;
 import DaoObjects.Employee;
-import View.CustomerLogin;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -14,9 +14,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-
-import java.security.PublicKey;
-
 public class Payment {
     DaOInterface pdEmployee = new DaOEmployee();
     private Scene scene;
