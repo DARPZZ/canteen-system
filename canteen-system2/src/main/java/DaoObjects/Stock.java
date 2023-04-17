@@ -11,12 +11,22 @@ public class Stock implements Comparable<Stock>
     private int StockLevel;
     private int MinStockLevel;
 
+    private IntegerProperty stockIdProperty;
+    private IntegerProperty itemIdProperty;
+    private IntegerProperty stockLevelProperty;
+    private IntegerProperty minStockLevelProperty;
+
     public Stock(int stockID,int itemID, int stockLevel, int minStockLevel)
     {
         this.StockID = stockID;
         this.ItemID = itemID;
         this.StockLevel = stockLevel;
         this.MinStockLevel = minStockLevel;
+
+        this.stockIdProperty = new SimpleIntegerProperty(stockID);
+        this.itemIdProperty = new SimpleIntegerProperty(itemID);
+        this.stockLevelProperty = new SimpleIntegerProperty(stockLevel);
+        this.minStockLevelProperty = new SimpleIntegerProperty(minStockLevel);
 
     }
     public Stock(int stockID, int itemID)
@@ -87,7 +97,6 @@ public class Stock implements Comparable<Stock>
     }
 
     //endregion
-
 
     @Override
     public int compareTo(Stock o)

@@ -94,7 +94,7 @@ public class InventoryManagement
             table.getTableView().getItems().get(table.getTablePosition().getRow()).
                     setMinStockLevel(table.getNewValue().intValue());
 
-            updateMinStock(table.getTableView().getItems().get(table.getTablePosition().getRow()), table.getNewValue());
+            updateMinStock(table.getTableView().getItems().get(table.getTablePosition().getRow()));
         });
 
         TableColumn<Stock, Number> currentAndMin = new TableColumn<>("Lager mængde");
@@ -137,8 +137,8 @@ public class InventoryManagement
         return scene;
     }
 
-    public void updateMinStock(Stock stock, Number value)
+    public void updateMinStock(Stock stock)
     {
-        new DaoStock().Update(stock, "fldMinStockLevel", value.toString());
+        new DaoStock().Update(stock, "fldMinStockLevel", String.valueOf(stock.getMinStockLevel()));
     }
 }
