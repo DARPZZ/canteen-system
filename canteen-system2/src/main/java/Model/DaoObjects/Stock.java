@@ -8,14 +8,14 @@ public class Stock implements Comparable<Stock>
 {
 
     private IntegerProperty stockID;
-    private IntegerProperty itemId;
+    private IntegerProperty itemID;
     private IntegerProperty stockLevel;
     private IntegerProperty minStockLevel;
 
     public Stock(int stockID,int itemID, int stockLevel, int minStockLevel)
     {
         this.stockID = new SimpleIntegerProperty(stockID);
-        this.itemId = new SimpleIntegerProperty(itemID);
+        this.itemID = new SimpleIntegerProperty(itemID);
         this.stockLevel = new SimpleIntegerProperty(stockLevel);
         this.minStockLevel = new SimpleIntegerProperty(minStockLevel);
     }
@@ -23,7 +23,7 @@ public class Stock implements Comparable<Stock>
     public Stock(int stockID, int itemID)
     {
         this.stockID = new SimpleIntegerProperty(stockID);
-        this.itemId = new SimpleIntegerProperty(itemID);
+        this.itemID = new SimpleIntegerProperty(itemID);
     }
 
     public Stock(int stockID, int stockLevel, int minStockLevel)
@@ -45,16 +45,16 @@ public class Stock implements Comparable<Stock>
         this.stockID.set(stockID);
     }
 
-    public int getItemId() {
-        return itemId.get();
+    public int getItemID() {
+        return itemID.get();
     }
 
-    public IntegerProperty itemIdProperty() {
-        return itemId;
+    public IntegerProperty itemIDProperty() {
+        return itemID;
     }
 
-    public void setItemId(int itemId) {
-        this.itemId.set(itemId);
+    public void setItemID(int itemID) {
+        this.itemID.set(itemID);
     }
 
     public int getStockLevel() {

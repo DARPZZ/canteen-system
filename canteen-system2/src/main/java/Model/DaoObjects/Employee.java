@@ -5,11 +5,13 @@ import javafx.beans.property.*;
 public class Employee {
     private IntegerProperty employeeID;
     private StringProperty name;
+    private StringProperty password;
     private FloatProperty saldo;
 
-    public Employee(int empID, String n, float s) {
+    public Employee(int empID, String n, String pass, float s) {
         employeeID = new SimpleIntegerProperty(empID);
         name = new SimpleStringProperty(n);
+        password = new SimpleStringProperty(pass);
         saldo = new SimpleFloatProperty(s);
     }
 
