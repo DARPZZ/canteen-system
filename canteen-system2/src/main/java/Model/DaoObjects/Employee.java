@@ -5,18 +5,23 @@ import javafx.beans.property.*;
 public class Employee {
     private int employeeID;
     private String name;
+    private String password;
     private float saldo;
     private IntegerProperty EmployeeIDProperty;
     private StringProperty NameProperty;
+    private StringProperty passwordProperty;
     private FloatProperty SaldoProperty;
 
-    public Employee(int empID, String n, float s) {
+    public Employee(int empID, String n,String password, float s) {
         this.employeeID = empID;
         this.name = n;
         this.saldo = s;
+        this.password = password;
         EmployeeIDProperty = new SimpleIntegerProperty(empID);
         NameProperty = new SimpleStringProperty(n);
         SaldoProperty = new SimpleFloatProperty(s);
+        passwordProperty = new SimpleStringProperty(password);
+
     }
 
     public Employee() {
@@ -76,5 +81,20 @@ public class Employee {
 
     public void setSaldo(float saldo) {
         this.saldo = saldo;
+    }
+
+    public String getPassword()
+    {
+        return passwordProperty.get();
+    }
+
+    public StringProperty passwordPropertyProperty()
+    {
+        return passwordProperty;
+    }
+
+    public void setPasswordProperty(String passwordProperty)
+    {
+        this.passwordProperty.set(passwordProperty);
     }
 }

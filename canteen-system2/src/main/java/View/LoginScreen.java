@@ -1,7 +1,6 @@
 package View;
 
-import DaOImplements.DaOEmployee;
-import DaoObjects.Employee;
+
 import com.example.canteensystem2.HelloApplication;
 import com.example.canteensystem2.SceneName;
 import javafx.scene.Scene;
