@@ -40,8 +40,7 @@ Button customerLoginB = new Button("Custommer login");
         choice.setId("startLogin");
 
         borderPane.setCenter(anchorPane);
-        String css = this.getClass().getResource("Style.css").toExternalForm();
-        scene.getStylesheets().add(css);
+
         anchorPane.getChildren().addAll(adminLoginB, customerLoginB,welcome,choice);
         adminLoginB.setLayoutY(300);
         adminLoginB.setPrefWidth(150);

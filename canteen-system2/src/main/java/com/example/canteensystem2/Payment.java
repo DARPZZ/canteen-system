@@ -70,8 +70,7 @@ public class Payment {
         customAmount.setPrefHeight(35);
         anchorPane.getChildren().addAll(Welcome, kr50, kr100, kr200, Saldo,customAmount);
         scene = new Scene(borderPane, 1280, 768);
-        String css = this.getClass().getResource("Style.css").toExternalForm();
-        scene.getStylesheets().add(css);
+
     }
     public void getUserID(TextField textField) {
         int employeeId = Integer.parseInt(textField.getText());
