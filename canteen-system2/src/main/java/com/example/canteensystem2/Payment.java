@@ -26,7 +26,8 @@ public class Payment {
     CustommerLogin custommerLogin = new CustommerLogin(stage);
     private final int PREF_HEIGHT = 50;
     private final int PREF_WIDTH = 100;
-    private float newSaldo = 0;
+    private float newBalance = 0.0f;
+
 
     public Scene PaymentScene() {
         return scene;
@@ -63,40 +64,40 @@ public class Payment {
         int employeeId = Integer.parseInt(textField.getText());
         Employee employee = (Employee) pdEmployee.Get(employeeId);
         if (employee != null) {
-            Saldo.setText("Welcome: " + employee.getName() + "Youre  balance Is " + employee.getSaldo());
+            newBalance = employee.getSaldo();
+            Saldo.setText("Welcome: " + employee.getName() + "\n" +  "Your balance is: " + newBalance);
         } else {
             Saldo.setText("No employee with ID " + employeeId + " found.");
         }
-        kr50.setOnAction(new EventHandler<ActionEvent>()
-        {
+
+        kr50.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event)
-            {
-                float newBalance = employee.getSaldo() + 50;
-                pdEmployee.Update(employee,"fldSaldo", String.valueOf(newBalance));
-                Saldo.setText("Welcome: " + employee.getName() + "Youre  balance Is " + newBalance);
+            public void handle(ActionEvent event) {
+                newBalance += 50;
+                pdEmployee.Update(employee, "fldSaldo", String.valueOf(newBalance));
+                Saldo.setText("Welcome: " + employee.getName() + "\n" +  " Your balance is: " + newBalance);
             }
         });
-        kr100.setOnAction(new EventHandler<ActionEvent>()
-        {
+
+        kr100.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event)
-            {
-                float newBalance = employee.getSaldo() + 100;
-                pdEmployee.Update(employee,"fldSaldo", String.valueOf(newBalance));
-                Saldo.setText("Welcome: " + employee.getName() + "Youre  balance Is " + newBalance);
+            public void handle(ActionEvent event) {
+                newBalance += 100;
+                pdEmployee.Update(employee, "fldSaldo", String.valueOf(newBalance));
+                Saldo.setText("Welcome: " + employee.getName() + "\n" +  " Your balance is: " + newBalance);
+
             }
         });
-        kr200.setOnAction(new EventHandler<ActionEvent>()
-        {
+
+        kr200.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event)
-            {
-                float newBalance = employee.getSaldo() + 200;
-                pdEmployee.Update(employee,"fldSaldo", String.valueOf(newBalance));
-                Saldo.setText("Welcome: " + employee.getName() + "Youre  balance Is " + newBalance);
+            public void handle(ActionEvent event) {
+                newBalance += 200;
+                pdEmployee.Update(employee, "fldSaldo", String.valueOf(newBalance));
+                Saldo.setText("Welcome: " + employee.getName() + "\n" +  " Your balance is: " + newBalance);
             }
         });
+
     }
 
 }
