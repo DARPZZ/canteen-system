@@ -25,16 +25,13 @@ public class HelloApplication extends Application
 
        Scene scene = new LogIn().getScene();
 
-       // String css = this.getClass().getResource("/com/example/canteensystem2/style.css").toExternalForm();
-       // scene.getStylesheets().add(css);
-
-
         sceneMap.put(SceneName.InventoryManagement, new InventoryManagement().getScene());
-        sceneMap.put(SceneName.CustomerLogin, new CustomerLogin().getScene());
+        sceneMap.put(SceneName.CustomerLogin, new CustomerLogin(stage).getScene());
         sceneMap.put(SceneName.AdminLogin, new AdminLogin().getScene());
         sceneMap.put(SceneName.LogIn, new LogIn().getScene());
-        sceneMap.put(SceneName.Payment, new Payment().getScene());
-
+       // sceneMap.put(SceneName.Payment, new Payment().getScene());
+        String css = this.getClass().getResource("/com/example/canteensystem2/style.css").toExternalForm();
+        scene.getStylesheets().add(css);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();

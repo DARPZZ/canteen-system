@@ -2,6 +2,7 @@ package com.example.canteensystem2;
 import DaOImplements.DaOEmployee;
 import DaoObjects.DaOInterface;
 import DaoObjects.Employee;
+import View.CustomerLogin;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -13,6 +14,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+
+import java.security.PublicKey;
+
 public class Payment {
     DaOInterface pdEmployee = new DaOEmployee();
     private Scene scene;
@@ -28,42 +32,11 @@ public class Payment {
     private final int PREF_WIDTH = 100;
     private float newBalance = 0.0f;
     TextField customAmount = new TextField();
+    public Scene PaymentScene() {
+        return scene;
+    }
+
     public Payment() {
-        this.stage = stage;
-        Welcome.setLayoutY(50);
-        Welcome.setLayoutX(400);
-        borderPane.setCenter(anchorPane);
-
-        Welcome.setId("welcomeText");
-        Saldo.setId("saldo");
-
-        kr50.setLayoutY(300);
-        kr50.setLayoutX(1170);
-        kr50.setPrefWidth(PREF_WIDTH);
-        kr50.setPrefHeight(PREF_HEIGHT);
-        kr50.setId("saldoButtons");
-
-        kr100.setLayoutY(kr50.getLayoutY() + 70);
-        kr100.setLayoutX(kr50.getLayoutX());
-        kr100.setPrefHeight(PREF_HEIGHT);
-        kr100.setPrefWidth(PREF_WIDTH);
-        kr100.setId("saldoButtons");
-
-        kr200.setLayoutY(kr100.getLayoutY() + 70);
-        kr200.setLayoutX(kr100.getLayoutX());
-        kr200.setPrefHeight(PREF_HEIGHT);
-        kr200.setPrefWidth(PREF_WIDTH);
-        kr200.setId("saldoButtons");
-
-        Saldo.setLayoutX(50);
-        Saldo.setLayoutY(350);
-        customAmount.setLayoutX(kr200.getLayoutX()-50);
-        customAmount.setLayoutY(kr200.getLayoutY()+70);
-        customAmount.setPromptText("Enter custom amount");
-        customAmount.setPrefWidth(150);
-        customAmount.setPrefHeight(35);
-        anchorPane.getChildren().addAll(Welcome, kr50, kr100, kr200, Saldo,customAmount);
-        scene = new Scene(borderPane, 1280, 768);
 
     }
     public void getUserID(TextField textField) {
@@ -114,9 +87,48 @@ public class Payment {
             }
         });
     }
-
-    public Scene getScene()
+    public Scene createPaymentScene(Stage stage, TextField textField)
     {
+        this.stage = stage;
+        Welcome.setLayoutY(50);
+        Welcome.setLayoutX(400);
+        borderPane.setCenter(anchorPane);
+
+        Welcome.setId("welcomeText");
+        Saldo.setId("saldo");
+        System.out.println("ILD");
+        kr50.setLayoutY(300);
+        kr50.setLayoutX(1170);
+        kr50.setPrefWidth(PREF_WIDTH);
+        kr50.setPrefHeight(PREF_HEIGHT);
+        kr50.setId("saldoButtons");
+
+        kr100.setLayoutY(kr50.getLayoutY() + 70);
+        kr100.setLayoutX(kr50.getLayoutX());
+        kr100.setPrefHeight(PREF_HEIGHT);
+        kr100.setPrefWidth(PREF_WIDTH);
+        kr100.setId("saldoButtons");
+
+        kr200.setLayoutY(kr100.getLayoutY() + 70);
+        kr200.setLayoutX(kr100.getLayoutX());
+        kr200.setPrefHeight(PREF_HEIGHT);
+        kr200.setPrefWidth(PREF_WIDTH);
+        kr200.setId("saldoButtons");
+
+        Saldo.setLayoutX(50);
+        Saldo.setLayoutY(350);
+
+        customAmount.setLayoutX(kr200.getLayoutX()-50);
+        customAmount.setLayoutY(kr200.getLayoutY()+70);
+        customAmount.setPromptText("Enter custom amount");
+        customAmount.setPrefWidth(150);
+        customAmount.setPrefHeight(35);
+        getUserID(textField);
+        anchorPane.getChildren().addAll(Welcome, kr50, kr100, kr200, Saldo,customAmount);
+        scene = new Scene(borderPane, 1280, 768);
+        String css = this.getClass().getResource("/com/example/canteensystem2/style.css").toExternalForm();
+        scene.getStylesheets().add(css);
+
         return scene;
     }
 }

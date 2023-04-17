@@ -55,6 +55,8 @@ public abstract class LoginScreen
         signInBtn.setPrefSize(250, 40);
         signInBtn.setLayoutX((scene.getWidth() - signInBtn.getPrefWidth()) / 2);
         signInBtn.setLayoutY(450);
+        String css = this.getClass().getResource("/com/example/canteensystem2/style.css").toExternalForm();
+        scene.getStylesheets().add(css);
     }
 
     public void setHeaderText(String text)

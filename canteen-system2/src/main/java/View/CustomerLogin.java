@@ -12,10 +12,23 @@ import javafx.stage.Stage;
 
 public class CustomerLogin extends LoginScreen
 {
+    Payment payment = new Payment();
   private Stage stage;
-    private TextField employeeIdTf;
-    public CustomerLogin()
+
+    public TextField getEmployeeIdTf()
     {
+        return employeeIdTf;
+    }
+
+    public void setEmployeeIdTf(TextField employeeIdTf)
+    {
+        this.employeeIdTf = employeeIdTf;
+    }
+
+    private TextField employeeIdTf;
+    public CustomerLogin(Stage stage)
+    {
+        this.stage = stage;
         super.setHeaderText("Kundeportal \n\tlogin");
         super.setLoginNotificationText("Indtast venligst dit medarbejder id");
 
@@ -33,10 +46,14 @@ public class CustomerLogin extends LoginScreen
             public void handle(KeyEvent event)
             {
                 if (event.getCode() == KeyCode.ENTER) {
-                  HelloApplication.changeScene(SceneName.Payment);
-
+                    Scene createPaymentScene = payment.createPaymentScene(stage,employeeIdTf);
+                    stage.setScene(createPaymentScene);
                 }
             }
         });
+
+
+
+
     }
 }
