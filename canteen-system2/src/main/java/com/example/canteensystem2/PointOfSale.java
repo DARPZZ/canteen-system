@@ -96,7 +96,7 @@ public class PointOfSale extends Application {
         FlowPane center = new FlowPane();
 
         FlowPane header = new FlowPane();
-        header.setPrefHeight(100);
+        header.setPrefHeight(250);
 
         VBox rightBox = new VBox();
         rightBox.setPrefSize(300,600);
