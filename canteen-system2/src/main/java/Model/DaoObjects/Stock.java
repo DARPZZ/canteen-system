@@ -6,109 +6,91 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 public class Stock implements Comparable<Stock>
 {
-    private int StockID;
-    private int ItemID;
-    private int StockLevel;
-    private int MinStockLevel;
 
-    private IntegerProperty stockIdProperty;
-    private IntegerProperty itemIdProperty;
-    private IntegerProperty stockLevelProperty;
-    private IntegerProperty minStockLevelProperty;
+    private IntegerProperty stockID;
+    private IntegerProperty itemId;
+    private IntegerProperty stockLevel;
+    private IntegerProperty minStockLevel;
 
     public Stock(int stockID,int itemID, int stockLevel, int minStockLevel)
     {
-        this.StockID = stockID;
-        this.ItemID = itemID;
-        this.StockLevel = stockLevel;
-        this.MinStockLevel = minStockLevel;
-
-        this.stockIdProperty = new SimpleIntegerProperty(stockID);
-        this.itemIdProperty = new SimpleIntegerProperty(itemID);
-        this.stockLevelProperty = new SimpleIntegerProperty(stockLevel);
-        this.minStockLevelProperty = new SimpleIntegerProperty(minStockLevel);
+        this.stockID = new SimpleIntegerProperty(stockID);
+        this.itemId = new SimpleIntegerProperty(itemID);
+        this.stockLevel = new SimpleIntegerProperty(stockLevel);
+        this.minStockLevel = new SimpleIntegerProperty(minStockLevel);
     }
     public Stock(int stockID, int itemID)
     {
-        this.StockID = stockID;
-        this.ItemID = itemID;
+        this.stockID = new SimpleIntegerProperty(stockID);
+        this.itemId = new SimpleIntegerProperty(itemID);
     }
 
     public Stock(int stockID, int stockLevel, int minStockLevel)
     {
-        StockID = stockID;
-        StockLevel = stockLevel;
-        MinStockLevel = minStockLevel;
+        this.stockID = new SimpleIntegerProperty(stockID);
+        this.stockLevel = new SimpleIntegerProperty(stockLevel);
+        this.minStockLevel = new SimpleIntegerProperty(minStockLevel);
+    }
+//start region
+    public int getStockID() {
+        return stockID.get();
     }
 
-    public int getStockID() {
-        return StockID;
+    public IntegerProperty stockIDProperty() {
+        return stockID;
     }
 
     public void setStockID(int stockID) {
-        StockID = stockID;
-        stockIdProperty.set(stockID);
+        this.stockID.set(stockID);
     }
 
-    public int getItemID() {
-        return ItemID;
+    public int getItemId() {
+        return itemId.get();
     }
 
-    public void setItemID(int itemID) {
-        ItemID = itemID;
-        itemIdProperty.set(itemID);
+    public IntegerProperty itemIdProperty() {
+        return itemId;
+    }
+
+    public void setItemId(int itemId) {
+        this.itemId.set(itemId);
     }
 
     public int getStockLevel() {
-        return StockLevel;
+        return stockLevel.get();
+    }
+
+    public IntegerProperty stockLevelProperty() {
+        return stockLevel;
     }
 
     public void setStockLevel(int stockLevel) {
-        StockLevel = stockLevel;
-        stockLevelProperty.set(stockLevel);
+        this.stockLevel.set(stockLevel);
     }
 
     public int getMinStockLevel() {
-        return MinStockLevel;
+        return minStockLevel.get();
+    }
+
+    public IntegerProperty minStockLevelProperty() {
+        return minStockLevel;
     }
 
     public void setMinStockLevel(int minStockLevel) {
-        MinStockLevel = minStockLevel;
-        minStockLevelProperty.set(minStockLevel);
-    }
-
-    //region property getter
-
-    public IntegerProperty getStockIdProperty()
-    {
-        return stockIdProperty;
-    }
-
-    public IntegerProperty getItemIdProperty()
-    {
-        return itemIdProperty;
-    }
-
-    public IntegerProperty getStockLevelProperty()
-    {
-        return stockLevelProperty;
-    }
-
-    public IntegerProperty getMinStockLevelProperty()
-    {
-        return minStockLevelProperty;
+        this.minStockLevel.set(minStockLevel);
     }
 
     //endregion
 
+
     @Override
     public int compareTo(Stock o)
     {
-        if (this.StockID > o.getStockID())
+        if (this.stockID.get() > o.getStockID())
         {
             return 1;
         }
-        else if (this.StockID < o.StockID)
+        else if (this.stockID.get() < o.getStockID())
         {
             return -1;
         }
