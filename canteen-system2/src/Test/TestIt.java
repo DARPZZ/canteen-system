@@ -22,28 +22,29 @@ public class TestIt {
     @Test
     void testPinCode_In() {
         String pin = "1234";
-        Assertions.assertTrue(pin.matches("\\d{4}")); // regex for 4-digit PIN code
+        Assertions.assertTrue(pin.matches("\\d{4}"));
     }
 
-    // Out case: PIN code with more than 4 digits
+    // Out case:
     @Test
     void testPinCode_Out() {
         String pin = "12345";
-        Assertions.assertFalse(pin.matches("\\d{4}")); // regex for 4-digit PIN code
+        Assertions.assertFalse( pin.matches("\\d{4}"));
     }
 
-    // On case: PIN code with all zeroes
+    // On case:
     @Test
     void testPinCode_On() {
         String pin = "0000";
-        Assertions.assertTrue(pin.matches("\\d{4}")); // regex for 4-digit PIN code
+        Assertions.assertTrue(pin.matches("\\d{4}"));
     }
 
-    // Off case: PIN code with all nines
+    // Off case:
     @Test
-    void testPinCode_Off() {
-        String pin = "9999";
-        Assertions.assertTrue(pin.matches("\\d{4}")); // regex for 4-digit PIN code
+    void testNumericInput()
+    {
+        String pin = "1234";
+        Assertions.assertTrue(pin.matches("\\d+"));
     }
 
 }
