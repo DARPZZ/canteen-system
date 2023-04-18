@@ -31,15 +31,19 @@ public abstract class LoginScreen
         headerLabel.setPrefSize(250, 200);
         headerLabel.setLayoutX((scene.getWidth() / 2) - (headerLabel.getPrefWidth() / 2) + 15);
         headerLabel.setLayoutY(100);
-        headerLabel.setStyle("-fx-font-size: 40; -fx-font-family: calibri; -fx-font-weight: Bold");
+        //headerLabel.setStyle("-fx-font-size: 40; -fx-font-family: calibri; -fx-font-weight: Bold");
+        headerLabel.setId("headerLabel");
+
+
 
         // Login notification label
         loginNotificationLabel = new Label();
         loginAp.getChildren().add(loginNotificationLabel);
         loginNotificationLabel.setPrefSize(250, 100);
+
         loginNotificationLabel.setLayoutX((scene.getWidth() / 2) - (loginNotificationLabel.getPrefWidth()/2) + 15);
         loginNotificationLabel.setLayoutY(headerLabel.getLayoutY() + 150);
-        loginNotificationLabel.setStyle("-fx-font-size: 14; -fx-font-family: calibri; -fx-font-weight: Bold");
+        loginNotificationLabel.setId("loginNotificationLabel");
 
         // Creates the back button
         backBtn = new BackButton();
@@ -54,13 +58,6 @@ public abstract class LoginScreen
             HelloApplication.changeScene(SceneName.LogIn);
         });
         //backBtn.getStyleClass().add("back-button");
-
-        // Creates sign in button
-        signInBtn = new Button("Log ind");
-        loginAp.getChildren().add(signInBtn);
-        signInBtn.setPrefSize(250, 40);
-        signInBtn.setLayoutX((scene.getWidth() - signInBtn.getPrefWidth()) / 2);
-        signInBtn.setLayoutY(450);
         String css = this.getClass().getResource("/com/example/canteensystem2/style.css").toExternalForm();
         scene.getStylesheets().add(css);
     }

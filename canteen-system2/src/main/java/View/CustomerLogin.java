@@ -3,6 +3,7 @@ package View;
 import com.example.canteensystem2.HelloApplication;
 
 import com.example.canteensystem2.SceneName;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 
 import com.example.canteensystem2.Payment;
@@ -17,6 +18,7 @@ import javafx.stage.Stage;
 
 public class CustomerLogin extends LoginScreen
 {
+    private Button signInBtn;
     Payment payment = new Payment();
   private Stage stage;
 
@@ -46,18 +48,17 @@ public class CustomerLogin extends LoginScreen
         employeeIdTf.setLayoutY(350);
         employeeIdTf.setFocusTraversable(false);
 
+        signInBtn = new Button("Log ind");
+       super.getLoginAp().getChildren().add(signInBtn);
+        signInBtn.setPrefSize(250, 40);
+        signInBtn.setLayoutX((super.getScene().getWidth() - signInBtn.getPrefWidth()) / 2);
+        signInBtn.setLayoutY(450);
+        signInBtn.setId("loginButtons");
 
-
-        employeeIdTf.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event)
-            {
-                if (event.getCode() == KeyCode.ENTER) {
-                    Scene createPaymentScene = payment.createPaymentScene(stage, employeeIdTf);
-                    stage.setScene(createPaymentScene);
-                }
-            }
+        signInBtn.setOnAction(event ->
+        {
+            Scene createPaymentScene = payment.createPaymentScene(stage, employeeIdTf);
+            stage.setScene(createPaymentScene);
         });
-
     }
 }
