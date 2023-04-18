@@ -1,24 +1,22 @@
 package View;
 
+
+import Helper.StockItemSupplierHelper;
 import Model.DaOImplements.DaoStock;
-import Model.DaoObjects.Stock;
+import Model.StockItemSupplierData;
 import com.example.canteensystem2.HelloApplication;
 import com.example.canteensystem2.SceneName;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.layout.AnchorPane;
 import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
 
-import java.util.List;
-
 public class InventoryManagement extends AdminPage
 {
-    TableView<Stock> tableView;
-    ObservableList<Stock> stockObservableList;
+    TableView<StockItemSupplierData> tableView;
+    ObservableList<StockItemSupplierData> stockObservableList;
     TextField searchField;
 
     public InventoryManagement()
@@ -26,7 +24,7 @@ public class InventoryManagement extends AdminPage
         super.anchorPane.setOnMousePressed(event -> anchorPane.requestFocus());
 
         // Creates tableView
-        stockObservableList = FXCollections.observableList(getData());
+        stockObservableList = FXCollections.observableList(StockItemSupplierHelper.getData());
         tableView = new TableView<>(stockObservableList);
         tableView.setPrefSize((scene.getWidth() - 200), (scene.getHeight() - 300));
         tableView.setLayoutX((scene.getWidth() - tableView.getPrefWidth()) / 2);
@@ -64,16 +62,16 @@ public class InventoryManagement extends AdminPage
         int noColumn = 5;
         int xSize = (int) (tableView.getPrefWidth() / noColumn);
 
-        TableColumn<Stock, Number> stockID = new TableColumn<>("Varenr.");
-        stockID.setCellValueFactory(data -> data.getValue().getItemIDProperty());
+        TableColumn<StockItemSupplierData, Number> stockID = new TableColumn<>("Varenr.");
+        stockID.setCellValueFactory(data -> data.getValue().getItemIdProperty());
 
-        TableColumn<Stock, String> description = new TableColumn<>("Beskrivelse");
-        //description.setCellValueFactory(data -> data.getValue().getDescriptionProperty());
+        TableColumn<StockItemSupplierData, String> description = new TableColumn<>("Vare navn");
+        description.setCellValueFactory(data -> data.getValue().getItemNameProperty());
 
-        TableColumn<Stock, Number> currentLevel = new TableColumn<>("Stk. lager");
+        TableColumn<StockItemSupplierData, Number> currentLevel = new TableColumn<>("Stk. lager");
         currentLevel.setCellValueFactory(data -> data.getValue().getStockLevelProperty());
 
-        TableColumn<Stock, Number> minLevel = new TableColumn<>("Min. lager");
+        TableColumn<StockItemSupplierData, Number> minLevel = new TableColumn<>("Min. lager");
         StringConverter<Number> converter = new NumberStringConverter();
         minLevel.setCellFactory(TextFieldTableCell.forTableColumn(converter));
         minLevel.setEditable(true);
@@ -87,19 +85,19 @@ public class InventoryManagement extends AdminPage
             updateMinStock(table.getTableView().getItems().get(table.getTablePosition().getRow()));
         });
 
-        TableColumn<Stock, Number> currentAndMin = new TableColumn<>("Lager mængde");
+        TableColumn<StockItemSupplierData, Number> currentAndMin = new TableColumn<>("Lager mængde");
         currentAndMin.getColumns().add(currentLevel);
         currentAndMin.getColumns().add(minLevel);
 
-        TableColumn<Stock, String> supplier = new TableColumn<>("Leverandør");
-        //supplier.setCellValueFactory(data -> data.getValue().getSupplierNameProperty());
+        TableColumn<StockItemSupplierData, String> supplier = new TableColumn<>("Leverandør");
+        supplier.setCellValueFactory(data -> data.getValue().getSupplierNameProperty());
 
         tableView.getColumns().add(stockID);
         tableView.getColumns().add(description);
         tableView.getColumns().add(currentAndMin);
         tableView.getColumns().add(supplier);
 
-        for (TableColumn<Stock, ?> column : tableView.getColumns())
+        for (TableColumn<StockItemSupplierData, ?> column : tableView.getColumns())
         {
             column.setReorderable(false);
             column.setResizable(false);
@@ -117,18 +115,8 @@ public class InventoryManagement extends AdminPage
         }
     }
 
-    public void addToTable(Stock stock)
+    public void updateMinStock(StockItemSupplierData stock)
     {
-        stockObservableList.add(stock);
-    }
-
-    public void updateMinStock(Stock stock)
-    {
-        new DaoStock().Update(stock, "fldMinStockLevel", String.valueOf(stock.getMinStockLevel()));
-    }
-
-    public List<Stock> getData()
-    {
-        return new DaoStock().GetAll();
+        new DaoStock().Update(stock.getItemId(), "fldMinStockLevel", String.valueOf(stock.getMinStockLevel()));
     }
 }

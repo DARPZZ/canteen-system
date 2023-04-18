@@ -1,7 +1,6 @@
 package Model.DaOImplements;
 
 import Model.DaoObjects.DaOInterface;
-import Model.DaoObjects.Item;
 import Model.DaoObjects.Stock;
 
 import java.sql.*;
@@ -33,10 +32,10 @@ public class DaoStock implements DaOInterface<Stock>
         try {
             preparedStatement = con.prepareStatement("INSERT INTO tblStock (fldStockID,fldItemID,fldStockLevel,fldMibStockLevel) VALUES (?,?,?,?)");
 
-            preparedStatement.setInt(1,o.getStockID());
-            preparedStatement.setInt(2,o.getItemID());
-                preparedStatement.setInt(3,o.getStockLevel());
-            preparedStatement.setInt(4,o.getMinStockLevel());
+            preparedStatement.setInt(1,o.getStockIdProperty());
+            preparedStatement.setInt(2,o.getItemIdProperty());
+                preparedStatement.setInt(3,o.getStockLevelProperty());
+            preparedStatement.setInt(4,o.getMinStockLevelProperty());
             preparedStatement.execute();
         }
         catch (Exception e)
@@ -50,13 +49,12 @@ public class DaoStock implements DaOInterface<Stock>
     {
         String sql ="UPDATE tblStock SET ";
         sql+= fieldname + " = '" + value+"'";
-        sql+= " where fldStockID = " + o.getStockID();
+        sql+= " where fldStockID = " + o.getStockIdProperty();
         System.out.println(sql);
         try {
             preparedStatement = con.prepareStatement(sql);
             preparedStatement.executeQuery();
-        } catch (Exception e) {
-        }
+        } catch (Exception e)
         {}
     }
     @Override
@@ -107,6 +105,19 @@ public class DaoStock implements DaOInterface<Stock>
 
         }
         return ARL;
+    }
+
+    public void Update(int id, String fieldname, String value)
+    {
+        String sql ="UPDATE tblStock SET ";
+        sql+= fieldname + " = '" + value+"'";
+        sql+= " where fldItemID = " + id;
+        System.out.println(sql);
+        try {
+            preparedStatement = con.prepareStatement(sql);
+            preparedStatement.executeQuery();
+        } catch (Exception e)
+        {}
     }
 
 

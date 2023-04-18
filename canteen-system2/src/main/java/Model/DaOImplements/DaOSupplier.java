@@ -103,9 +103,10 @@ public class DaOSupplier implements DaOInterface
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                ARL.add(new Supplier(rs.getInt(rs.getInt("fldSupplierID")), rs.getString("fldName")));
+                ARL.add(new Supplier(rs.getInt("fldSupplierID"), rs.getString("fldName")));
             }
-        } catch (SQLException e) {
+        } catch (SQLException e)
+        {
             System.out.println(e);
 
         }

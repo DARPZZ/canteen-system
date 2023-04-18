@@ -34,6 +34,6 @@ public class SalesHistory extends AdminPage
         //description.setCellValueFactory(data -> data.getValue().getDescriptionProperty());
 
         TableColumn<Stock, Number> currentLevel = new TableColumn<>("Stk. lager");
-        currentLevel.setCellValueFactory(data -> data.getValue().getStockLevelProperty());
+        //currentLevel.setCellValueFactory(data -> data.getValue().getStockLevelProperty());
     }
 }

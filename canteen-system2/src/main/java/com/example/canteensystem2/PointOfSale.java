@@ -3,23 +3,15 @@ package com.example.canteensystem2;
 
 import Model.DaOImplements.DaOItem;
 import Model.DaoObjects.Item;
-import Model.DaoObjects.Stock;
 import javafx.application.Application;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.util.StringConverter;
-import javafx.util.converter.NumberStringConverter;
 
 import java.util.ArrayList;
 import java.util.List;
