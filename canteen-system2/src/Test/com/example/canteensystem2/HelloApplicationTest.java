@@ -1,12 +1,12 @@
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
+package com.example.canteensystem2;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class TestIt {
+class HelloApplicationTest
+{
     @BeforeEach
 
     void setup()
@@ -46,5 +46,4 @@ public class TestIt {
         String pin = "1234";
         Assertions.assertTrue(pin.matches("\\d+"));
     }
-
 }
