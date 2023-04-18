@@ -4,6 +4,7 @@ package com.example.canteensystem2;
 import Model.DaOImplements.DaOItem;
 import Model.DaoObjects.Item;
 import Model.DaoObjects.Stock;
+import View.AdminPage;
 import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -24,14 +25,15 @@ import javafx.util.converter.NumberStringConverter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PointOfSale extends Application {
+public class PointOfSale extends AdminPage {
 
     private TableView<Item> display;
     private ObservableList<Item> purchaseItems;
     private Scene scene;
 
+    public PointOfSale(){
 
-    public void start(Stage primaryStage) throws Exception {
+
 
 //region Buttons
         Button no_0 = new Button("0");
@@ -97,15 +99,13 @@ public class PointOfSale extends Application {
         btn_buy.setWrapText(true);
         btn_buy.setStyle("-fx-font-size: 24; -fx-background-color: #000065; -fx-text-fill: WHITE; -fx-font-weight: bold");
 
-        Button btn_back = new Button("Tilbage");
-        btn_back.setPrefSize(100, 25);
-        btn_back.setStyle("-fx-font-size: 16; -fx-background-color: #000065; -fx-text-fill: WHITE");
-
 
 //endregion
 
         //Layout containers
         BorderPane root = new BorderPane();
+
+
 
         scene = new Scene(root, 1278, 780);
 
@@ -141,9 +141,6 @@ public class PointOfSale extends Application {
         //endregion
 
         Label headLine = new Label();
-        headLine.setText("Administrator Portal");
-        headLine.setStyle("-fx-font-size: 30; -fx-text-fill: WHITE; -fx-alignment: CENTER");
-        headLine.setAlignment(Pos.CENTER);
         headLine.setPrefWidth(1080);
 
         Label cardInfo = new Label();
@@ -253,13 +250,9 @@ public class PointOfSale extends Application {
         root.setCenter(center);
         center.getChildren().addAll(display, sum);
         root.setTop(header);
-        header.getChildren().addAll(btn_back, headLine);
+        header.getChildren().addAll(headLine);
         root.setBackground(Background.fill(Color.BLACK));
 
-
-        primaryStage.setTitle("Administrator portal - Point of Sales");
-        primaryStage.setScene(scene);
-        primaryStage.show();
 
     }
 /*
