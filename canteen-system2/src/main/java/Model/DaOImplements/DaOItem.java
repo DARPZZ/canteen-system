@@ -78,7 +78,7 @@ public class DaOItem implements DaOInterface<Item>
         }
         catch (Exception e){}
     }
-
+/*
     @Override
     public Item Get(int ID)
     {
@@ -93,6 +93,28 @@ public class DaOItem implements DaOInterface<Item>
         } catch (Exception e){}
         return tempItem;
 
+    }
+
+ */
+
+    @Override
+    public Item Get(int ID)
+    {
+        try
+        {
+            preparedStatement = con.prepareStatement("SELECT * FROM tblItem WHERE fldItemID = ?");
+            preparedStatement.setString(1, String.valueOf(ID));
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next())
+            {
+                return new Item(rs.getInt(1), rs.getString(2), (rs.getFloat(3)));
+            }
+        }
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        return null;
     }
 @Override
     public List<Item> GetAll()

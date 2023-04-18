@@ -239,8 +239,8 @@ public class PointOfSale extends Application {
 
             DaOItem dbItem = new DaOItem();
             Item vare = dbItem.Get(Integer.parseInt(vareNr));
-            System.out.println(vare.getName());
-            purchaseList.add(vare);
+
+            purchaseItems.add(vare);
 
 
         } );
@@ -294,10 +294,9 @@ public class PointOfSale extends Application {
         itemID.setCellValueFactory(data -> data.getValue().getItemIDProperty());
 
         TableColumn<Item, String> description = new TableColumn<>("Beskrivelse");
-        //description.setCellValueFactory(data -> data.getValue().getDescriptionProperty());
+        description.setCellValueFactory(data -> data.getValue().getNameProperty());
 
         TableColumn<Item, Number> quantity = new TableColumn<>("Antal");
-        quantity.setText("1");
 
         TableColumn<Item, String> price = new TableColumn<>("pris");
         price.setCellValueFactory(data -> data.getValue().getPriceProperty().asString());
