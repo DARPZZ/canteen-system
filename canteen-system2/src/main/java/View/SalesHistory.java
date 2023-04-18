@@ -29,7 +29,7 @@ public class SalesHistory extends AdminPage
     private void createColumn()
     {
         TableColumn<Transaction, Number> stockID = new TableColumn<>("Medarbejder Id");
-        stockID.setCellValueFactory(data -> data.getValue().getEmployeeID());
+       // stockID.setCellValueFactory(data -> data.getValue().getEmployeeID());
 
         TableColumn<Stock, String> description = new TableColumn<>("Beskrivelse");
         //description.setCellValueFactory(data -> data.getValue().getDescriptionProperty());
