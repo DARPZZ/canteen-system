@@ -1,7 +1,6 @@
 package Model.DaOImplements;
 
 import Model.DaoObjects.DaOInterface;
-import Model.DaoObjects.Employee;
 import Model.DaoObjects.Item;
 import Model.DaoObjects.Stock;
 
@@ -60,21 +59,6 @@ public class DaoStock implements DaOInterface<Stock>
         }
         {}
     }
-    /*
-    public void Update(Item o,String value)
-    {
-        try {
-
-
-            preparedStatement = con.prepareStatement("UPDATE tblStock SET fldQuantity = ? WHERE fldItemID = ?");
-            preparedStatement.setInt(1,o.getItemID());
-            preparedStatement.setString(2,value);
-            preparedStatement.execute();
-        }catch (Exception e ){}
-
-    }
-
-     */
     @Override
     public void Delete(Stock o, int ID)
     {
@@ -92,14 +76,19 @@ public class DaoStock implements DaOInterface<Stock>
         Stock tempStock = null;
         try
         {
-            preparedStatement = con.prepareStatement("SELECT * FROM tblStock WHERE fldStockID = ?");
-            preparedStatement.setInt(1,ID);
+            preparedStatement = con.prepareStatement("SELECT * FROM tblItem WHERE fldStockID = ?");
+            preparedStatement.setString(1, String.valueOf(ID));
             ResultSet rs = preparedStatement.executeQuery();
-            tempStock = new Stock(rs.getInt("fldStockID"),rs.getInt("fldItemID"),rs.getInt("fldStockLevel"),rs.getInt("fldMinStockLevel"));
-
-
-        } catch (Exception e){}
-        return tempStock;
+            if (rs.next())
+            {
+                return new Stock(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4));
+            }
+        }
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        return null;
 
     }
     public Stock Get(Item o)

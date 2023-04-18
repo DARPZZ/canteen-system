@@ -1,6 +1,7 @@
 package Model.DaOImplements;
 
 import Model.DaoObjects.DaOInterface;
+import Model.DaoObjects.Item;
 import Model.DaoObjects.Supplier;
 
 import java.sql.*;
@@ -76,16 +77,21 @@ public class DaOSupplier implements DaOInterface
     @Override
     public Supplier Get(int ID)
     {
-        Supplier tempSupplier = null;
         try
         {
-            preparedStatement = con.prepareStatement("SELECT * FROM tblSupplier WHERE fldSupplierID = ?");
-            preparedStatement.setInt(1,ID);
+            preparedStatement = con.prepareStatement("SELECT * FROM tblItem WHERE fldSupplierID = ?");
+            preparedStatement.setString(1, String.valueOf(ID));
             ResultSet rs = preparedStatement.executeQuery();
-            tempSupplier = new Supplier(rs.getInt(rs.getInt("fldSupplierID")), rs.getString("fldName"));
-
-        } catch (Exception e){}
-        return tempSupplier;
+            if (rs.next())
+            {
+                return new Supplier(rs.getInt(1), rs.getString(2));
+            }
+        }
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        return null;
 
     }
     @Override

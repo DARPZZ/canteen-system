@@ -1,6 +1,7 @@
 package Model.DaOImplements;
 
 import Model.DaoObjects.DaOInterface;
+import Model.DaoObjects.Item;
 import Model.DaoObjects.PurchaseOrder;
 
 import java.sql.*;
@@ -82,17 +83,21 @@ public class DaOPurchaseOrder implements DaOInterface<PurchaseOrder>
     @Override
     public PurchaseOrder Get(int ID)
     {
-        PurchaseOrder order = null;
         try
         {
-            preparedStatement = con.prepareStatement("SELECT * FROM tblPurchaseOrder WHERE fldPurchaseOrderID = ?");
-            preparedStatement.setInt(1,ID);
+            preparedStatement = con.prepareStatement("SELECT * FROM tblItem WHERE fldPurchaseOrderID = ?");
+            preparedStatement.setString(1, String.valueOf(ID));
             ResultSet rs = preparedStatement.executeQuery();
-            order = new PurchaseOrder(rs.getInt("fldPurchaseOrderID"),rs.getInt("fldSupplierID"),rs.getInt("fldItemID"),rs.getInt("fldQuantity"),rs.getFloat("fldPurchesPrice"), rs.getDate("fldOrderDate").toLocalDate());
-
-
-        } catch (Exception e){}
-        return order;
+            if (rs.next())
+            {
+                return new PurchaseOrder(rs.getInt(1), rs.getInt(2), rs.getInt(3),rs.getInt(4),rs.getFloat(5),rs.getDate(6).toLocalDate());
+            }
+        }
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        return null;
     }
     public List<PurchaseOrder> GetAll()
     {
