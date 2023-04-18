@@ -1,16 +1,41 @@
 package View;
 
 import com.example.canteensystem2.HelloApplication;
+
 import com.example.canteensystem2.SceneName;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
+
+import com.example.canteensystem2.Payment;
+import com.example.canteensystem2.SceneName;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 
 public class CustomerLogin extends LoginScreen
 {
-    private TextField employeeIdTf;
     private Button signInBtn;
-    public CustomerLogin()
+    Payment payment = new Payment();
+  private Stage stage;
+
+    public TextField getEmployeeIdTf()
     {
+        return employeeIdTf;
+    }
+
+    public void setEmployeeIdTf(TextField employeeIdTf)
+    {
+        this.employeeIdTf = employeeIdTf;
+    }
+
+    private TextField employeeIdTf;
+    public CustomerLogin(Stage stage)
+    {
+
         super.setHeaderText("Kundeportal \n\tlogin");
         super.setLoginNotificationText("Indtast venligst dit medarbejder id");
 
@@ -23,12 +48,17 @@ public class CustomerLogin extends LoginScreen
         employeeIdTf.setLayoutY(350);
         employeeIdTf.setFocusTraversable(false);
 
-        // Creates sign in button
         signInBtn = new Button("Log ind");
-        super.getLoginAp().getChildren().add(signInBtn);
+       super.getLoginAp().getChildren().add(signInBtn);
         signInBtn.setPrefSize(250, 40);
         signInBtn.setLayoutX((super.getScene().getWidth() - signInBtn.getPrefWidth()) / 2);
         signInBtn.setLayoutY(450);
-        signInBtn.setOnAction(event -> HelloApplication.changeScene(SceneName.Payment));
+        signInBtn.setId("loginButtons");
+
+        signInBtn.setOnAction(event ->
+        {
+            Scene createPaymentScene = payment.createPaymentScene(stage, employeeIdTf);
+            stage.setScene(createPaymentScene);
+        });
     }
 }

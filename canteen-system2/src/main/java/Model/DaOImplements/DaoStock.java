@@ -1,8 +1,8 @@
-package DaOImplements;
+package Model.DaOImplements;
 
-import DaoObjects.DaOInterface;
-import DaoObjects.Item;
-import DaoObjects.Stock;
+import Model.DaoObjects.DaOInterface;
+import Model.DaoObjects.Item;
+import Model.DaoObjects.Stock;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -18,7 +18,6 @@ public class DaoStock implements DaOInterface<Stock>
     private static Connection con;
     private PreparedStatement preparedStatement;
 
-    Stock stock;
     public DaoStock()
     {
         try {
@@ -34,29 +33,16 @@ public class DaoStock implements DaOInterface<Stock>
         try {
             preparedStatement = con.prepareStatement("INSERT INTO tblStock (fldStockID,fldItemID,fldStockLevel,fldMibStockLevel) VALUES (?,?,?,?)");
 
-            preparedStatement.setInt(1,stock.getStockID());
-            preparedStatement.setInt(2,stock.getItemID());
-            preparedStatement.setInt(3,stock.getStockLevel());
-            preparedStatement.setInt(4,stock.getMinStockLevel());
+            preparedStatement.setInt(1,o.getStockID());
+            preparedStatement.setInt(2,o.getItemID());
+                preparedStatement.setInt(3,o.getStockLevel());
+            preparedStatement.setInt(4,o.getMinStockLevel());
             preparedStatement.execute();
         }
         catch (Exception e)
         {
             System.out.println(e);
         }
-    }
-    @Override
-    public void Remove(Stock o, int ID)
-    {
-        stock =(Stock) o;
-        try
-        {
-            preparedStatement = con.prepareStatement("DELETE FROM tblStock WHERE fldStockID = ?");
-            preparedStatement.setInt(1,ID);
-            preparedStatement.execute();
-        }
-        catch (Exception e)
-        {}
     }
 
     @Override
@@ -71,11 +57,11 @@ public class DaoStock implements DaOInterface<Stock>
             preparedStatement.executeQuery();
         } catch (Exception e) {
         }
+        {}
     }
     @Override
     public void Delete(Stock o, int ID)
     {
-        stock =(Stock) o;
         try {
             preparedStatement = con.prepareStatement("DELETE FROM tblStock WHERE fldStockID = ?");
             preparedStatement.setInt(1,ID);
@@ -87,16 +73,21 @@ public class DaoStock implements DaOInterface<Stock>
     @Override
     public Stock Get(int ID)
     {
-        Stock tempStock = null;
         try
         {
-            preparedStatement = con.prepareStatement("SELECT * FROM tblStock WHERE fldStockID = ?");
-            preparedStatement.setInt(1,ID);
+            preparedStatement = con.prepareStatement("SELECT * FROM tblItem WHERE fldStockID = ?");
+            preparedStatement.setString(1, String.valueOf(ID));
             ResultSet rs = preparedStatement.executeQuery();
-            tempStock = new Stock(rs.getInt("fldStockID"),rs.getInt("fldItemID"),rs.getInt("fldStockLevel"),rs.getInt("fldMinStockLevel"));
-
-        } catch (Exception e){}
-        return tempStock;
+            if (rs.next())
+            {
+                return new Stock(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4));
+            }
+        }
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        return null;
 
     }
     @Override
@@ -117,4 +108,6 @@ public class DaoStock implements DaOInterface<Stock>
         }
         return ARL;
     }
+
+
 }

@@ -1,8 +1,8 @@
-package DaOImplements;
+package Model.DaOImplements;
 
-import DaoObjects.DaOInterface;
-import DaoObjects.Stock;
-import DaoObjects.Supplier;
+import Model.DaoObjects.DaOInterface;
+import Model.DaoObjects.Item;
+import Model.DaoObjects.Supplier;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -47,29 +47,17 @@ public class DaOSupplier implements DaOInterface
         }
     }
     @Override
-    public void Remove(Object o, int ID)
-    {
-        supplier =(Supplier) o;
-        try
-        {
-            preparedStatement = con.prepareStatement("DELETE FROM tblSupplier WHERE fldSupplierID = ?");
-            preparedStatement.setInt(1,ID);
-            preparedStatement.execute();
-        }
-        catch (Exception e)
-        {}
-
-    }
-    @Override
     public void Update(Object o, String fieldname, String value)
     {
         supplier =(Supplier) o;
         try
         {
-            preparedStatement = con.prepareStatement("UPDATE ? SET ? = ?");
+            preparedStatement = con.prepareStatement("UPDATE ? SET ? = ? WHERE fldSupplierID = ?");
             preparedStatement.setString(1,"tblSupplier");
             preparedStatement.setString(2,fieldname);
             preparedStatement.setInt(3,Integer.parseInt(value));
+            preparedStatement.setInt(4,supplier.getSupplierID());
+            preparedStatement.execute();
         }
         catch (Exception e)
         {}
@@ -89,16 +77,21 @@ public class DaOSupplier implements DaOInterface
     @Override
     public Supplier Get(int ID)
     {
-        Supplier tempSupplier = null;
         try
         {
-            preparedStatement = con.prepareStatement("SELECT * FROM tblSupplier WHERE fldSupplierID = ?");
-            preparedStatement.setInt(1,ID);
+            preparedStatement = con.prepareStatement("SELECT * FROM tblItem WHERE fldSupplierID = ?");
+            preparedStatement.setString(1, String.valueOf(ID));
             ResultSet rs = preparedStatement.executeQuery();
-            tempSupplier = new Supplier(rs.getInt(rs.getInt("fldSupplierID")), rs.getString("fldName"));
-
-        } catch (Exception e){}
-        return tempSupplier;
+            if (rs.next())
+            {
+                return new Supplier(rs.getInt(1), rs.getString(2));
+            }
+        }
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        return null;
 
     }
     @Override

@@ -1,7 +1,8 @@
 package com.example.canteensystem2;
 
-import View.*;
-import javafx.animation.KeyValue;
+import View.AdminLogin;
+import View.CustomerLogin;
+import View.InventoryManagement;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -20,19 +21,16 @@ public class HelloApplication extends Application
     public void start(Stage stage) throws IOException
     {
         primaryStageHolder = stage;
-        Scene scene = new LogIn().getScene();
 
-        /*String css = this.getClass().getResource("/com/example/canteensystem2/style.css").toExternalForm();
-        scene.getStylesheets().add(css);
-         */
+       Scene scene = new LogIn().getScene();
 
         sceneMap.put(SceneName.InventoryManagement, new InventoryManagement().getScene());
-        sceneMap.put(SceneName.CustomerLogin, new CustomerLogin().getScene());
+        sceneMap.put(SceneName.CustomerLogin, new CustomerLogin(stage).getScene());
         sceneMap.put(SceneName.AdminLogin, new AdminLogin().getScene());
         sceneMap.put(SceneName.LogIn, new LogIn().getScene());
-        sceneMap.put(SceneName.Payment, new Payment().getScene());
-        sceneMap.put(SceneName.SalesHistory, new SalesHistory().getScene());
-
+       // sceneMap.put(SceneName.Payment, new Payment().getScene());
+        String css = this.getClass().getResource("style.css").toExternalForm();
+        scene.getStylesheets().add(css);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();

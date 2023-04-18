@@ -16,7 +16,6 @@ Scene scene;
 
     public LogIn()
     {
-
         BorderPane borderPane = new BorderPane();
         AnchorPane anchorPane = new AnchorPane();
         scene = new Scene(borderPane, 1280, 768);
@@ -26,8 +25,6 @@ Scene scene;
         choice.setId("startLogin");
 
         borderPane.setCenter(anchorPane);
-        String css = this.getClass().getResource("style.css").toExternalForm();
-        scene.getStylesheets().add(css);
 
         anchorPane.getChildren().addAll(adminLoginB, customerLoginB,welcome,choice);
         adminLoginB.setLayoutY(300);
@@ -49,6 +46,8 @@ Scene scene;
         customerLoginB.setId("loginButtons");
         adminLoginB.setId("loginButtons");
 
+        String css = this.getClass().getResource("style.css").toExternalForm();
+        scene.getStylesheets().add(css);
 
         //region sceneShift
         customerLoginB.setOnAction(new EventHandler<ActionEvent>()

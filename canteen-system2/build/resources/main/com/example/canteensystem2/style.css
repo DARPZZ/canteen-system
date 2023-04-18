@@ -1,0 +1,60 @@
+#saldoButtons{
+    -fx-font-size: 25px;
+    -fx-background-radius: 30;
+    -fx-font-weight: bolder;
+}
+.button:pressed{
+    -fx-scale-x: 0.9;
+    -fx-scale-y: 0.9;
+    -fx-translate-y: 2px;
+    -fx-translate-x: 2px;
+}
+#welcomeText
+{
+    -fx-font-size: 25px;
+    -fx-text-fill: white;
+}
+#saldo{
+    -fx-font-size: 25px;
+    -fx-text-fill: green;
+}
+.root
+{
+    -fx-background-color: black;
+}
+#loginButtons
+{
+    -fx-font-size: 21px;
+    -fx-effect: dropshadow(three-pass-box, white, 10, 0, 0, 0);
+    -fx-background-radius: 30;
+    -fx-font-weight: bolder;
+    -fx-font-family: Impact;
+}
+.text-field{
+    -fx-font-family: Impact;
+
+}
+#startLogin{
+    -fx-font-size: 24px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+
+}
+#back-button
+{
+    -fx-shape: "M 50 300 L 300 150 L 300 250 L 450 250 L 450 350 L 300 350 L 300 450 L 50 300 ";
+    -fx-background-color: white;
+    -fx-scale-x: 1.5;
+}
+#loginNotificationLabel
+{
+    -fx-font-size: 15;
+    -fx-text-fill: white;
+
+}
+
+#headerLabel
+{
+    -fx-font-size: 30;
+    -fx-text-fill: white;
+}

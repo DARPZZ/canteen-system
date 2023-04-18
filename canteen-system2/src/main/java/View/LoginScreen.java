@@ -1,7 +1,6 @@
 package View;
 
-import DaOImplements.DaOEmployee;
-import DaoObjects.Employee;
+
 import com.example.canteensystem2.HelloApplication;
 import com.example.canteensystem2.SceneName;
 import javafx.scene.Scene;
@@ -18,6 +17,7 @@ public abstract class LoginScreen
     private Label headerLabel;
     private Label loginNotificationLabel;
     private Button backBtn;
+    private Button signInBtn;
 
     public LoginScreen()
     {
@@ -31,20 +31,35 @@ public abstract class LoginScreen
         headerLabel.setPrefSize(250, 200);
         headerLabel.setLayoutX((scene.getWidth() / 2) - (headerLabel.getPrefWidth() / 2) + 15);
         headerLabel.setLayoutY(100);
-        headerLabel.setStyle("-fx-font-size: 40; -fx-font-family: calibri; -fx-font-weight: Bold");
+        //headerLabel.setStyle("-fx-font-size: 40; -fx-font-family: calibri; -fx-font-weight: Bold");
+        headerLabel.setId("headerLabel");
+
+
 
         // Login notification label
         loginNotificationLabel = new Label();
         loginAp.getChildren().add(loginNotificationLabel);
         loginNotificationLabel.setPrefSize(250, 100);
+
         loginNotificationLabel.setLayoutX((scene.getWidth() / 2) - (loginNotificationLabel.getPrefWidth()/2) + 15);
         loginNotificationLabel.setLayoutY(headerLabel.getLayoutY() + 150);
-        loginNotificationLabel.setStyle("-fx-font-size: 14; -fx-font-family: calibri; -fx-font-weight: Bold");
+        loginNotificationLabel.setId("loginNotificationLabel");
 
         // Creates the back button
         backBtn = new BackButton();
         loginAp.getChildren().add(backBtn);
+
         backBtn.setOnAction(event -> HelloApplication.changeScene(SceneName.LogIn));
+
+        backBtn.setLayoutX(50);
+        backBtn.setLayoutY(25);
+        backBtn.setOnAction(event ->
+        {
+            HelloApplication.changeScene(SceneName.LogIn);
+        });
+        //backBtn.getStyleClass().add("back-button");
+        String css = this.getClass().getResource("/com/example/canteensystem2/style.css").toExternalForm();
+        scene.getStylesheets().add(css);
     }
 
     public void setHeaderText(String text)

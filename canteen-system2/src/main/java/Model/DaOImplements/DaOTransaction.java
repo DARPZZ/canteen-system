@@ -1,11 +1,10 @@
-package DaOImplements;
+package Model.DaOImplements;
 
-import DaoObjects.DaOInterface;
-import DaoObjects.Stock;
-import DaoObjects.Transaction;
+import Model.DaoObjects.DaOInterface;
+import Model.DaoObjects.Item;
+import Model.DaoObjects.Transaction;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +36,7 @@ public class DaOTransaction implements DaOInterface
         try {
             preparedStatement = con.prepareStatement("INSERT INTO tblTransaction (fldTransActionID,fldDate,fldTotalAmount,fldEmployeeID) VALUES (?,?,?,?)");
 
-            preparedStatement.setInt(1,transaction.getTransActionID());
+            preparedStatement.setInt(1,transaction.getTransactionID());
             Date temp = Date.valueOf(transaction.getDate());
             preparedStatement.setDate(2,temp);
             preparedStatement.setFloat(3,transaction.getTotalAmount());
@@ -50,29 +49,17 @@ public class DaOTransaction implements DaOInterface
         }
     }
     @Override
-    public void Remove(Object o, int ID)
-    {
-        transaction =(Transaction) o;
-        try
-        {
-            preparedStatement = con.prepareStatement("DELETE FROM tblTransaction WHERE fldTransActionID = ?");
-            preparedStatement.setInt(1,ID);
-            preparedStatement.execute();
-        }
-        catch (Exception e)
-        {}
-
-    }
-    @Override
     public void Update(Object o, String fieldname, String value)
     {
         transaction =(Transaction) o;
         try
         {
-            preparedStatement = con.prepareStatement("UPDATE ? SET ? = ?");
+            preparedStatement = con.prepareStatement("UPDATE ? SET ? = ? WHERE fldTransactionID = ?");
             preparedStatement.setString(1,"tblTransaction");
             preparedStatement.setString(2,fieldname);
             preparedStatement.setInt(3,Integer.parseInt(value));
+            preparedStatement.setInt(4,transaction.getTransactionID());
+            preparedStatement.execute();
         }
         catch (Exception e)
         {}
@@ -92,15 +79,21 @@ public class DaOTransaction implements DaOInterface
     @Override
     public Transaction Get(int ID)
     {
-        Transaction tempTransaction = null;
         try
         {
-            preparedStatement = con.prepareStatement("SELECT * FROM tblTransaction WHERE fldTransActionID = ?");
-            preparedStatement.setInt(1,ID);
+            preparedStatement = con.prepareStatement("SELECT * FROM tblItem WHERE fldTransactionID = ?");
+            preparedStatement.setString(1, String.valueOf(ID));
             ResultSet rs = preparedStatement.executeQuery();
-            tempTransaction = new Transaction(rs.getInt("fldTransActionID"),rs.getDate("fldDate").toLocalDate() ,rs.getFloat("fldTotalAmount"),rs.getInt("fldEmployeeID"));
-        } catch (Exception e){}
-        return tempTransaction;
+            if (rs.next())
+            {
+                return new Transaction(rs.getInt(1), rs.getDate(2).toLocalDate(), rs.getFloat(3),rs.getInt(4));
+            }
+        }
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        return null;
 
     }
     @Override

@@ -1,7 +1,7 @@
 package View;
 
-import DaOImplements.DaoStock;
-import DaoObjects.Stock;
+import Model.DaOImplements.DaoStock;
+import Model.DaoObjects.Stock;
 import com.example.canteensystem2.HelloApplication;
 import com.example.canteensystem2.SceneName;
 import javafx.collections.FXCollections;
@@ -65,7 +65,7 @@ public class InventoryManagement extends AdminPage
         int xSize = (int) (tableView.getPrefWidth() / noColumn);
 
         TableColumn<Stock, Number> stockID = new TableColumn<>("Varenr.");
-        stockID.setCellValueFactory(data -> data.getValue().getItemIdProperty());
+        stockID.setCellValueFactory(data -> data.getValue().getItemIDProperty());
 
         TableColumn<Stock, String> description = new TableColumn<>("Beskrivelse");
         //description.setCellValueFactory(data -> data.getValue().getDescriptionProperty());

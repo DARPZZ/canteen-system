@@ -1,7 +1,7 @@
 package View;
 
-import DaOImplements.DaOEmployee;
-import DaoObjects.Employee;
+import Model.DaOImplements.DaOEmployee;
+import Model.DaoObjects.Employee;
 import com.example.canteensystem2.HelloApplication;
 import com.example.canteensystem2.SceneName;
 import javafx.scene.control.Button;
@@ -22,7 +22,6 @@ public class AdminLogin extends LoginScreen
         super.setHeaderText("Administrator \n\tlogin");
         super.setLoginNotificationText("Indtast venligst dine login oplysninger");
         employeeList = new DaOEmployee().GetAll();
-
         // Creates username textfield
         usernameTf = new TextField();
         super.getLoginAp().getChildren().add(usernameTf);
@@ -67,6 +66,8 @@ public class AdminLogin extends LoginScreen
             {
                 usernameTf.clear();
                 loginTf.clear();
+                usernameTf.setStyle("-fx-background-color: white");
+                loginTf.setStyle("-fx-background-color: white");
                 HelloApplication.changeScene(SceneName.InventoryManagement);
             }
             else
