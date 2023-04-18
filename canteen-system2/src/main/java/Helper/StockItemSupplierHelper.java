@@ -8,21 +8,25 @@ import Model.DaoObjects.Item;
 import Model.DaoObjects.PurchaseOrder;
 import Model.DaoObjects.Stock;
 import Model.DaoObjects.Supplier;
-import Model.StockItemSupplierData;
+import Model.StockItemSupplier;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class StockItemSupplierHelper
 {
-    public static ArrayList<StockItemSupplierData> getData()
+    /**
+     * Iterates through the Lists with Database objects to create a combined object
+     * @return An ArrayList with combined Database object
+     */
+    public static ArrayList<StockItemSupplier> getData()
     {
-        ArrayList<StockItemSupplierData> combinedData = new ArrayList<>();
+        ArrayList<StockItemSupplier> combinedData = new ArrayList<>();
+
         List<Stock> stockData = new DaoStock().GetAll();
         List<Supplier> supplierData = new DaOSupplier().GetAll();
         List<Item> itemData = new DaOItem().GetAll();
         List<PurchaseOrder> purchaseOrderData = new DaOPurchaseOrder().GetAll();
-
 
         for (Stock stock : stockData)
         {
@@ -51,7 +55,7 @@ public class StockItemSupplierHelper
             }
             if (supplierName != null)
             {
-                StockItemSupplierData data = new StockItemSupplierData(
+                StockItemSupplier data = new StockItemSupplier(
                         item.getItemID(),
                         item.getName(),
                         stock.getStockLevelProperty(),

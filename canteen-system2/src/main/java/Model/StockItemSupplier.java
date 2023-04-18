@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class StockItemSupplierData
+public class StockItemSupplier
 {
     private IntegerProperty itemId;
     private StringProperty itemName;
@@ -13,7 +13,7 @@ public class StockItemSupplierData
     private IntegerProperty minStockLevel;
     private StringProperty supplierName;
 
-    public StockItemSupplierData(int itemId, String itemName, int stockLevel, int minStockLevel, String supplierName)
+    public StockItemSupplier(int itemId, String itemName, int stockLevel, int minStockLevel, String supplierName)
     {
         this.itemId = new SimpleIntegerProperty(itemId);
         this.itemName = new SimpleStringProperty(itemName);
@@ -22,14 +22,14 @@ public class StockItemSupplierData
         this.supplierName = new SimpleStringProperty(supplierName);
     }
 
-    public StockItemSupplierData(int itemId, int stockLevel, int minStockLevel)
+    public StockItemSupplier(int itemId, int stockLevel, int minStockLevel)
     {
         this.itemId = new SimpleIntegerProperty(itemId);
         this.stockLevel = new SimpleIntegerProperty(stockLevel);
         this.minStockLevel = new SimpleIntegerProperty(minStockLevel);
     }
 
-    public StockItemSupplierData()
+    public StockItemSupplier()
     {
 
     }
