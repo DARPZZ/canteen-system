@@ -58,7 +58,7 @@ jlinkZip {
 sourceSets {
     test {
         java {
-            srcDir 'src/test/'
+            srcDir 'src/Test/'
         }
     }
 
