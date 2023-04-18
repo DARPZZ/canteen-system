@@ -45,7 +45,7 @@ Scene scene;
         choice.setLayoutY(adminLoginB.getLayoutY()-70);
         customerLoginB.setId("loginButtons");
         adminLoginB.setId("loginButtons");
-        String css = this.getClass().getResource("/com/example/canteensystem2/style.css").toExternalForm();
+        String css = this.getClass().getResource("style.css").toExternalForm();
         scene.getStylesheets().add(css);
 
         //region sceneShift
