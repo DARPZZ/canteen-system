@@ -211,6 +211,12 @@ public class PointOfSale extends AdminPage {
             if (!newValue.matches("\\d*")) {
                 inputEmployee.setText(oldValue);
             }
+            inputEmployee.setOnKeyPressed(event -> {
+
+                if (event.getCode() == KeyCode.ENTER){
+
+                }
+            });
         });
 
 
