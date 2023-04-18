@@ -1,6 +1,7 @@
 package View;
 
 import com.example.canteensystem2.HelloApplication;
+import com.example.canteensystem2.PointOfSale;
 import com.example.canteensystem2.SceneName;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -39,6 +40,8 @@ public abstract class AdminPage
         pointOfSaleBtn.setLayoutY(yLayout);
         pointOfSaleBtn.setPrefSize(widthSize, heightSize);
         // tilføj eventhandler
+        pointOfSaleBtn.setOnAction(event -> HelloApplication.changeScene(SceneName.PointOfSales));
+        // Mangler eventhandler
 
         SalesHistoryBtn.setLayoutX(InventoryManagementBtn.getLayoutX() + (widthSize + gap));
         SalesHistoryBtn.setLayoutY(yLayout);

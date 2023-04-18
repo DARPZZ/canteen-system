@@ -1,29 +1,47 @@
 package com.example.canteensystem2;
 
 
+import Model.DaOImplements.DaOEmployee;
 import Model.DaOImplements.DaOItem;
+import Model.DaOImplements.DaOTransaction;
+import Model.DaOImplements.DaoStock;
+import Model.DaoObjects.Employee;
 import Model.DaoObjects.Item;
+import Model.DaoObjects.Stock;
+import Model.DaoObjects.Transaction;
+import View.AdminPage;
 import javafx.application.Application;
+import javafx.beans.property.FloatProperty;
+import javafx.beans.property.SimpleFloatProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
+import javafx.util.converter.NumberStringConverter;
 
+import javax.xml.stream.util.StreamReaderDelegate;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PointOfSale extends Application {
+public class PointOfSale extends AdminPage {
 
     private TableView<Item> display;
     private ObservableList<Item> purchaseItems;
     private Scene scene;
+    private FloatProperty purchaseSum = new SimpleFloatProperty(0.0f);
 
-
-    public void start(Stage primaryStage) throws Exception {
+    public PointOfSale() {
 
 //region Buttons
         Button no_0 = new Button("0");
@@ -89,17 +107,13 @@ public class PointOfSale extends Application {
         btn_buy.setWrapText(true);
         btn_buy.setStyle("-fx-font-size: 24; -fx-background-color: #000065; -fx-text-fill: WHITE; -fx-font-weight: bold");
 
-        Button btn_back = new Button("Tilbage");
-        btn_back.setPrefSize(100, 25);
-        btn_back.setStyle("-fx-font-size: 16; -fx-background-color: #000065; -fx-text-fill: WHITE");
-
 
 //endregion
 
         //Layout containers
         BorderPane root = new BorderPane();
 
-        scene = new Scene(root, 1278, 780);
+        super.scene = new Scene(root,1280,768);
 
         FlowPane center = new FlowPane();
 
@@ -132,17 +146,14 @@ public class PointOfSale extends Application {
         numPad.setPrefSize(300, 400);
         //endregion
 
-        Label headLine = new Label();
-        headLine.setText("Administrator Portal");
-        headLine.setStyle("-fx-font-size: 30; -fx-text-fill: WHITE; -fx-alignment: CENTER");
-        headLine.setAlignment(Pos.CENTER);
-        headLine.setPrefWidth(1080);
+        Pane filler = new Pane();
+        filler.setPrefSize(1080,200);
+
 
         Label cardInfo = new Label();
         cardInfo.setPrefWidth(300);
         cardInfo.setPrefHeight(200);
-        cardInfo.setStyle("-fx-font-size: 24; -fx-text-fill: WHITE");
-        cardInfo.setText("Peter Madsen \nMedarbejdernr.: 1235");
+        cardInfo.setStyle("-fx-font-size: 24; -fx-text-fill: BLACK");
 
         TextField inputItem = new TextField();
         inputItem.setPrefSize(300, 25);
@@ -202,38 +213,76 @@ public class PointOfSale extends Application {
         TextField inputEmployee = new TextField();
         inputEmployee.setPrefSize(300, 25);
         inputEmployee.setPromptText("Indtast medarbejdernr. manuelt ");
+        DaOEmployee daOEmployee = new DaOEmployee();
+        DaoStock daoStock = new DaoStock();
+        DaOTransaction daOTransaction = new DaOTransaction();
         inputEmployee.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*")) {
                 inputEmployee.setText(oldValue);
             }
+            inputEmployee.setOnKeyPressed(event -> {
+
+                if (event.getCode() == KeyCode.ENTER)
+                {
+
+                    Employee currentEmployee =daOEmployee.Get(Integer.parseInt(inputEmployee.getText()));
+                    currentEmployee.setSaldo(currentEmployee.getSaldo() - purchaseSum.getValue());
+                    daOEmployee.Update(currentEmployee,"fldSaldo",String.valueOf(currentEmployee.getSaldo()));
+                    cardInfo.setText(currentEmployee.getName()+ "\nMedarbejdernr.:" + currentEmployee.getEmployeeID());
+
+                    for (int i = 0; i < purchaseItems.size(); i++)
+                    {
+                        Stock tempStock = daoStock.Get(purchaseItems.get(i));
+                        tempStock.setStockLevel(tempStock.getStockLevel() - 1);
+                        daoStock.Update(tempStock,"fldStockLevel",String.valueOf(tempStock.getStockLevel()));
+                    }
+
+                    Transaction tempTrans = new Transaction(daOTransaction.getLatestID(), LocalDate.now(),purchaseSum.getValue(),currentEmployee.getEmployeeID());
+                    daOTransaction.Create(tempTrans);
+
+
+
+                }
+            });
         });
 
 
+        Label sumText = new Label();
+        sumText.setPrefSize(339,25);
+        sumText.setStyle("-fx-font-size: 16; -fx-text-fill: BLACK");
+        sumText.setText("Samlet pris: ");
+        sumText.setAlignment(Pos.CENTER_LEFT);
+
         Label sum = new Label();
-        sum.setPrefSize(678, 25);
-        sum.setText("Samlet pris: \t\t\t\t\t\t\t\t\t\t\t\t\t\t 10,00");
-        sum.setStyle("-fx-font-size: 16; -fx-text-fill: WHITE");
+        sum.setPrefSize(339, 25);
+        sum.textProperty().bind(purchaseSum.asString());
+        sum.setStyle("-fx-font-size: 16; -fx-text-fill: BLACK");
+        sum.setAlignment(Pos.CENTER_RIGHT);
+
+
 
 
         List<Item> purchaseList = new ArrayList<>();
         purchaseItems = FXCollections.observableList(purchaseList);
 
         display = new TableView<>(purchaseItems);
-        display.setPrefSize((scene.getWidth() - 600), (scene.getHeight() - 355));
-        display.setLayoutX((scene.getWidth() - display.getPrefWidth()) / 2);
+        display.setPrefSize((super.getScene().getWidth() - 600), (super.getScene().getHeight() - 355));
+        display.setLayoutX((super.getScene().getWidth() - display.getPrefWidth()) / 2);
         display.setLayoutY(150);
 
         createColumns();
 
         btn_enter.setOnAction(e->{
             String vareNr = inputItem.getText();
-            System.out.println("" + vareNr);
 
             DaOItem dbItem = new DaOItem();
             Item vare = dbItem.Get(Integer.parseInt(vareNr));
 
             purchaseItems.add(vare);
 
+            inputItem.clear();
+
+            purchaseSum.setValue(purchaseSum.get()+ vare.getPrice());
 
         } );
 
@@ -243,15 +292,10 @@ public class PointOfSale extends Application {
         root.setLeft(leftBox);
         leftBox.getChildren().addAll(numPad, inputItem);
         root.setCenter(center);
-        center.getChildren().addAll(display, sum);
-        root.setTop(header);
-        header.getChildren().addAll(btn_back, headLine);
-        root.setBackground(Background.fill(Color.BLACK));
+        center.getChildren().addAll(display, sumText,sum);
+        root.setTop(filler);
+        filler.getChildren().addAll(backBtn,pointOfSaleBtn,StockManagementBtn,SalesHistoryBtn);
 
-
-        primaryStage.setTitle("Administrator portal - Point of Sales");
-        primaryStage.setScene(scene);
-        primaryStage.show();
 
     }
 /*
