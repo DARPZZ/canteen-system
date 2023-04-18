@@ -1,6 +1,7 @@
 package View;
 
 import com.example.canteensystem2.HelloApplication;
+import com.example.canteensystem2.PointOfSale;
 import com.example.canteensystem2.SceneName;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -8,12 +9,12 @@ import javafx.scene.layout.AnchorPane;
 
 public abstract class AdminPage
 {
-    Scene scene;
-    AnchorPane anchorPane;
-    Button pointOfSaleBtn;
-    Button StockManagementBtn;
-    Button SalesHistoryBtn;
-    Button backBtn;
+    public Scene scene;
+    public AnchorPane anchorPane;
+    public Button pointOfSaleBtn;
+    public Button StockManagementBtn;
+    public Button SalesHistoryBtn;
+    public Button backBtn;
 
     public AdminPage()
     {
@@ -40,6 +41,7 @@ public abstract class AdminPage
         pointOfSaleBtn.setLayoutX(StockManagementBtn.getLayoutX() - (widthSize + gap));
         pointOfSaleBtn.setLayoutY(yLayout);
         pointOfSaleBtn.setPrefSize(widthSize, heightSize);
+        pointOfSaleBtn.setOnAction(event -> HelloApplication.changeScene(SceneName.PointOfSales));
         // Mangler eventhandler
 
         SalesHistoryBtn.setLayoutX(StockManagementBtn.getLayoutX() + (widthSize + gap));

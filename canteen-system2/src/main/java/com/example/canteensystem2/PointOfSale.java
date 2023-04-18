@@ -6,6 +6,8 @@ import Model.DaoObjects.Item;
 import Model.DaoObjects.Stock;
 import View.AdminPage;
 import javafx.application.Application;
+import javafx.beans.property.FloatProperty;
+import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -30,10 +32,9 @@ public class PointOfSale extends AdminPage {
     private TableView<Item> display;
     private ObservableList<Item> purchaseItems;
     private Scene scene;
+    private FloatProperty purchaseSum = new SimpleFloatProperty(0.0f);
 
-    public PointOfSale(){
-
-
+    public PointOfSale() {
 
 //region Buttons
         Button no_0 = new Button("0");
@@ -105,9 +106,7 @@ public class PointOfSale extends AdminPage {
         //Layout containers
         BorderPane root = new BorderPane();
 
-
-
-        scene = new Scene(root, 1278, 780);
+        super.scene = new Scene(root,1280,768);
 
         FlowPane center = new FlowPane();
 
@@ -140,8 +139,9 @@ public class PointOfSale extends AdminPage {
         numPad.setPrefSize(300, 400);
         //endregion
 
-        Label headLine = new Label();
-        headLine.setPrefWidth(1080);
+        Pane filler = new Pane();
+        filler.setPrefSize(1080,200);
+
 
         Label cardInfo = new Label();
         cardInfo.setPrefWidth(300);
@@ -214,31 +214,42 @@ public class PointOfSale extends AdminPage {
         });
 
 
+        Label sumText = new Label();
+        sumText.setPrefSize(339,25);
+        sumText.setStyle("-fx-font-size: 16; -fx-text-fill: BLACK");
+        sumText.setText("Samlet pris: ");
+        sumText.setAlignment(Pos.CENTER_LEFT);
+
         Label sum = new Label();
-        sum.setPrefSize(678, 25);
-        sum.setText("Samlet pris: \t\t\t\t\t\t\t\t\t\t\t\t\t\t 10,00");
-        sum.setStyle("-fx-font-size: 16; -fx-text-fill: WHITE");
+        sum.setPrefSize(339, 25);
+        sum.textProperty().bind(purchaseSum.asString());
+        sum.setStyle("-fx-font-size: 16; -fx-text-fill: BLACK");
+        sum.setAlignment(Pos.CENTER_RIGHT);
+
+
 
 
         List<Item> purchaseList = new ArrayList<>();
         purchaseItems = FXCollections.observableList(purchaseList);
 
         display = new TableView<>(purchaseItems);
-        display.setPrefSize((scene.getWidth() - 600), (scene.getHeight() - 355));
-        display.setLayoutX((scene.getWidth() - display.getPrefWidth()) / 2);
+        display.setPrefSize((super.getScene().getWidth() - 600), (super.getScene().getHeight() - 355));
+        display.setLayoutX((super.getScene().getWidth() - display.getPrefWidth()) / 2);
         display.setLayoutY(150);
 
         createColumns();
 
         btn_enter.setOnAction(e->{
             String vareNr = inputItem.getText();
-            System.out.println("" + vareNr);
 
             DaOItem dbItem = new DaOItem();
             Item vare = dbItem.Get(Integer.parseInt(vareNr));
 
             purchaseItems.add(vare);
 
+            inputItem.clear();
+
+            purchaseSum.setValue(purchaseSum.get()+ vare.getPrice());
 
         } );
 
@@ -248,10 +259,9 @@ public class PointOfSale extends AdminPage {
         root.setLeft(leftBox);
         leftBox.getChildren().addAll(numPad, inputItem);
         root.setCenter(center);
-        center.getChildren().addAll(display, sum);
-        root.setTop(header);
-        header.getChildren().addAll(headLine);
-        root.setBackground(Background.fill(Color.BLACK));
+        center.getChildren().addAll(display, sumText,sum);
+        root.setTop(filler);
+        filler.getChildren().addAll(backBtn,pointOfSaleBtn,StockManagementBtn,SalesHistoryBtn);
 
 
     }
