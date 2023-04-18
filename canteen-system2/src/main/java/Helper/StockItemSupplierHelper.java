@@ -26,26 +26,26 @@ public class StockItemSupplierHelper
 
         for (Stock stock : stockData)
         {
-            Item item = itemData.stream()
-                    .filter(items -> items.getItemID() == stock.getItemIdProperty())
+            Item item = itemData.stream().filter(items -> items.getItemID() == stock.getItemIdProperty())
                     .findFirst()
                     .orElse(null);
-            PurchaseOrder supplierId;
+            PurchaseOrder purchaseOrder;
             if (item != null)
             {
-                supplierId = purchaseOrderData.stream()
+                purchaseOrder = purchaseOrderData.stream()
                         .filter(order -> order.getItemID() == item.getItemID())
                         .findFirst()
                         .orElse(null);
             }
             else
             {
-                supplierId = null;
+                purchaseOrder = null;
             }
+
             Supplier supplierName = null;
-            if (supplierId != null)
+            if (purchaseOrder != null)
             {
-                supplierName = supplierData.stream().filter(supplier -> supplier.getSupplierID() == supplierId.getSupplierID())
+                supplierName = supplierData.stream().filter(supplier -> supplier.getSupplierID() == purchaseOrder.getSupplierID())
                         .findFirst()
                         .orElse(null);
             }
