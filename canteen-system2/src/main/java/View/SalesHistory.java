@@ -1,9 +1,8 @@
 package View;
 
-
-import DaOImplements.DaOTransaction;
-import DaoObjects.Stock;
-import DaoObjects.Transaction;
+import Model.DaOImplements.DaOTransaction;
+import Model.DaoObjects.Stock;
+import Model.DaoObjects.Transaction;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;

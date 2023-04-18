@@ -22,6 +22,7 @@ public class AdminLogin extends LoginScreen
         super.setHeaderText("Administrator \n\tlogin");
         super.setLoginNotificationText("Indtast venligst dine login oplysninger");
         employeeList = new DaOEmployee().GetAll();
+
         // Creates username textfield
         usernameTf = new TextField();
         super.getLoginAp().getChildren().add(usernameTf);
