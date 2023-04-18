@@ -31,15 +31,12 @@ Scene scene;
         adminLoginB.setPrefWidth(150);
         adminLoginB.setPrefHeight(50);
         adminLoginB.setLayoutX(scene.getWidth()/2 -(adminLoginB.getPrefWidth()/2) );
-
         customerLoginB.setLayoutX(adminLoginB.getLayoutX());
         customerLoginB.setLayoutY(adminLoginB.getLayoutY()+70);
         customerLoginB.setPrefHeight(adminLoginB.getPrefHeight());
         customerLoginB.setPrefWidth(adminLoginB.getPrefWidth());
-
         welcome.setLayoutX(adminLoginB.getLayoutX()-30);
         welcome.setLayoutY(adminLoginB.getLayoutY()-200);
-
 
         choice.setLayoutX(adminLoginB.getLayoutX()-170);
         choice.setLayoutY(adminLoginB.getLayoutY()-70);
