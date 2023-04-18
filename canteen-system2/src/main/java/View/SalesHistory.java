@@ -3,6 +3,7 @@ package View;
 import Model.DaOImplements.DaOTransaction;
 import Model.DaoObjects.Stock;
 import Model.DaoObjects.Transaction;
+import Model.StockItemSupplierData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
@@ -23,17 +24,39 @@ public class SalesHistory extends AdminPage
         tableView.setLayoutX((scene.getWidth() - tableView.getPrefWidth()) / 2);
         tableView.setLayoutY(250);
         tableView.setFocusTraversable(false);
+        createColumn();
+
+        super.anchorPane.getChildren().add(tableView);
     }
 
     private void createColumn()
     {
-        TableColumn<Transaction, Number> stockID = new TableColumn<>("Medarbejder Id");
-       // stockID.setCellValueFactory(data -> data.getValue().getEmployeeID());
+        TableColumn<Transaction, Number> transactionId = new TableColumn<>("Salgs ID");
+        transactionId.setCellValueFactory(data -> data.getValue().getTransactionIDProperty());
 
-        TableColumn<Stock, String> description = new TableColumn<>("Beskrivelse");
-        //description.setCellValueFactory(data -> data.getValue().getDescriptionProperty());
+        TableColumn<Transaction, Number> customerId = new TableColumn<>("Kunde id");
+        customerId.setCellValueFactory(data -> data.getValue().getEmployeeIDProperty());
 
-        TableColumn<Stock, Number> currentLevel = new TableColumn<>("Stk. lager");
-        //currentLevel.setCellValueFactory(data -> data.getValue().getStockLevelProperty());
+        TableColumn<Transaction, Number> transactionAmount = new TableColumn<>("Total");
+        transactionAmount.setCellValueFactory(data -> data.getValue().getTotalAmountProperty());
+
+        TableColumn<Transaction, String> date = new TableColumn<>("Dato");
+        date.setCellValueFactory(data -> data.getValue().getDateProperty());
+
+        tableView.getColumns().add(transactionId);
+        tableView.getColumns().add(customerId);
+        tableView.getColumns().add(transactionAmount);
+        tableView.getColumns().add(date);
+
+        int noColumn = tableView.getColumns().size();
+        int xSize = (int) (tableView.getPrefWidth() / noColumn);
+
+        for (TableColumn<Transaction, ?> column : tableView.getColumns())
+        {
+            column.setReorderable(false);
+            column.setResizable(false);
+            column.setPrefWidth(xSize);
+        }
+
     }
 }
