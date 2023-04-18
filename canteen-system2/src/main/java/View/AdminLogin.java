@@ -21,6 +21,7 @@ public class AdminLogin extends LoginScreen
     {
         super.setHeaderText("Administrator \n\tlogin");
         super.setLoginNotificationText("Indtast venligst dine login oplysninger");
+        super.getLoginAp().requestFocus();
         employeeList = new DaOEmployee().GetAll();
 
         // Creates username textfield
@@ -46,7 +47,6 @@ public class AdminLogin extends LoginScreen
         loginTf.setPrefSize(usernameTf.getPrefWidth(), usernameTf.getPrefHeight());
         loginTf.setLayoutX(usernameTf.getLayoutX());
         loginTf.setLayoutY((usernameTf.getLayoutY() + 50));
-        loginTf.setFocusTraversable(false);
         loginTf.setOnKeyReleased(event ->
         {
             if (event.getCode() == KeyCode.ENTER)
@@ -61,6 +61,7 @@ public class AdminLogin extends LoginScreen
         signInBtn.setPrefSize(250, 40);
         signInBtn.setLayoutX((super.getScene().getWidth() - signInBtn.getPrefWidth()) / 2);
         signInBtn.setLayoutY(450);
+        signInBtn.setFocusTraversable(false);
         signInBtn.setOnAction(event ->
         {
             if (validatePassword(usernameTf.getText(), loginTf.getText()))
@@ -69,7 +70,7 @@ public class AdminLogin extends LoginScreen
                 loginTf.clear();
                 usernameTf.setStyle("-fx-background-color: white");
                 loginTf.setStyle("-fx-background-color: white");
-                HelloApplication.changeScene(SceneName.InventoryManagement);
+                HelloApplication.changeScene(SceneName.PointOfSales);
             }
             else
             {
@@ -84,7 +85,7 @@ public class AdminLogin extends LoginScreen
     {
         for (Employee employee : employeeList)
         {
-            if (name.equalsIgnoreCase(String.valueOf(employee.getEmployeeID())) && password.equalsIgnoreCase(employee.getPassword()))
+            if (name.equalsIgnoreCase(String.valueOf(employee.getEmployeeID())) && password.equals(employee.getPassword()))
             {
                 return true;
             }
