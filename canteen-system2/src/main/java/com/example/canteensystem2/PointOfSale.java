@@ -153,8 +153,7 @@ public class PointOfSale extends AdminPage {
         Label cardInfo = new Label();
         cardInfo.setPrefWidth(300);
         cardInfo.setPrefHeight(200);
-        cardInfo.setStyle("-fx-font-size: 24; -fx-text-fill: WHITE");
-        cardInfo.setText("Peter Madsen \nMedarbejdernr.: 1235");
+        cardInfo.setStyle("-fx-font-size: 24; -fx-text-fill: BLACK");
 
         TextField inputItem = new TextField();
         inputItem.setPrefSize(300, 25);
@@ -225,9 +224,12 @@ public class PointOfSale extends AdminPage {
 
                 if (event.getCode() == KeyCode.ENTER)
                 {
+
                     Employee currentEmployee =daOEmployee.Get(Integer.parseInt(inputEmployee.getText()));
                     currentEmployee.setSaldo(currentEmployee.getSaldo() - purchaseSum.getValue());
                     daOEmployee.Update(currentEmployee,"fldSaldo",String.valueOf(currentEmployee.getSaldo()));
+                    cardInfo.setText(currentEmployee.getName()+ "\nMedarbejdernr.:" + currentEmployee.getEmployeeID());
+
                     for (int i = 0; i < purchaseItems.size(); i++)
                     {
                         Stock tempStock = daoStock.Get(purchaseItems.get(i));
