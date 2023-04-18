@@ -44,7 +44,6 @@ public abstract class AdminPage
         SalesHistoryBtn.setPrefSize(widthSize, heightSize);
         SalesHistoryBtn.setOnAction(event -> HelloApplication.changeScene(SceneName.SalesHistory));
 
-
         anchorPane.getChildren().addAll(pointOfSaleBtn, InventoryManagementBtn, SalesHistoryBtn, backBtn);
     }
 

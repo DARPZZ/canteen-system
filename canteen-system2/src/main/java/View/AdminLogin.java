@@ -72,8 +72,8 @@ public class AdminLogin extends LoginScreen
             else
             {
                 usernameTf.setTooltip(new Tooltip("Forkert brugernavn eller kode"));
-                usernameTf.setStyle("-fx-background-color: #e82424");
-                loginTf.setStyle("-fx-background-color: #e82424");
+                usernameTf.setStyle("-fx-background-color: red");
+                loginTf.setStyle("-fx-background-color: red");
             }
         });
     }
