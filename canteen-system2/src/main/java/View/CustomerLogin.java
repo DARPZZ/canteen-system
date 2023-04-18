@@ -33,7 +33,7 @@ public class CustomerLogin extends LoginScreen
     private TextField employeeIdTf;
     public CustomerLogin(Stage stage)
     {
-        this.stage = stage;
+
         super.setHeaderText("Kundeportal \n\tlogin");
         super.setLoginNotificationText("Indtast venligst dit medarbejder id");
 
@@ -47,12 +47,13 @@ public class CustomerLogin extends LoginScreen
         employeeIdTf.setFocusTraversable(false);
 
 
+
         employeeIdTf.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event)
             {
                 if (event.getCode() == KeyCode.ENTER) {
-                    Scene createPaymentScene = payment.createPaymentScene(stage,employeeIdTf);
+                    Scene createPaymentScene = payment.createPaymentScene(stage, employeeIdTf);
                     stage.setScene(createPaymentScene);
                 }
             }

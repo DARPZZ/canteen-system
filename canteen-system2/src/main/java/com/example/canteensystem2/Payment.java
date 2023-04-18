@@ -3,6 +3,7 @@ package com.example.canteensystem2;
 
 import Model.DaOImplements.DaOEmployee;
 import Model.DaoObjects.DaOInterface;
+import View.BackButton;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -18,8 +19,8 @@ public class Payment {
     DaOInterface pdEmployee = new DaOEmployee();
     private Scene scene;
     private Stage stage;
-    BorderPane borderPane = new BorderPane();
-    AnchorPane anchorPane = new AnchorPane();
+    Button btnb = new BackButton();
+
     Label Welcome = new Label("Velkommen til Canteen Systems Kundeport");
     Label Saldo = new Label();
     Button kr50 = new Button("50,-");
@@ -86,11 +87,14 @@ public class Payment {
     }
     public Scene createPaymentScene(Stage stage, TextField textField)
     {
+        BorderPane borderPane = new BorderPane();
+        AnchorPane anchorPane = new AnchorPane();
+        scene = new Scene(borderPane, 1280, 768);
         this.stage = stage;
         Welcome.setLayoutY(50);
         Welcome.setLayoutX(400);
         borderPane.setCenter(anchorPane);
-
+        Button btnb = new BackButton();
         Welcome.setId("welcomeText");
         Saldo.setId("saldo");
         System.out.println("ILD");
@@ -114,18 +118,28 @@ public class Payment {
 
         Saldo.setLayoutX(50);
         Saldo.setLayoutY(350);
+        btnb.setId("back-button");
 
-        customAmount.setLayoutX(kr200.getLayoutX()-50);
-        customAmount.setLayoutY(kr200.getLayoutY()+70);
+        String css = this.getClass().getResource("/com/example/canteensystem2/style.css").toExternalForm();
+        scene.getStylesheets().add(css);
+        customAmount.setLayoutX(kr200.getLayoutX() - 50);
+        customAmount.setLayoutY(kr200.getLayoutY() + 70);
         customAmount.setPromptText("Enter custom amount");
         customAmount.setPrefWidth(150);
         customAmount.setPrefHeight(35);
         getUserID(textField);
-        anchorPane.getChildren().addAll(Welcome, kr50, kr100, kr200, Saldo,customAmount);
-        scene = new Scene(borderPane, 1280, 768);
-        String css = this.getClass().getResource("/com/example/canteensystem2/style.css").toExternalForm();
-        scene.getStylesheets().add(css);
+        anchorPane.getChildren().addAll(Welcome, kr50, kr100, kr200, Saldo, customAmount, btnb);
+        btnb.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
 
+                HelloApplication.changeScene(SceneName.CustomerLogin);
+            }
+        });
         return scene;
     }
+
+
 }
