@@ -9,12 +9,12 @@ import javafx.scene.layout.AnchorPane;
 
 public abstract class AdminPage
 {
-    Scene scene;
+    public Scene scene;
     AnchorPane anchorPane;
-    Button pointOfSaleBtn;
-    Button InventoryManagementBtn;
-    Button SalesHistoryBtn;
-    Button backBtn;
+    public Button pointOfSaleBtn;
+    public Button InventoryManagementBtn;
+    public Button SalesHistoryBtn;
+    public Button backBtn;
 
     public AdminPage()
     {

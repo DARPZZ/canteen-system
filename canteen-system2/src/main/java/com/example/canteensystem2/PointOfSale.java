@@ -233,8 +233,8 @@ public class PointOfSale extends AdminPage {
                     for (int i = 0; i < purchaseItems.size(); i++)
                     {
                         Stock tempStock = daoStock.Get(purchaseItems.get(i));
-                        tempStock.setStockLevel(tempStock.getStockLevel() - 1);
-                        daoStock.Update(tempStock,"fldStockLevel",String.valueOf(tempStock.getStockLevel()));
+                        tempStock.setStockLevelProperty(tempStock.getStockLevelProperty() - 1);
+                        daoStock.Update(tempStock,"fldStockLevel",String.valueOf(tempStock.getStockLevelProperty()));
                     }
 
                     Transaction tempTrans = new Transaction(daOTransaction.getLatestID(), LocalDate.now(),purchaseSum.getValue(),currentEmployee.getEmployeeID());
@@ -294,7 +294,7 @@ public class PointOfSale extends AdminPage {
         root.setCenter(center);
         center.getChildren().addAll(display, sumText,sum);
         root.setTop(filler);
-        filler.getChildren().addAll(backBtn,pointOfSaleBtn,StockManagementBtn,SalesHistoryBtn);
+        filler.getChildren().addAll(backBtn,pointOfSaleBtn,InventoryManagementBtn,SalesHistoryBtn);
 
 
     }
