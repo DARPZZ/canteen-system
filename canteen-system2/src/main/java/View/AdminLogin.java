@@ -84,7 +84,7 @@ public class AdminLogin extends LoginScreen
     {
         for (Employee employee : employeeList)
         {
-            if (name.equalsIgnoreCase(employee.getName()) && password.equals(employee.getPassword()))
+            if (name.equalsIgnoreCase(String.valueOf(employee.getEmployeeID())) && password.equalsIgnoreCase(employee.getPassword()))
             {
                 return true;
             }

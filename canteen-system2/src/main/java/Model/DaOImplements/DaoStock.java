@@ -1,6 +1,7 @@
 package Model.DaOImplements;
 
 import Model.DaoObjects.DaOInterface;
+import Model.DaoObjects.Item;
 import Model.DaoObjects.Stock;
 
 import java.sql.*;
@@ -71,6 +72,7 @@ public class DaoStock implements DaOInterface<Stock>
     @Override
     public Stock Get(int ID)
     {
+        Stock tempStock = null;
         try
         {
             preparedStatement = con.prepareStatement("SELECT * FROM tblItem WHERE fldStockID = ?");
@@ -87,6 +89,26 @@ public class DaoStock implements DaOInterface<Stock>
         }
         return null;
 
+    }
+    public Stock Get(Item o)
+    {
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM tblStock WHERE fldStockID = ?");
+            ps.setString(1, String.valueOf(o.getItemID()));
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                System.out.println("Looser");
+                Stock stock = new Stock(rs.getInt(1),rs.getInt(2),rs.getInt(3), rs.getInt(4));
+                return stock;
+            }
+            return null; // no employee with the given id found in the database
+        } catch (SQLException ex) {
+            // handle any errors
+            ex.printStackTrace();
+            return null;
+        }
     }
     @Override
     public List<Stock> GetAll()
