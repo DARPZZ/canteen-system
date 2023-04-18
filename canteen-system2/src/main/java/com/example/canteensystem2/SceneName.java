@@ -7,4 +7,5 @@ public enum SceneName
     CustomerLogin,
     LogIn,
     Payment,
+    SalesHistory,
 }

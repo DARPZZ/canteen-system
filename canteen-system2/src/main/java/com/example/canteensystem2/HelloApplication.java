@@ -1,9 +1,6 @@
 package com.example.canteensystem2;
 
-import View.AdminLogin;
-import View.AdminPage;
-import View.CustomerLogin;
-import View.InventoryManagement;
+import View.*;
 import javafx.animation.KeyValue;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -27,15 +24,14 @@ public class HelloApplication extends Application
 
         /*String css = this.getClass().getResource("/com/example/canteensystem2/style.css").toExternalForm();
         scene.getStylesheets().add(css);
-
          */
-
 
         sceneMap.put(SceneName.InventoryManagement, new InventoryManagement().getScene());
         sceneMap.put(SceneName.CustomerLogin, new CustomerLogin().getScene());
         sceneMap.put(SceneName.AdminLogin, new AdminLogin().getScene());
         sceneMap.put(SceneName.LogIn, new LogIn().getScene());
         sceneMap.put(SceneName.Payment, new Payment().getScene());
+        sceneMap.put(SceneName.SalesHistory, new SalesHistory().getScene());
 
         stage.setTitle("Hello!");
         stage.setScene(scene);
