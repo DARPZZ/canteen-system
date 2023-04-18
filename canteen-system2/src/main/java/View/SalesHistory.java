@@ -1,9 +1,7 @@
 package View;
 
 import Model.DaOImplements.DaOTransaction;
-import Model.DaoObjects.Stock;
 import Model.DaoObjects.Transaction;
-import Model.StockItemSupplierData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
@@ -29,6 +27,9 @@ public class SalesHistory extends AdminPage
         super.anchorPane.getChildren().add(tableView);
     }
 
+    /**
+     * Creates the columns for the table
+     */
     private void createColumn()
     {
         TableColumn<Transaction, Number> transactionId = new TableColumn<>("Salgs ID");
@@ -57,6 +58,5 @@ public class SalesHistory extends AdminPage
             column.setResizable(false);
             column.setPrefWidth(xSize);
         }
-
     }
 }

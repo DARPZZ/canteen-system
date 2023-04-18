@@ -24,6 +24,7 @@ public abstract class AdminPage
         InventoryManagementBtn = new Button("Lagerstyring");
         SalesHistoryBtn = new Button("Salgshistorik");
         backBtn = new BackButton();
+        backBtn.setOnAction(event -> HelloApplication.changeScene(SceneName.AdminLogin));
 
         int yLayout = 50;
         int widthSize = 250;

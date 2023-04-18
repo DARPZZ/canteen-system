@@ -49,7 +49,7 @@ public class CustomerLogin extends LoginScreen
         employeeIdTf.setFocusTraversable(false);
 
         signInBtn = new Button("Log ind");
-       super.getLoginAp().getChildren().add(signInBtn);
+        super.getLoginAp().getChildren().add(signInBtn);
         signInBtn.setPrefSize(250, 40);
         signInBtn.setLayoutX((super.getScene().getWidth() - signInBtn.getPrefWidth()) / 2);
         signInBtn.setLayoutY(450);

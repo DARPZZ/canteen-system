@@ -3,6 +3,7 @@ package View;
 
 import Helper.StockItemSupplierHelper;
 import Model.DaOImplements.DaoStock;
+
 import Model.StockItemSupplierData;
 import com.example.canteensystem2.HelloApplication;
 import com.example.canteensystem2.SceneName;
@@ -42,12 +43,7 @@ public class InventoryManagement extends AdminPage
         searchField.setStyle("-fx-font-size: 18");
         searchField.setFocusTraversable(false);
 
-        Button backBtn = new BackButton();
-        backBtn.setOnAction(event -> HelloApplication.changeScene(SceneName.AdminLogin));
-        backBtn.setLayoutX(50);
-        backBtn.setLayoutY(25);
-
-        super.anchorPane.getChildren().addAll(tableView, searchField, backBtn);
+        super.anchorPane.getChildren().addAll(tableView, searchField);
     }
 
     public void searchFunction()
@@ -57,13 +53,13 @@ public class InventoryManagement extends AdminPage
         // Refill stockObservableList
     }
 
+    /**
+     * Creates the columns for the table
+     */
     public void createColumns()
     {
-        int noColumn = 5;
-        int xSize = (int) (tableView.getPrefWidth() / noColumn);
-
-        TableColumn<StockItemSupplierData, Number> stockID = new TableColumn<>("Varenr.");
-        stockID.setCellValueFactory(data -> data.getValue().getItemIdProperty());
+        TableColumn<StockItemSupplierData, Number> stockId = new TableColumn<>("Varenr.");
+        stockId.setCellValueFactory(data -> data.getValue().getItemIdProperty());
 
         TableColumn<StockItemSupplierData, String> description = new TableColumn<>("Vare navn");
         description.setCellValueFactory(data -> data.getValue().getItemNameProperty());
@@ -71,12 +67,14 @@ public class InventoryManagement extends AdminPage
         TableColumn<StockItemSupplierData, Number> currentLevel = new TableColumn<>("Stk. lager");
         currentLevel.setCellValueFactory(data -> data.getValue().getStockLevelProperty());
 
+        // Creates editable column
         TableColumn<StockItemSupplierData, Number> minLevel = new TableColumn<>("Min. lager");
         StringConverter<Number> converter = new NumberStringConverter();
         minLevel.setCellFactory(TextFieldTableCell.forTableColumn(converter));
         minLevel.setEditable(true);
         minLevel.setCellValueFactory(data -> data.getValue().getMinStockLevelProperty());
 
+        // Handler for on edit
         minLevel.setOnEditCommit(table ->
         {
             table.getTableView().getItems().get(table.getTablePosition().getRow()).
@@ -92,11 +90,15 @@ public class InventoryManagement extends AdminPage
         TableColumn<StockItemSupplierData, String> supplier = new TableColumn<>("Leverandør");
         supplier.setCellValueFactory(data -> data.getValue().getSupplierNameProperty());
 
-        tableView.getColumns().add(stockID);
+        tableView.getColumns().add(stockId);
         tableView.getColumns().add(description);
         tableView.getColumns().add(currentAndMin);
         tableView.getColumns().add(supplier);
 
+        int noColumn = tableView.getColumns().size();
+        int xSize = (int) (tableView.getPrefWidth() / noColumn);
+
+        // Set properties for columns
         for (TableColumn<StockItemSupplierData, ?> column : tableView.getColumns())
         {
             column.setReorderable(false);
