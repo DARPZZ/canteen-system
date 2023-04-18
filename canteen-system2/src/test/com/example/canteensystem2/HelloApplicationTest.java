@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class HelloApplicationTest
 {
+
     @BeforeEach
     void setUp()
     {
@@ -46,4 +47,3 @@ class HelloApplicationTest
         Assertions.assertTrue(pin.matches("\\d+"));
     }
 }
-
