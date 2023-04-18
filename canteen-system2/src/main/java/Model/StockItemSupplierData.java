@@ -5,97 +5,109 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class StockItemSupplierData // decrep
+public class StockItemSupplierData
 {
-    private IntegerProperty itemIdProperty;
-    private StringProperty itemNameProperty;
-    private IntegerProperty stockLevelProperty;
-    private IntegerProperty minStockLevelProperty;
-    private StringProperty supplierNameProperty;
+    private IntegerProperty itemId;
+    private StringProperty itemName;
+    private IntegerProperty stockLevel;
+    private IntegerProperty minStockLevel;
+    private StringProperty supplierName;
 
     public StockItemSupplierData(int itemId, String itemName, int stockLevel, int minStockLevel, String supplierName)
     {
-        this.itemIdProperty = new SimpleIntegerProperty(itemId);
-        this.itemNameProperty = new SimpleStringProperty(itemName);
-        this.stockLevelProperty = new SimpleIntegerProperty(stockLevel);
-        this.minStockLevelProperty = new SimpleIntegerProperty(minStockLevel);
-        this.supplierNameProperty = new SimpleStringProperty(supplierName);
+        this.itemId = new SimpleIntegerProperty(itemId);
+        this.itemName = new SimpleStringProperty(itemName);
+        this.stockLevel = new SimpleIntegerProperty(stockLevel);
+        this.minStockLevel = new SimpleIntegerProperty(minStockLevel);
+        this.supplierName = new SimpleStringProperty(supplierName);
+    }
+
+    public StockItemSupplierData(int itemId, int stockLevel, int minStockLevel)
+    {
+        this.itemId = new SimpleIntegerProperty(itemId);
+        this.stockLevel = new SimpleIntegerProperty(stockLevel);
+        this.minStockLevel = new SimpleIntegerProperty(minStockLevel);
+    }
+
+    public StockItemSupplierData()
+    {
+
     }
 
     //region getter/setter
-    public int getItemIdProperty()
+    public int getItemId()
     {
-        return itemIdProperty.get();
+        return itemId.get();
     }
 
-    public IntegerProperty itemIdPropertyProperty()
+    public IntegerProperty getItemIdProperty()
     {
-        return itemIdProperty;
+        return itemId;
     }
 
-    public void setItemIdProperty(int itemIdProperty)
+    public void setItemId(int itemId)
     {
-        this.itemIdProperty.set(itemIdProperty);
+        this.itemId.set(itemId);
     }
 
-    public String getItemNameProperty()
+    public String getItemName()
     {
-        return itemNameProperty.get();
+        return itemName.get();
     }
 
-    public StringProperty itemNamePropertyProperty()
+    public StringProperty getItemNameProperty()
     {
-        return itemNameProperty;
+        return itemName;
     }
 
-    public void setItemNameProperty(String itemNameProperty)
+    public void setItemName(String itemName)
     {
-        this.itemNameProperty.set(itemNameProperty);
+        this.itemName.set(itemName);
     }
 
-    public int getStockLevelProperty()
+    public int getStockLevel()
     {
-        return stockLevelProperty.get();
+        return stockLevel.get();
     }
 
-    public IntegerProperty stockLevelPropertyProperty()
+    public IntegerProperty getStockLevelProperty()
     {
-        return stockLevelProperty;
+        return stockLevel;
     }
 
-    public void setStockLevelProperty(int stockLevelProperty)
+    public void setStockLevel(int stockLevel)
     {
-        this.stockLevelProperty.set(stockLevelProperty);
+        this.stockLevel.set(stockLevel);
     }
 
-    public int getMinStockLevelProperty()
+    public int getMinStockLevel()
     {
-        return minStockLevelProperty.get();
+        return minStockLevel.get();
     }
 
-    public IntegerProperty minStockLevelPropertyProperty()
+    public IntegerProperty getMinStockLevelProperty()
     {
-        return minStockLevelProperty;
+        return minStockLevel;
     }
 
-    public void setMinStockLevelProperty(int minStockLevelProperty)
+    public void setMinStockLevel(int minStockLevel)
     {
-        this.minStockLevelProperty.set(minStockLevelProperty);
+        this.minStockLevel.set(minStockLevel);
     }
 
-    public String getSupplierNameProperty()
+    public String getSupplierName()
     {
-        return supplierNameProperty.get();
+        return supplierName.get();
     }
 
-    public StringProperty supplierNamePropertyProperty()
+    public StringProperty getSupplierNameProperty()
     {
-        return supplierNameProperty;
+        return supplierName;
     }
 
-    public void setSupplierNameProperty(String supplierNameProperty)
+    public void setSupplierName(String supplierName)
     {
-        this.supplierNameProperty.set(supplierNameProperty);
+        this.supplierName.set(supplierName);
     }
     //endregion
 }

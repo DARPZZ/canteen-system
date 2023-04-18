@@ -11,7 +11,7 @@ public abstract class AdminPage
     Scene scene;
     AnchorPane anchorPane;
     Button pointOfSaleBtn;
-    Button StockManagementBtn;
+    Button InventoryManagementBtn;
     Button SalesHistoryBtn;
     Button backBtn;
 
@@ -21,34 +21,31 @@ public abstract class AdminPage
         scene = new Scene(anchorPane, 1280, 768);
 
         pointOfSaleBtn = new Button("Salg");
-        StockManagementBtn = new Button("Lagerstyring");
+        InventoryManagementBtn = new Button("Lagerstyring");
         SalesHistoryBtn = new Button("Salgshistorik");
         backBtn = new BackButton();
+        backBtn.setOnAction(event -> HelloApplication.changeScene(SceneName.AdminLogin));
 
         int yLayout = 50;
         int widthSize = 250;
         int heightSize = 40;
         int gap = 40;
-        StockManagementBtn.setLayoutX((scene.getWidth() - widthSize) / 2);
-        StockManagementBtn.setLayoutY(yLayout);
-        StockManagementBtn.setPrefSize(widthSize, heightSize);
-        StockManagementBtn.setOnAction(event ->
-        {
-            HelloApplication.changeScene(SceneName.InventoryManagement);
-        });
+        InventoryManagementBtn.setLayoutX((scene.getWidth() - widthSize) / 2);
+        InventoryManagementBtn.setLayoutY(yLayout);
+        InventoryManagementBtn.setPrefSize(widthSize, heightSize);
+        InventoryManagementBtn.setOnAction(event -> HelloApplication.changeScene(SceneName.InventoryManagement));
 
-        pointOfSaleBtn.setLayoutX(StockManagementBtn.getLayoutX() - (widthSize + gap));
+        pointOfSaleBtn.setLayoutX(InventoryManagementBtn.getLayoutX() - (widthSize + gap));
         pointOfSaleBtn.setLayoutY(yLayout);
         pointOfSaleBtn.setPrefSize(widthSize, heightSize);
-        // Mangler eventhandler
+        // tilføj eventhandler
 
-        SalesHistoryBtn.setLayoutX(StockManagementBtn.getLayoutX() + (widthSize + gap));
+        SalesHistoryBtn.setLayoutX(InventoryManagementBtn.getLayoutX() + (widthSize + gap));
         SalesHistoryBtn.setLayoutY(yLayout);
         SalesHistoryBtn.setPrefSize(widthSize, heightSize);
-        // Mangler eventhandler
+        SalesHistoryBtn.setOnAction(event -> HelloApplication.changeScene(SceneName.SalesHistory));
 
-
-        anchorPane.getChildren().addAll(pointOfSaleBtn, StockManagementBtn, SalesHistoryBtn, backBtn);
+        anchorPane.getChildren().addAll(pointOfSaleBtn, InventoryManagementBtn, SalesHistoryBtn, backBtn);
     }
 
     public Scene getScene()

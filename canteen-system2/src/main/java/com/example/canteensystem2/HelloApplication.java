@@ -3,6 +3,7 @@ package com.example.canteensystem2;
 import View.AdminLogin;
 import View.CustomerLogin;
 import View.InventoryManagement;
+import View.SalesHistory;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -28,8 +29,9 @@ public class HelloApplication extends Application
         sceneMap.put(SceneName.CustomerLogin, new CustomerLogin(stage).getScene());
         sceneMap.put(SceneName.AdminLogin, new AdminLogin().getScene());
         sceneMap.put(SceneName.LogIn, new LogIn().getScene());
+        sceneMap.put(SceneName.SalesHistory, new SalesHistory().getScene());
        // sceneMap.put(SceneName.Payment, new Payment().getScene());
-        String css = this.getClass().getResource("/com/example/canteensystem2/style.css").toExternalForm();
+        String css = this.getClass().getResource("style.css").toExternalForm();
         scene.getStylesheets().add(css);
         stage.setTitle("Hello!");
         stage.setScene(scene);

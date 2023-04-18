@@ -3,82 +3,78 @@ package Model.DaoObjects;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.StringProperty;
 
 public class Stock implements Comparable<Stock>
 {
 
-    private IntegerProperty stockID;
-    private IntegerProperty itemID;
-    private IntegerProperty stockLevel;
-    private IntegerProperty minStockLevel;
+    private IntegerProperty stockIdProperty;
+    private IntegerProperty itemIdProperty;
+    private IntegerProperty stockLevelProperty;
+    private IntegerProperty minStockLevelProperty;
+    private StringProperty itemNameProperty;
+    private StringProperty supplierNameProperty;
 
-    public Stock(int stockID,int itemID, int stockLevel, int minStockLevel)
+    public Stock(int stockID, int itemID, int stockLevel, int minStockLevel)
     {
-        this.stockID = new SimpleIntegerProperty(stockID);
-        this.itemID = new SimpleIntegerProperty(itemID);
-        this.stockLevel = new SimpleIntegerProperty(stockLevel);
-        this.minStockLevel = new SimpleIntegerProperty(minStockLevel);
+        this.stockIdProperty = new SimpleIntegerProperty(stockID);
+        this.itemIdProperty = new SimpleIntegerProperty(itemID);
+        this.stockLevelProperty = new SimpleIntegerProperty(stockLevel);
+        this.minStockLevelProperty = new SimpleIntegerProperty(minStockLevel);
     }
 
     public Stock(int stockID, int itemID)
     {
-        this.stockID = new SimpleIntegerProperty(stockID);
-        this.itemID = new SimpleIntegerProperty(itemID);
+        this.stockIdProperty = new SimpleIntegerProperty(stockID);
+        this.itemIdProperty = new SimpleIntegerProperty(itemID);
     }
 
     public Stock(int stockID, int stockLevel, int minStockLevel)
     {
-        this.stockID = new SimpleIntegerProperty(stockID);
-        this.stockLevel = new SimpleIntegerProperty(stockLevel);
-        this.minStockLevel = new SimpleIntegerProperty(minStockLevel);
+        this.stockIdProperty = new SimpleIntegerProperty(stockID);
+        this.stockLevelProperty = new SimpleIntegerProperty(stockLevel);
+        this.minStockLevelProperty = new SimpleIntegerProperty(minStockLevel);
     }
 //start region
-    public int getStockID() {
-        return stockID.get();
+    public int getStockIdProperty() {
+        return stockIdProperty.get();
     }
 
     public IntegerProperty getStockIDProperty() {
-        return stockID;
+        return stockIdProperty;
     }
 
-    public void setStockID(int stockID) {
-        this.stockID.set(stockID);
+    public void setStockIdProperty(int stockIdProperty) {
+        this.stockIdProperty.set(stockIdProperty);
     }
 
-    public int getItemID() {
-        return itemID.get();
+    public int getItemIdProperty() {
+        return itemIdProperty.get();
     }
 
     public IntegerProperty getItemIDProperty() {
-        return itemID;
+        return itemIdProperty;
     }
 
-    public void setItemID(int itemID) {
-        this.itemID.set(itemID);
+    public void setItemIdProperty(int itemIdProperty) {
+        this.itemIdProperty.set(itemIdProperty);
     }
 
-    public int getStockLevel() {
-        return stockLevel.get();
+    public int getStockLevelProperty()
+    {
+        return stockLevelProperty.get();
     }
 
-    public IntegerProperty getStockLevelProperty() {
-        return stockLevel;
+    public void setStockLevelProperty(int stockLevelProperty) {
+        this.stockLevelProperty.set(stockLevelProperty);
     }
 
-    public void setStockLevel(int stockLevel) {
-        this.stockLevel.set(stockLevel);
+    public int getMinStockLevelProperty() {
+        return minStockLevelProperty.get();
     }
 
-    public int getMinStockLevel() {
-        return minStockLevel.get();
-    }
-
-    public IntegerProperty getMinStockLevelProperty() {
-        return minStockLevel;
-    }
-
-    public void setMinStockLevel(int minStockLevel) {
-        this.minStockLevel.set(minStockLevel);
+    public void setMinStockLevelProperty(int minStockLevelProperty) {
+        this.minStockLevelProperty.set(minStockLevelProperty);
     }
 
     //endregion
@@ -87,11 +83,11 @@ public class Stock implements Comparable<Stock>
     @Override
     public int compareTo(Stock o)
     {
-        if (this.stockID.get() > o.getStockID())
+        if (this.stockIdProperty.get() > o.getStockIdProperty())
         {
             return 1;
         }
-        else if (this.stockID.get() < o.getStockID())
+        else if (this.stockIdProperty.get() < o.getStockIdProperty())
         {
             return -1;
         }
