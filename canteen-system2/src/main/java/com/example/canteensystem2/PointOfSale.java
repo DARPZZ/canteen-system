@@ -1,9 +1,14 @@
 package com.example.canteensystem2;
 
 
+import Model.DaOImplements.DaOEmployee;
 import Model.DaOImplements.DaOItem;
+import Model.DaOImplements.DaOTransaction;
+import Model.DaOImplements.DaoStock;
+import Model.DaoObjects.Employee;
 import Model.DaoObjects.Item;
 import Model.DaoObjects.Stock;
+import Model.DaoObjects.Transaction;
 import View.AdminPage;
 import javafx.application.Application;
 import javafx.beans.property.FloatProperty;
@@ -24,6 +29,8 @@ import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
 
+import javax.xml.stream.util.StreamReaderDelegate;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -207,13 +214,31 @@ public class PointOfSale extends AdminPage {
         TextField inputEmployee = new TextField();
         inputEmployee.setPrefSize(300, 25);
         inputEmployee.setPromptText("Indtast medarbejdernr. manuelt ");
+        DaOEmployee daOEmployee = new DaOEmployee();
+        DaoStock daoStock = new DaoStock();
+        DaOTransaction daOTransaction = new DaOTransaction();
         inputEmployee.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*")) {
                 inputEmployee.setText(oldValue);
             }
             inputEmployee.setOnKeyPressed(event -> {
 
-                if (event.getCode() == KeyCode.ENTER){
+                if (event.getCode() == KeyCode.ENTER)
+                {
+                    Employee currentEmployee =daOEmployee.Get(Integer.parseInt(inputEmployee.getText()));
+                    currentEmployee.setSaldo(currentEmployee.getSaldo() - purchaseSum.getValue());
+                    daOEmployee.Update(currentEmployee,"fldSaldo",String.valueOf(currentEmployee.getSaldo()));
+                    for (int i = 0; i < purchaseItems.size(); i++)
+                    {
+                        Stock tempStock = daoStock.Get(purchaseItems.get(i));
+                        tempStock.setStockLevel(tempStock.getStockLevel() - 1);
+                        daoStock.Update(tempStock,"fldStockLevel",String.valueOf(tempStock.getStockLevel()));
+                    }
+
+                    Transaction tempTrans = new Transaction(daOTransaction.getLatestID(), LocalDate.now(),purchaseSum.getValue(),currentEmployee.getEmployeeID());
+                    daOTransaction.Create(tempTrans);
+
+
 
                 }
             });

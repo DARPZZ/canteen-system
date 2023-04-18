@@ -33,13 +33,13 @@ public class DaOTransaction implements DaOInterface
         transaction =(Transaction) o;
 
         try {
-            preparedStatement = con.prepareStatement("INSERT INTO tblTransaction (fldTransActionID,fldDate,fldTotalAmount,fldEmployeeID) VALUES (?,?,?,?)");
+            preparedStatement = con.prepareStatement("INSERT INTO tblTransaction (fldDate,fldTotalAmount,fldEmployeeID) VALUES (?,?,?)");
 
-            preparedStatement.setInt(1,transaction.getTransactionID());
+            //preparedStatement.setInt(1,transaction.getTransactionID());
             Date temp = Date.valueOf(transaction.getDate());
-            preparedStatement.setDate(2,temp);
-            preparedStatement.setFloat(3,transaction.getTotalAmount());
-            preparedStatement.setInt(4,transaction.getEmployeeID());
+            preparedStatement.setDate(1,temp);
+            preparedStatement.setFloat(2,transaction.getTotalAmount());
+            preparedStatement.setInt(3,transaction.getEmployeeID());
             preparedStatement.execute();
         }
         catch (Exception e)
@@ -88,6 +88,15 @@ public class DaOTransaction implements DaOInterface
         } catch (Exception e){}
         return tempTransaction;
 
+    }
+    public int getLatestID()
+    {
+        try {
+            preparedStatement = con.prepareStatement("SELECT TOP(1) fldTransactionID FROM tblTransaction");
+            ResultSet rs = preparedStatement.executeQuery();
+            return rs.getInt(1);
+        }catch (Exception e){}
+        return 0;
     }
     @Override
     public List<Transaction> GetAll()
