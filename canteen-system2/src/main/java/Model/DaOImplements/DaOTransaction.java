@@ -81,7 +81,7 @@ public class DaOTransaction implements DaOInterface
     {
         try
         {
-            preparedStatement = con.prepareStatement("SELECT * FROM tblItem WHERE fldItemID = ?");
+            preparedStatement = con.prepareStatement("SELECT * FROM tblItem WHERE fldTransactionID = ?");
             preparedStatement.setString(1, String.valueOf(ID));
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next())

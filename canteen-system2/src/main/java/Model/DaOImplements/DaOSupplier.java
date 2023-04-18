@@ -79,7 +79,7 @@ public class DaOSupplier implements DaOInterface
     {
         try
         {
-            preparedStatement = con.prepareStatement("SELECT * FROM tblItem WHERE fldItemID = ?");
+            preparedStatement = con.prepareStatement("SELECT * FROM tblItem WHERE fldSupplierID = ?");
             preparedStatement.setString(1, String.valueOf(ID));
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next())
