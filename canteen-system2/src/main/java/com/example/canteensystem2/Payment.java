@@ -1,6 +1,6 @@
 package com.example.canteensystem2;
 
-
+import Model.DaoObjects.Employee;
 import Model.DaOImplements.DaOEmployee;
 import Model.DaoObjects.DaOInterface;
 import javafx.event.ActionEvent;

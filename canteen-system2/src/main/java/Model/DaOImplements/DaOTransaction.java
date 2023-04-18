@@ -1,6 +1,7 @@
 package Model.DaOImplements;
 
 import Model.DaoObjects.DaOInterface;
+import Model.DaoObjects.Item;
 import Model.DaoObjects.Transaction;
 
 import java.sql.*;
@@ -78,15 +79,21 @@ public class DaOTransaction implements DaOInterface
     @Override
     public Transaction Get(int ID)
     {
-        Transaction tempTransaction = null;
         try
         {
-            preparedStatement = con.prepareStatement("SELECT * FROM tblTransaction WHERE fldTransActionID = ?");
-            preparedStatement.setInt(1,ID);
+            preparedStatement = con.prepareStatement("SELECT * FROM tblItem WHERE fldTransactionID = ?");
+            preparedStatement.setString(1, String.valueOf(ID));
             ResultSet rs = preparedStatement.executeQuery();
-            tempTransaction = new Transaction(rs.getInt("fldTransActionID"),rs.getDate("fldDate").toLocalDate() ,rs.getFloat("fldTotalAmount"),rs.getInt("fldEmployeeID"));
-        } catch (Exception e){}
-        return tempTransaction;
+            if (rs.next())
+            {
+                return new Transaction(rs.getInt(1), rs.getDate(2).toLocalDate(), rs.getFloat(3),rs.getInt(4));
+            }
+        }
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        return null;
 
     }
     @Override
