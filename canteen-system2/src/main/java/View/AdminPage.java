@@ -25,6 +25,7 @@ public abstract class AdminPage
         SalesHistoryBtn = new Button("Salgshistorik");
         backBtn = new BackButton();
 
+
         int yLayout = 50;
         int widthSize = 250;
         int heightSize = 40;
@@ -47,8 +48,9 @@ public abstract class AdminPage
         SalesHistoryBtn.setPrefSize(widthSize, heightSize);
         // Mangler eventhandler
 
-
         anchorPane.getChildren().addAll(pointOfSaleBtn, StockManagementBtn, SalesHistoryBtn, backBtn);
+        String css = this.getClass().getResource("/com/example/canteensystem2/style.css").toExternalForm();
+        scene.getStylesheets().add(css);
     }
 
     public Scene getScene()
