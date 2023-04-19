@@ -272,6 +272,10 @@ public class PointOfSale extends AdminPage {
 
         } );
 
+        btn_delete.setOnAction(e->{
+            inputItem.clear();
+        });
+
 
 
         root.setRight(rightBox);
