@@ -120,7 +120,7 @@ public class Payment {
         Saldo.setLayoutY(350);
         btnb.setId("back-button");
 
-        String css = this.getClass().getResource("style.css").toExternalForm();
+        String css = this.getClass().getResource("Style.css").toExternalForm();
         scene.getStylesheets().add(css);
         customAmount.setLayoutX(kr200.getLayoutX() - 50);
         customAmount.setLayoutY(kr200.getLayoutY() + 70);

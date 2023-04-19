@@ -24,7 +24,7 @@
 }
 #loginButtons {
     -fx-font-size: 18px;
-    -fx-font-weight: bolder;
+    -fx-font-weight: bold;
     -fx-font-family: Helvetica, Arial, Open Sans, Roboto;
     -fx-background-radius: 20;
     -fx-border-radius: 20;
@@ -74,7 +74,7 @@
     -fx-text-fill: #fff;
 }
 #saldoButtons {
-    
+
     -fx-font-size: 18px;
     -fx-font-weight: bold;
     -fx-font-family:Helvetica, Arial, Open Sans, Roboto;

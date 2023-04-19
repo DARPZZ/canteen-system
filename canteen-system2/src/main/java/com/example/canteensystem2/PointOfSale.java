@@ -109,7 +109,7 @@ public class PointOfSale extends AdminPage {
 
 
 //endregion
-        btn_back.setId("back-button");
+
         //Layout containers
         BorderPane root = new BorderPane();
 
@@ -210,9 +210,6 @@ public class PointOfSale extends AdminPage {
 
 
         //endregion
-        String css = this.getClass().getResource("style.css").toExternalForm();
-        scene.getStylesheets().add(css);
-
         TextField inputEmployee = new TextField();
         inputEmployee.setPrefSize(300, 25);
         inputEmployee.setPromptText("Indtast medarbejdernr. manuelt ");
