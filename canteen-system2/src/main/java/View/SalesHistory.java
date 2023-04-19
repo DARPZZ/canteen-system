@@ -4,8 +4,10 @@ import Model.DaOImplements.DaOTransaction;
 import Model.DaoObjects.Transaction;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.input.KeyCode;
 
 public class SalesHistory extends AdminPage
 {
@@ -15,16 +17,36 @@ public class SalesHistory extends AdminPage
 
     public SalesHistory()
     {
-        transactionsList = FXCollections.observableList(new DaOTransaction().GetAll());
+        // Creates tableview
+        DaOTransaction daoTransaction = new DaOTransaction();
+        transactionsList = FXCollections.observableList(daoTransaction.GetAll());
         tableView = new TableView<>(transactionsList);
-
         tableView.setPrefSize((scene.getWidth() - 200), (scene.getHeight() - 300));
         tableView.setLayoutX((scene.getWidth() - tableView.getPrefWidth()) / 2);
         tableView.setLayoutY(250);
         tableView.setFocusTraversable(false);
         createColumn();
 
-        super.anchorPane.getChildren().add(tableView);
+        // Update Button
+        Button updateBtn = new Button("Opdater listen");
+        updateBtn.setPrefSize(150, 25);
+        updateBtn.setLayoutX((tableView.getLayoutX() + tableView.getPrefWidth() - updateBtn.getPrefWidth()));
+        updateBtn.setLayoutY(tableView.getLayoutY() - updateBtn.getPrefHeight());
+        updateBtn.setOnAction(event ->
+                {
+                    transactionsList.clear();
+                    transactionsList.addAll(daoTransaction.GetAll());
+                });
+        updateBtn.setOnKeyReleased(event ->
+        {
+            if (event.getCode() == KeyCode.ENTER)
+            {
+                transactionsList.clear();
+                transactionsList.addAll(daoTransaction.GetAll());
+            }
+        });
+
+        super.anchorPane.getChildren().addAll(tableView, updateBtn);
     }
 
     /**

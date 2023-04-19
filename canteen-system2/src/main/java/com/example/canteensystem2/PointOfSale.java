@@ -10,25 +10,15 @@ import Model.DaoObjects.Item;
 import Model.DaoObjects.Stock;
 import Model.DaoObjects.Transaction;
 import View.AdminPage;
-import View.BackButton;
-import javafx.application.Application;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.SimpleFloatProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-import javafx.util.StringConverter;
-import javafx.util.converter.NumberStringConverter;
 
 import javax.xml.stream.util.StreamReaderDelegate;
 import java.time.LocalDate;
@@ -236,8 +226,11 @@ public class PointOfSale extends AdminPage {
                     for (int i = 0; i < purchaseItems.size(); i++)
                     {
                         Stock tempStock = daoStock.Get(purchaseItems.get(i));
-                        tempStock.setStockLevelProperty(tempStock.getStockLevelProperty() - 1);
-                        daoStock.Update(tempStock,"fldStockLevel",String.valueOf(tempStock.getStockLevelProperty()));
+                        if (tempStock != null)
+                        {
+                            tempStock.setStockLevelProperty(tempStock.getStockLevelProperty() - 1);
+                            daoStock.Update(tempStock,"fldStockLevel",String.valueOf(tempStock.getStockLevelProperty()));
+                        }
                     }
 
                     Transaction tempTrans = new Transaction(daOTransaction.getLatestID(), LocalDate.now(),purchaseSum.getValue(),currentEmployee.getEmployeeID());
