@@ -103,11 +103,12 @@ public class PointOfSale extends Application {
 
 
 //endregion
-
+        btn_back.setId("back-button");
         //Layout containers
         BorderPane root = new BorderPane();
 
         scene = new Scene(root, 1278, 780);
+
 
         FlowPane center = new FlowPane();
 
@@ -206,6 +207,8 @@ public class PointOfSale extends Application {
 
 
         //endregion
+        String css = this.getClass().getResource("style.css").toExternalForm();
+        scene.getStylesheets().add(css);
 
         TextField inputEmployee = new TextField();
         inputEmployee.setPrefSize(300, 25);
@@ -244,6 +247,7 @@ public class PointOfSale extends Application {
 
 
         } );
+
 
 
         root.setRight(rightBox);

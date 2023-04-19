@@ -21,8 +21,8 @@ Scene scene;
         scene = new Scene(borderPane, 1280, 768);
         Label welcome = new Label("Welcome to Canteen ");
         Label choice = new Label("Please select what you would like to log in as");
-        welcome.setId("startLogin");
-        choice.setId("startLogin");
+        welcome.setId("welcomeText");
+        choice.setId("welcomeText");
 
         borderPane.setCenter(anchorPane);
 

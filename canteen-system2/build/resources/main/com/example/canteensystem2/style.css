@@ -9,18 +9,28 @@
     -fx-translate-y: 2px;
     -fx-translate-x: 2px;
 }
-#welcomeText
-{
+#welcomeText {
     -fx-font-size: 25px;
-    -fx-text-fill: white;
+    -fx-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 3, 0, 0, 1);
 }
-#saldo{
+#saldo {
     -fx-font-size: 25px;
+    -fx-font-family: Calibri;
+    -fx-font-weight: bold;
     -fx-text-fill: green;
+    -fx-background-color: #f2f2f2;
+    -fx-padding: 10px;
+    -fx-border-color: green;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
 }
 .root
 {
-    -fx-background-color: black;
+    -fx-background-color: #c4c4c4;
 }
 #loginButtons
 {
@@ -30,31 +40,53 @@
     -fx-font-weight: bolder;
     -fx-font-family: Impact;
 }
+#loginButtons:hover {
+    -fx-background-color: #333333;
+    -fx-text-fill: #ffffff;
+}
+#saldoButtons:hover{
+    -fx-background-color: #333333;
+    -fx-text-fill: #ffffff;
+}
 .text-field{
     -fx-font-family: Impact;
 
 }
 #startLogin{
     -fx-font-size: 24px;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-font-weight: bold;
 
 }
-#back-button
-{
+
+#back-button {
     -fx-shape: "M 50 300 L 300 150 L 300 250 L 450 250 L 450 350 L 300 350 L 300 450 L 50 300 ";
-    -fx-background-color: white;
+    -fx-background-color: #333;
     -fx-scale-x: 1.5;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5;
+    -fx-border-width: 2;
+    -fx-font-size: 16;
+    -fx-font-family: Calibri;
+    -fx-font-weight: bold;
+    -fx-text-fill: #f2f2f2;
 }
-#loginNotificationLabel
-{
+
+#back-button:hover {
+    -fx-background-color: #666;
+}
+#headerLabel {
+    -fx-font-size: 40;
+    -fx-font-family: Calibri;
+    -fx-font-weight: bold;
+}
+
+#loginNotificationLabel {
     -fx-font-size: 15;
-    -fx-text-fill: white;
-
+    -fx-font-family: Calibri;
 }
 
-#headerLabel
-{
-    -fx-font-size: 30;
-    -fx-text-fill: white;
+#backBtn:hover {
+    -fx-background-color: #ccc;
+    -fx-text-fill: #fff;
 }

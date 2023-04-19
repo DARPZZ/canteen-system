@@ -59,6 +59,7 @@ public class CustomerLogin extends LoginScreen
         {
             Scene createPaymentScene = payment.createPaymentScene(stage, employeeIdTf);
             stage.setScene(createPaymentScene);
+            employeeIdTf.clear();
         });
     }
 }
