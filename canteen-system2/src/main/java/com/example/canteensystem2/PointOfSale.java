@@ -10,28 +10,17 @@ import Model.DaoObjects.Item;
 import Model.DaoObjects.Stock;
 import Model.DaoObjects.Transaction;
 import View.AdminPage;
-import View.BackButton;
 import View.KeypadButton;
-import javafx.application.Application;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.SimpleFloatProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-import javafx.util.StringConverter;
-import javafx.util.converter.NumberStringConverter;
 
-import javax.xml.stream.util.StreamReaderDelegate;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +44,7 @@ public class PointOfSale extends AdminPage {
         Button no_1 = new KeypadButton("1");
        no_1.setText("1");
         no_1.setUserData("1");
-        no_1.setStyle("-fx-font-size: 24; -fx-background-color: #000065; -fx-text-fill: WHITE");
+
 
 
         Button no_2 = new KeypadButton("2");
@@ -247,14 +236,16 @@ public class PointOfSale extends AdminPage {
 
         Label sumText = new Label();
         sumText.setPrefSize(339,25);
-        sumText.setStyle("-fx-font-size: 16; -fx-text-fill: BLACK");
+        //sumText.setStyle("-fx-font-size: 16; -fx-text-fill: BLACK");
         sumText.setText("Samlet pris: ");
+        sumText.setId("SumPris");
         sumText.setAlignment(Pos.CENTER_LEFT);
 
         Label sum = new Label();
         sum.setPrefSize(339, 25);
         sum.textProperty().bind(purchaseSum.asString());
-        sum.setStyle("-fx-font-size: 16; -fx-text-fill: BLACK");
+       // sum.setStyle("-fx-font-size: 16; -fx-text-fill: BLACK");
+        sum.setId("SumPris");
         sum.setAlignment(Pos.CENTER_RIGHT);
 
         List<Item> purchaseList = new ArrayList<>();

@@ -1,6 +1,5 @@
 package com.example.canteensystem2;
 
-import Model.DaoObjects.Employee;
 import Model.DaOImplements.DaOEmployee;
 import Model.DaoObjects.DaOInterface;
 import View.BackButton;
@@ -120,7 +119,7 @@ public class Payment {
         Saldo.setLayoutY(350);
         btnb.setId("back-button");
 
-        String css = this.getClass().getResource("Style.css").toExternalForm();
+        String css = this.getClass().getResource("com/example/canteensystem2/Style.css").toExternalForm();
         scene.getStylesheets().add(css);
         customAmount.setLayoutX(kr200.getLayoutX() - 50);
         customAmount.setLayoutY(kr200.getLayoutY() + 70);
