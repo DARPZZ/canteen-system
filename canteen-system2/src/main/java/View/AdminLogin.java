@@ -20,6 +20,7 @@ public class AdminLogin extends LoginScreen
     private List<Employee> employeeList;
     public AdminLogin()
     {
+
         super.setHeaderText("Administrator \n\tlogin");
         super.setLoginNotificationText("Indtast venligst dine login oplysninger");
         super.getLoginAp().requestFocus();
@@ -56,13 +57,18 @@ public class AdminLogin extends LoginScreen
             }
         });
 
+
         // Creates sign in button
         signInBtn = new Button("Log ind");
         super.getLoginAp().getChildren().add(signInBtn);
         signInBtn.setPrefSize(250, 40);
         signInBtn.setLayoutX((super.getScene().getWidth() - signInBtn.getPrefWidth()) / 2);
         signInBtn.setLayoutY(450);
+
         signInBtn.setFocusTraversable(false);
+
+        signInBtn.setId("loginButtons");
+
         signInBtn.setOnAction(event ->
         {
             if (validatePassword(usernameTf.getText(), loginTf.getText()))

@@ -97,7 +97,7 @@ public class Payment {
         Button btnb = new BackButton();
         Welcome.setId("welcomeText");
         Saldo.setId("saldo");
-        System.out.println("ILD");
+
         kr50.setLayoutY(300);
         kr50.setLayoutX(1170);
         kr50.setPrefWidth(PREF_WIDTH);
@@ -120,7 +120,7 @@ public class Payment {
         Saldo.setLayoutY(350);
         btnb.setId("back-button");
 
-        String css = this.getClass().getResource("/com/example/canteensystem2/style.css").toExternalForm();
+        String css = this.getClass().getResource("style.css").toExternalForm();
         scene.getStylesheets().add(css);
         customAmount.setLayoutX(kr200.getLayoutX() - 50);
         customAmount.setLayoutY(kr200.getLayoutY() + 70);
