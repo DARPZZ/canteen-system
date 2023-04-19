@@ -19,7 +19,7 @@ public abstract class AdminPage
     {
         anchorPane = new AnchorPane();
         scene = new Scene(anchorPane, 1280, 768);
-
+        System.out.println("test");
         pointOfSaleBtn = new Button("Salg");
         StockManagementBtn = new Button("Lagerstyring");
         SalesHistoryBtn = new Button("Salgshistorik");
