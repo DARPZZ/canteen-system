@@ -28,8 +28,7 @@ public class HelloApplication extends Application
         sceneMap.put(SceneName.SalesHistory, new SalesHistory().getScene());
         sceneMap.put(SceneName.PointOfSales, new PointOfSale().getScene());
        // sceneMap.put(SceneName.Payment, new Payment().getScene());
-        String css = this.getClass().getResource("Style.css").toExternalForm();
-        scene.getStylesheets().add(css);
+
         stage.setTitle("Kantinen");
         stage.setScene(scene);
         stage.show();

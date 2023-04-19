@@ -1,4 +1,4 @@
-package View;
+package com.example.canteensystem2;
 
 import Model.DaOImplements.DaOEmployee;
 import Model.DaoObjects.DaOInterface;
@@ -133,8 +133,7 @@ public class Payment {
         Saldo.setLayoutY(350);
         btnb.setId("back-button");
 
-        String css = this.getClass().getResource("com/example/canteensystem2/Style.css").toExternalForm();
-        scene.getStylesheets().add(css);
+
         customAmount.setLayoutX(kr200.getLayoutX() - 50);
         customAmount.setLayoutY(kr200.getLayoutY() + 70);
         customAmount.setPromptText("Enter custom amount");
@@ -142,6 +141,8 @@ public class Payment {
         customAmount.setPrefHeight(35);
         getUserID(textField);
         anchorPane.getChildren().addAll(Welcome, kr50, kr100, kr200, Saldo, customAmount, btnb);
+        String css = this.getClass().getResource("Style.css").toExternalForm();
+        scene.getStylesheets().add(css);
         btnb.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override

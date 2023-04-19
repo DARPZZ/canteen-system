@@ -1,4 +1,4 @@
-package View;
+package com.example.canteensystem2;
 
 import com.example.canteensystem2.HelloApplication;
 import com.example.canteensystem2.SceneName;
@@ -45,8 +45,8 @@ Scene scene;
         customerLoginB.setId("loginButtons");
         adminLoginB.setId("loginButtons");
 
-       // String css = this.getClass().getResource("Style.css").toExternalForm();
-        //scene.getStylesheets().add(css);
+        String css = this.getClass().getResource("Style.css").toExternalForm();
+        scene.getStylesheets().add(css);
 
         //region sceneShift
         customerLoginB.setOnAction(new EventHandler<ActionEvent>()

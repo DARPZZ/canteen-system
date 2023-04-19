@@ -1,5 +1,7 @@
-package View;
+package com.example.canteensystem2;
 
+import View.LoginScreen;
+import com.example.canteensystem2.Payment;
 import javafx.scene.control.Button;
 
 import javafx.scene.Scene;
