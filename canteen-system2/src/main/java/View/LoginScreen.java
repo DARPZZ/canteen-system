@@ -47,7 +47,7 @@ public abstract class LoginScreen
         backBtn.setLayoutX(50);
         backBtn.setLayoutY(25);
         backBtn.setOnAction(event -> HelloApplication.changeScene(SceneName.LogIn));
-        String css = this.getClass().getResource("/com/example/canteensystem2/Style.css").toExternalForm();
+        String css = this.getClass().getResource("/com/example/canteensystem2/style.css").toExternalForm();
         scene.getStylesheets().add(css);
     }
 

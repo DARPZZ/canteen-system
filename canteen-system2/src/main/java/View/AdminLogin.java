@@ -10,6 +10,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyCode;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class AdminLogin extends LoginScreen
 {
@@ -90,7 +91,11 @@ public class AdminLogin extends LoginScreen
 
     public boolean validatePassword(String name, String password)
     {
-        Employee employee = DAO_EMPLOYEE.Get(Integer.parseInt(name));
+        Employee employee = null;
+        if (name.matches(".*[^a-z].*"))
+        {
+            employee = DAO_EMPLOYEE.Get(Integer.parseInt(name));
+        }
         if (employee == null)
         {
             return false;

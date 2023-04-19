@@ -43,7 +43,7 @@ Scene scene;
         customerLoginB.setId("loginButtons");
         adminLoginB.setId("loginButtons");
 
-        String css = this.getClass().getResource("Style.css").toExternalForm();
+        String css = this.getClass().getResource("style.css").toExternalForm();
         scene.getStylesheets().add(css);
 
         //region sceneShift
