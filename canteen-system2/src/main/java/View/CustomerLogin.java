@@ -1,19 +1,10 @@
 package View;
 
-import com.example.canteensystem2.HelloApplication;
-
-import com.example.canteensystem2.SceneName;
-import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 
-import com.example.canteensystem2.Payment;
-import com.example.canteensystem2.SceneName;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class CustomerLogin extends LoginScreen

@@ -1,8 +1,10 @@
-package com.example.canteensystem2;
+package View;
 
 import Model.DaOImplements.DaOEmployee;
 import Model.DaoObjects.DaOInterface;
 import View.BackButton;
+import com.example.canteensystem2.HelloApplication;
+import com.example.canteensystem2.SceneName;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -36,6 +38,11 @@ public class Payment {
     public Payment() {
 
     }
+
+    /**
+     * Show and updates the saldo of the givem employee
+     * @param textField
+     */
     public void getUserID(TextField textField) {
         int employeeId = Integer.parseInt(textField.getText());
         Model.DaoObjects.Employee employee = (Model.DaoObjects.Employee) pdEmployee.Get(employeeId);
@@ -84,6 +91,13 @@ public class Payment {
             }
         });
     }
+
+    /**
+     * creates a new scene with the diffrent nodes
+     * @param stage
+     * @param textField It is the textfeild from "Customer login"
+     * @return
+     */
     public Scene createPaymentScene(Stage stage, TextField textField)
     {
         BorderPane borderPane = new BorderPane();
@@ -119,7 +133,7 @@ public class Payment {
         Saldo.setLayoutY(350);
         btnb.setId("back-button");
 
-        String css = this.getClass().getResource("Style.css").toExternalForm();
+        String css = this.getClass().getResource("com/example/canteensystem2/Style.css").toExternalForm();
         scene.getStylesheets().add(css);
         customAmount.setLayoutX(kr200.getLayoutX() - 50);
         customAmount.setLayoutY(kr200.getLayoutY() + 70);

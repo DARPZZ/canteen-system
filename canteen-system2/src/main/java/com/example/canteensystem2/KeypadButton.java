@@ -1,4 +1,4 @@
-package View;
+package com.example.canteensystem2;
 
 import javafx.scene.control.Button;
 

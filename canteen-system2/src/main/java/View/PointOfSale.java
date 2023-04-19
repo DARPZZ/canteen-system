@@ -1,4 +1,4 @@
-package com.example.canteensystem2;
+package View;
 
 
 import Model.DaOImplements.DaOEmployee;
@@ -10,7 +10,7 @@ import Model.DaoObjects.Item;
 import Model.DaoObjects.Stock;
 import Model.DaoObjects.Transaction;
 import View.AdminPage;
-import View.KeypadButton;
+import com.example.canteensystem2.KeypadButton;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.collections.FXCollections;
@@ -25,7 +25,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PointOfSale extends AdminPage {
+public class PointOfSale extends AdminPage
+{
 
     private TableView<Item> display;
     private ObservableList<Item> purchaseItems;
@@ -100,8 +101,8 @@ public class PointOfSale extends AdminPage {
 
         super.scene = new Scene(root,1280,768);
 
-        String css = this.getClass().getResource("Style.css").toExternalForm();
-        super.scene.getStylesheets().add(css);
+        //String css = this.getClass().getResource("Style.css").toExternalForm();
+        //super.scene.getStylesheets().add(css);
         FlowPane center = new FlowPane();
 
         FlowPane header = new FlowPane();
