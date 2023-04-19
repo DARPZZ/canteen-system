@@ -1,9 +1,6 @@
 package com.example.canteensystem2;
 
-import View.AdminLogin;
-import View.CustomerLogin;
-import View.InventoryManagement;
-import View.SalesHistory;
+import View.*;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

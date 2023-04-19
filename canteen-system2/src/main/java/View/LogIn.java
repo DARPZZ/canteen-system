@@ -1,5 +1,7 @@
-package com.example.canteensystem2;
+package View;
 
+import com.example.canteensystem2.HelloApplication;
+import com.example.canteensystem2.SceneName;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
