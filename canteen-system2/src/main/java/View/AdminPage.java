@@ -26,6 +26,9 @@ public abstract class AdminPage
         InventoryManagementBtn = new Button("Lagerstyring");
         SalesHistoryBtn = new Button("Salgshistorik");
         backBtn = new BackButton();
+        pointOfSaleBtn.setId("loginButtons");
+        InventoryManagementBtn.setId("loginButtons");
+        SalesHistoryBtn.setId("loginButtons");
 
         backBtn.setOnAction(event -> HelloApplication.changeScene(SceneName.AdminLogin));
 

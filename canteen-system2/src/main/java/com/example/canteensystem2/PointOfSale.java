@@ -10,15 +10,26 @@ import Model.DaoObjects.Item;
 import Model.DaoObjects.Stock;
 import Model.DaoObjects.Transaction;
 import View.AdminPage;
+import View.BackButton;
+import View.KeypadButton;
+import javafx.application.Application;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.SimpleFloatProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import javafx.util.StringConverter;
+import javafx.util.converter.NumberStringConverter;
 
 import javax.xml.stream.util.StreamReaderDelegate;
 import java.time.LocalDate;
@@ -37,63 +48,55 @@ public class PointOfSale extends AdminPage {
 
 //region Buttons
 
-        Button no_0 = new Button("0");
-        no_0.setPrefSize(100, 100);
+        Button no_0 = new KeypadButton("0");
         no_0.setUserData("0");
-        no_0.setStyle("-fx-font-size: 24; -fx-background-color: #000065; -fx-text-fill: WHITE");
+        no_0.setText("0");
 
-        Button no_1 = new Button("1");
-        no_1.setPrefSize(100, 100);
+        Button no_1 = new KeypadButton("1");
+       no_1.setText("1");
         no_1.setUserData("1");
         no_1.setStyle("-fx-font-size: 24; -fx-background-color: #000065; -fx-text-fill: WHITE");
 
-        Button no_2 = new Button("2");
-        no_2.setUserData("2");
+
+        Button no_2 = new KeypadButton("2");
+       no_2.setText("2");
         no_2.setPrefSize(100, 100);
-        no_2.setStyle("-fx-font-size: 24; -fx-background-color: #000065; -fx-text-fill: WHITE");
 
-        Button no_3 = new Button("3");
+
+        Button no_3 = new KeypadButton("3");
         no_3.setUserData("3");
-        no_3.setPrefSize(100, 100);
-        no_3.setStyle("-fx-font-size: 24; -fx-background-color: #000065; -fx-text-fill: WHITE");
+        no_3.setText("3");
 
-        Button no_4 = new Button("4");
+        Button no_4 = new KeypadButton("4");
         no_4.setUserData("4");
-        no_4.setPrefSize(100, 100);
-        no_4.setStyle("-fx-font-size: 24; -fx-background-color: #000065; -fx-text-fill: WHITE");
+        no_4.setText("4");
 
-        Button no_5 = new Button("5");
+        Button no_5 = new KeypadButton("5");
         no_5.setUserData("5");
-        no_5.setPrefSize(100, 100);
-        no_5.setStyle("-fx-font-size: 24; -fx-background-color: #000065; -fx-text-fill: WHITE");
+        no_5.setText("5");
 
-        Button no_6 = new Button("6");
+
+        Button no_6 = new KeypadButton("6");
         no_6.setUserData("6");
-        no_6.setPrefSize(100, 100);
-        no_6.setStyle("-fx-font-size: 24; -fx-background-color: #000065; -fx-text-fill: WHITE");
+       no_6.setText("6");
 
-        Button no_7 = new Button("7");
+        Button no_7 = new KeypadButton("7");
         no_7.setUserData("7");
-        no_7.setPrefSize(100, 100);
-        no_7.setStyle("-fx-font-size: 24; -fx-background-color: #000065; -fx-text-fill: WHITE");
+        no_7.setText("7");
 
-        Button no_8 = new Button("8");
+        Button no_8 = new KeypadButton("8");
         no_8.setUserData("8");
-        no_8.setPrefSize(100, 100);
-        no_8.setStyle("-fx-font-size: 24; -fx-background-color: #000065; -fx-text-fill: WHITE");
+       no_8.setText("8");
 
-        Button no_9 = new Button("9");
+        Button no_9 = new KeypadButton("9");
         no_9.setUserData("9");
-        no_9.setPrefSize(100, 100);
-        no_9.setStyle("-fx-font-size: 24; -fx-background-color: #000065; -fx-text-fill: WHITE");
+        no_9.setText("9");
 
-        Button btn_delete = new Button("Del");
-        btn_delete.setPrefSize(100, 100);
-        btn_delete.setStyle("-fx-font-size: 24; -fx-background-color: #000065; -fx-text-fill: WHITE");
+        Button btn_delete = new KeypadButton("Del");
+        btn_delete.setText("Del");
 
-        Button btn_enter = new Button("Ent");
-        btn_enter.setPrefSize(100, 100);
-        btn_enter.setStyle("-fx-font-size: 24; -fx-background-color: #000065; -fx-text-fill: WHITE");
+        Button btn_enter = new KeypadButton("Ent");
+        btn_enter.setText("Ent");
 
         Button btn_buy = new Button("Skan medarbejderkort for betaling");
         btn_buy.setPrefSize(300, 120);

@@ -42,16 +42,16 @@ public class Payment {
         Model.DaoObjects.Employee employee = (Model.DaoObjects.Employee) pdEmployee.Get(employeeId);
         if (employee != null) {
             newBalance = employee.getSaldo();
-            Saldo.setText("Welcome: " + employee.getName() + "\n" +  "Your balance is: " + newBalance);
+            Saldo.setText("Velkommen: " + employee.getName() + "\n" +  "Din saldo er: " + newBalance);
         } else {
-            Saldo.setText("No employee with ID " + employeeId + " found.");
+            Saldo.setText("Ingen employee med ID " + employeeId + " var fundet.");
         }
         kr50.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 newBalance += 50;
                 pdEmployee.Update(employee, "fldSaldo", String.valueOf(newBalance));
-                Saldo.setText("Welcome: " + employee.getName() + "\n" +  "Your balance is: " + newBalance);
+                Saldo.setText("Velkommen: " + employee.getName() + "\n" +  "Din saldo er: " + newBalance);
             }
         });
         kr100.setOnAction(new EventHandler<ActionEvent>() {
@@ -59,7 +59,7 @@ public class Payment {
             public void handle(ActionEvent event) {
                 newBalance += 100;
                 pdEmployee.Update(employee, "fldSaldo", String.valueOf(newBalance));
-                Saldo.setText("Welcome: " + employee.getName() + "\n" +  "Your balance is: " + newBalance);
+                Saldo.setText("Velkommen: " + employee.getName() + "\n" +  "Din saldo er: " + newBalance);
 
             }
         });
@@ -68,7 +68,7 @@ public class Payment {
             public void handle(ActionEvent event) {
                 newBalance += 200;
                 pdEmployee.Update(employee, "fldSaldo", String.valueOf(newBalance));
-                Saldo.setText("Welcome: " + employee.getName() + "\n" +  "Your balance is: " + newBalance);
+                Saldo.setText("Velkommen: " + employee.getName() + "\n" +  "Din saldo er: " + newBalance);
             }
         });
         customAmount.setOnKeyPressed(new EventHandler<KeyEvent>()
@@ -79,7 +79,7 @@ public class Payment {
                 if (keyEvent.getCode().equals(KeyCode.ENTER)) {
                     newBalance += Float.parseFloat(customAmount.getText());
                     pdEmployee.Update(employee, "fldSaldo", String.valueOf(newBalance));
-                    Saldo.setText("Welcome: " + employee.getName() + "\n" +  "Your balance is: " + newBalance);
+                    Saldo.setText("Velkommen: " + employee.getName() + "\n" +  "Din saldo er: " + newBalance);
                     customAmount.setText("");
                 }
             }
