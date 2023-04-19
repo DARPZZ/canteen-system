@@ -1,3 +1,4 @@
+
 #welcomeText {
     -fx-font-size: 25px;
     -fx-text-fill: white;
@@ -56,9 +57,7 @@
     -fx-font-weight: bold;
     -fx-text-fill: #f2f2f2;
 }
-#back-button:hover {
-    -fx-background-color: #666;
-}
+
 #headerLabel {
     -fx-font-size: 40;
     -fx-font-family: Helvetica, Arial, Open Sans, Roboto;

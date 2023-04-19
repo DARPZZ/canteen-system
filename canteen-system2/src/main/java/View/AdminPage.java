@@ -21,11 +21,14 @@ public abstract class AdminPage
         anchorPane.setOnMousePressed(event -> anchorPane.requestFocus());
         scene = new Scene(anchorPane, 1280, 768);
 
+
         pointOfSaleBtn = new Button("Salg");
         InventoryManagementBtn = new Button("Lagerstyring");
         SalesHistoryBtn = new Button("Salgshistorik");
         backBtn = new BackButton();
+
         backBtn.setOnAction(event -> HelloApplication.changeScene(SceneName.AdminLogin));
+
 
         int yLayout = 50;
         int widthSize = 250;
@@ -46,7 +49,13 @@ public abstract class AdminPage
         SalesHistoryBtn.setPrefSize(widthSize, heightSize);
         SalesHistoryBtn.setOnAction(event -> HelloApplication.changeScene(SceneName.SalesHistory));
 
+        String css = this.getClass().getResource("/com/example/canteensystem2/Style.css").toExternalForm();
+        scene.getStylesheets().add(css);
+
+
+
         anchorPane.getChildren().addAll(pointOfSaleBtn, InventoryManagementBtn, SalesHistoryBtn, backBtn);
+
     }
 
     public Scene getScene()

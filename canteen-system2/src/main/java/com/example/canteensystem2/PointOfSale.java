@@ -10,6 +10,7 @@ import Model.DaoObjects.Item;
 import Model.DaoObjects.Stock;
 import Model.DaoObjects.Transaction;
 import View.AdminPage;
+import View.BackButton;
 import javafx.application.Application;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.SimpleFloatProperty;
@@ -39,11 +40,13 @@ public class PointOfSale extends AdminPage {
     private TableView<Item> display;
     private ObservableList<Item> purchaseItems;
     private Scene scene;
+
     private FloatProperty purchaseSum = new SimpleFloatProperty(0.0f);
 
     public PointOfSale() {
 
 //region Buttons
+
         Button no_0 = new Button("0");
         no_0.setPrefSize(100, 100);
         no_0.setUserData("0");
@@ -115,7 +118,8 @@ public class PointOfSale extends AdminPage {
 
         super.scene = new Scene(root,1280,768);
 
-
+        String css = this.getClass().getResource("Style.css").toExternalForm();
+        super.scene.getStylesheets().add(css);
         FlowPane center = new FlowPane();
 
         FlowPane header = new FlowPane();
@@ -208,7 +212,6 @@ public class PointOfSale extends AdminPage {
             inputItem.setText(inputItem.getText() + no_9.getText());
         });
 
-
         //endregion
         TextField inputEmployee = new TextField();
         inputEmployee.setPrefSize(300, 25);
@@ -246,7 +249,6 @@ public class PointOfSale extends AdminPage {
             });
         });
 
-
         Label sumText = new Label();
         sumText.setPrefSize(339,25);
         sumText.setStyle("-fx-font-size: 16; -fx-text-fill: BLACK");
@@ -258,9 +260,6 @@ public class PointOfSale extends AdminPage {
         sum.textProperty().bind(purchaseSum.asString());
         sum.setStyle("-fx-font-size: 16; -fx-text-fill: BLACK");
         sum.setAlignment(Pos.CENTER_RIGHT);
-
-
-
 
         List<Item> purchaseList = new ArrayList<>();
         purchaseItems = FXCollections.observableList(purchaseList);
@@ -295,34 +294,14 @@ public class PointOfSale extends AdminPage {
         root.setCenter(center);
         center.getChildren().addAll(display, sumText,sum);
         root.setTop(filler);
+
+
         filler.getChildren().addAll(backBtn,pointOfSaleBtn,InventoryManagementBtn,SalesHistoryBtn);
 
 
+
     }
-/*
-    public void createColumns() {
-        int xSize = (int) (this.display.getPrefWidth() / 4);
 
-        TableColumn<Item, String> ItemID = new TableColumn<>("Varenr.");
-        ItemID.setCellValueFactory(new PropertyValueFactory<>("ItemID"));
-        ItemID.setPrefWidth(xSize);
-
-        TableColumn<Item, String> Description = new TableColumn<>("Beskrivelse");
-        Description.setCellValueFactory(new PropertyValueFactory<>("Description"));
-        Description.setPrefWidth(xSize);
-
-        TableColumn<Item, String> Quantity = new TableColumn<>("Antal");
-        Quantity.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
-        Quantity.setPrefWidth(xSize);
-
-        TableColumn<Item, String> Price = new TableColumn<>("Pris");
-        Price.setCellValueFactory(new PropertyValueFactory<>("Price"));
-        Price.setPrefWidth(xSize);
-
-        //noinspection unchecked
-        this.display.getColumns().setAll(ItemID, Description, Quantity, Price);
-    }
-*/
     public void createColumns() {
         int noColumn = 4;
         int xSize = (int) (display.getPrefWidth() / noColumn);
