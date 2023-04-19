@@ -8,8 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
-import java.util.List;
-
 public abstract class LoginScreen
 {
     private Scene scene;
@@ -23,6 +21,7 @@ public abstract class LoginScreen
         loginAp = new AnchorPane();
         scene = new Scene(loginAp, 1280, 768);
         loginAp.setPrefSize(scene.getWidth(), scene.getHeight());
+        loginAp.setOnMousePressed(event -> loginAp.requestFocus());
 
         // Header label to set new text
         headerLabel = new Label();

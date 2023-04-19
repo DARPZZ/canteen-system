@@ -20,8 +20,6 @@ public class InventoryManagement extends AdminPage
 
     public InventoryManagement()
     {
-        super.anchorPane.setOnMousePressed(event -> anchorPane.requestFocus());
-
         // Creates tableView
         stockObservableList = FXCollections.observableList(StockItemSupplierHelper.getData());
         tableView = new TableView<>(stockObservableList);
@@ -40,6 +38,21 @@ public class InventoryManagement extends AdminPage
         searchField.setPromptText("\uD83D\uDD0E Søg");
         searchField.setStyle("-fx-font-size: 18");
         searchField.setFocusTraversable(false);
+
+        // Creates a listener
+        ObservableList<StockItemSupplier> filteredList = FXCollections.observableArrayList();
+        searchField.textProperty().addListener((observable, oldValue, newValue) ->
+        {
+            for (StockItemSupplier data : stockObservableList)
+            {
+                tableView.setItems(filteredList);
+                filteredList.clear();
+                if (data.getItemName().toLowerCase().contains(newValue.toLowerCase()) || data.getSupplierName().toLowerCase().contains(newValue.toLowerCase()))
+                {
+                    filteredList.add(data);
+                }
+            }
+        });
 
         super.anchorPane.getChildren().addAll(tableView, searchField);
     }
@@ -86,7 +99,7 @@ public class InventoryManagement extends AdminPage
         tableView.getColumns().add(currentAndMin);
         tableView.getColumns().add(supplier);
 
-        int noColumn = tableView.getColumns().size();
+        int noColumn = tableView.getColumns().size() + 1;
         int xSize = (int) (tableView.getPrefWidth() / noColumn);
 
         // Set properties for columns

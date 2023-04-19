@@ -16,6 +16,7 @@ public class AdminLogin extends LoginScreen
     private TextField usernameTf;
     private TextField loginTf;
     private Button signInBtn;
+    private final DaOEmployee DAO_EMPLOYEE = new DaOEmployee();
     private List<Employee> employeeList;
     public AdminLogin()
     {
@@ -83,13 +84,11 @@ public class AdminLogin extends LoginScreen
 
     public boolean validatePassword(String name, String password)
     {
-        for (Employee employee : employeeList)
+        Employee employee = DAO_EMPLOYEE.Get(Integer.parseInt(name));
+        if (employee == null)
         {
-            if (name.equalsIgnoreCase(String.valueOf(employee.getEmployeeID())) && password.equals(employee.getPassword()))
-            {
-                return true;
-            }
+            return false;
         }
-        return false;
+        return name.equalsIgnoreCase(String.valueOf(employee.getEmployeeID())) && password.equals(employee.getPassword());
     }
 }

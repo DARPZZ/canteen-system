@@ -34,7 +34,7 @@ public class HelloApplication extends Application
        // sceneMap.put(SceneName.Payment, new Payment().getScene());
         String css = this.getClass().getResource("style.css").toExternalForm();
         scene.getStylesheets().add(css);
-        stage.setTitle("Hello!");
+        stage.setTitle("Kantinen");
         stage.setScene(scene);
         stage.show();
     }
@@ -45,8 +45,6 @@ public class HelloApplication extends Application
 
     public static void changeScene(SceneName sceneName)
     {
-        primaryStageHolder.setTitle(sceneName.toString());
-
         if (sceneMap.containsKey(sceneName))
         {
             primaryStageHolder.setScene(sceneMap.get(sceneName));

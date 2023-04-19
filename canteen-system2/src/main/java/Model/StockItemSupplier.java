@@ -22,18 +22,6 @@ public class StockItemSupplier
         this.supplierName = new SimpleStringProperty(supplierName);
     }
 
-    public StockItemSupplier(int itemId, int stockLevel, int minStockLevel)
-    {
-        this.itemId = new SimpleIntegerProperty(itemId);
-        this.stockLevel = new SimpleIntegerProperty(stockLevel);
-        this.minStockLevel = new SimpleIntegerProperty(minStockLevel);
-    }
-
-    public StockItemSupplier()
-    {
-
-    }
-
     //region getter/setter
     public int getItemId()
     {
